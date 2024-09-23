@@ -1,0 +1,3 @@
+[submodule "files/radem-notebooks"]
+	path = files/radem-notebooks
+	url = https://github.com/AGHRADEM/radem-notebooks
