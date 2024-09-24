@@ -10,11 +10,6 @@
     dest: "/app"
     delete: yes
 
-- name: Pull Python Docker image
-  community.docker.docker_image:
-    name: python:3.9
-    source: pull
-
 - name: Run a Docker container based on the Python image
   community.docker.docker_container:
     name: radem
@@ -25,10 +20,6 @@
       FTP_PASSWORD: "{{ FTP_PASSWORD }}"
       CDF_LIB: "{{ CDF_LIB }}"
       INFLUXDB_TOKEN: "{{ influx_token }}"
-      # INFLUXDFTP_USERB_V2_URL: "{{ influx_url }}"
-      # INFLUXDB_V2_TOKEN: "{{ influx_token }}"
-      # INFLUXDB_V2_ORG: "{{ influx_org }}"
-      # INFLUXDB_V2_BUCKET: "{{ influx_bucket }}"
     volumes:
       - /app:/app
     command: "tail -f /dev/null"

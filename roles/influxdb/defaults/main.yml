@@ -2,7 +2,6 @@ influx_docker_container_name: influxdb
 
 influx_user: admin
 influx_password: very_secret_password
-influx_url: "http://localhost:8086"
 influx_org: radem
 influx_bucket: radem
 influx_token: verylongtokenforinfluxdb

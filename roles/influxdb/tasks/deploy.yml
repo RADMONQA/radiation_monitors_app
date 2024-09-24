@@ -1,7 +1,3 @@
-- name: InfluxDB - install pip package
-  ansible.builtin.pip:
-    name: influxdb-client
-
 - name: InfluxDB - create container
   community.docker.docker_container:
     name: "{{ influx_docker_container_name }}"
@@ -19,4 +15,3 @@
     published_ports:
       - 8086:8086
     state: started
-  register: results
