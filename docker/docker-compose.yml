@@ -1,16 +1,57 @@
 services:
-  fetcher:
-    build: .
+  radem_influxdb:
+    image: influxdb:alpine
+    container_name: influxdb_dev
+    environment:
+      DOCKER_INFLUXDB_INIT_MODE: ${DOCKER_INFLUXDB_INIT_MODE}
+      DOCKER_INFLUXDB_INIT_USERNAME: ${DOCKER_INFLUXDB_INIT_USERNAME}
+      DOCKER_INFLUXDB_INIT_PASSWORD: ${DOCKER_INFLUXDB_INIT_PASSWORD}
+      DOCKER_INFLUXDB_INIT_ORG: ${DOCKER_INFLUXDB_INIT_ORG}
+      DOCKER_INFLUXDB_INIT_BUCKET: ${DOCKER_INFLUXDB_INIT_BUCKET}
+      DOCKER_INFLUXDB_INIT_ADMIN_TOKEN: ${DOCKER_INFLUXDB_INIT_ADMIN_TOKEN}
+    volumes:
+      - radem_data:/radem_data
+    networks:
+      - ${DOCKER_NETWORK_NAME}
+    ports:
+      - "8186:8086"
+    restart: unless-stopped
+  
+  radem_fetcher:
+    build:
+      context: ./fetcher
+      dockerfile: Dockerfile
     container_name: fetcher_dev
     environment:
       - FTP_USER=${FTP_USER}
       - FTP_PASSWORD=${FTP_PASSWORD}
       - FTP_URL=${FTP_URL}
       - DATA_DIR=/radem_data
+    networks:
+      - ${DOCKER_NETWORK_NAME}
     volumes:
       - radem_data:/radem_data
+    restart: unless-stopped
+
+  radem_loader:
+    build:
+      context: ./loader
+    container_name: loader_dev
+    environment:
+      INFLUXDB_TOKEN: ${DOCKER_INFLUXDB_INIT_ADMIN_TOKEN}
+      INFLUXDB_ORG: ${DOCKER_INFLUXDB_INIT_ORG}
+      INFLUXDB_BUCKET: ${DOCKER_INFLUXDB_INIT_BUCKET}
+      INFLUXDB_URL: http://radem_influxdb:8086
+    volumes:
+      - radem_data:/radem_data
+    networks:
+        - ${DOCKER_NETWORK_NAME}
     restart: unless-stopped
 
 volumes:
   radem_data:
     driver: local
+
+networks:
+  radem_network:
+    driver: bridge
