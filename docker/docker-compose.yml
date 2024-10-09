@@ -1,0 +1,16 @@
+services:
+  fetcher:
+    build: .
+    container_name: fetcher_dev
+    environment:
+      - FTP_USER=${FTP_USER}
+      - FTP_PASSWORD=${FTP_PASSWORD}
+      - FTP_URL=${FTP_URL}
+      - DATA_DIR=/radem_data
+    volumes:
+      - radem_data:/radem_data
+    restart: unless-stopped
+
+volumes:
+  radem_data:
+    driver: local

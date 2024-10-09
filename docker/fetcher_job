@@ -1,0 +1,1 @@
+55 * * * * /app/scripts/fetch_all.sh >> /var/log/cron.log 2>&1
