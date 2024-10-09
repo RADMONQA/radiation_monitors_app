@@ -1,0 +1,7 @@
+- name: Docker deploy
+  ansible.builtin.import_tasks: deploy.yml
+  when: mode == "deploy"
+
+- name: Docker clean up
+  ansible.builtin.import_tasks: clean.yml
+  when: mode == "clean"

@@ -1,0 +1,46 @@
+- name: Ensure Docker is installed
+  ansible.builtin.package:
+    name: docker
+    state: present
+
+- name: Create persistent /app directory on host
+  ansible.builtin.file:
+    path: /app
+    state: directory
+    mode: "0755"
+
+- name: Synchronize files to /app directory
+  synchronize:
+    src: "../app/fetcher/"
+    dest: "/app"
+    delete: yes
+
+- name: Create Alpine container for Fetcher
+  community.docker.docker_container:
+    name: "{{ fetcher_container_name }}"
+    image: alpine:latest
+    detach: true
+    volumes:
+      - radem_data:/radem_data
+    env:
+      FTP_USER: "{{ FTP_USER }}"
+      FTP_PASSWORD: "{{ FTP_PASSWORD }}"
+      FTP_URL: "{{ FTP_URL }}"
+      DATA_DIR: "/radem_data"
+    command: "tail -f /dev/null"
+    state: started
+
+- name: Install required packages in the container
+  community.docker.docker_container_exec:
+    container: "{{ fetcher_container_name }}"
+    command: apk update && apk add --no-cache wget grep cron
+
+- name: Copy cron job file to the Alpine container
+  community.docker.docker_container_exec:
+    container: "{{ fetcher_container_name }}"
+    command: sh -c 'echo /app/fetcher/fetcher_job > /etc/crontabs/root'
+
+- name: Start cron service inside the container
+  community.docker.docker_container_exec:
+    container: "{{ fetcher_container_name }}"
+    command: crond

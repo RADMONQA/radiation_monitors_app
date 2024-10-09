@@ -1,0 +1,3 @@
+[submodule "submodules/spice"]
+	path = submodules/spice
+	url = https://juigitlab.esac.esa.int/notebooks/spice.git

@@ -1,0 +1,6 @@
+# TODO purge influx database !!!
+
+- name: Run python script in a container
+  community.docker.docker_container:
+    name: "{{ scraper_docker_container_name }}"
+    state: absent

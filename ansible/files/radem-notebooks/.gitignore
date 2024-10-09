@@ -1,0 +1,16 @@
+# Python and jupyter cache
+__pycache__
+.ipynb_checkpoints
+.vscode
+
+# Data and build folders
+data*
+data/**/*
+private
+opt
+
+# .env
+.env
+
+# Python environments
+venv

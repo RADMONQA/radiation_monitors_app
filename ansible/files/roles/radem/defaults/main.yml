@@ -1,0 +1,5 @@
+radem_container_name: radem
+
+FTP_USER: "ifjagh"
+FTP_PASSWORD: "1$Welcome1$"
+CDF_LIB: "/app/radem-notebooks/opt/cdf39_1-dist/src/lib"
