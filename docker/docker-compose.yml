@@ -1,4 +1,4 @@
-services:
+services:  
   radem_fetcher:
     build:
       context: ./fetcher
