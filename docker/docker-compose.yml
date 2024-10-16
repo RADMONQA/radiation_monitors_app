@@ -70,7 +70,7 @@ services:
     networks:
       - ${DOCKER_NETWORK_NAME}
     ports:
-      - "80:3000"
+      - "81:3000"
     restart: unless-stopped
 
 volumes:
