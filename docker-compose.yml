@@ -76,8 +76,6 @@ services:
 volumes:
   radem_data:
     driver: local
-  radem_log:
-    driver: local
 
 networks:
   radem_network:
