@@ -1,5 +1,0 @@
-- name: Remove influxdb container
-  community.docker.docker_container:
-    name: "{{ influx_docker_container_name }}"
-    state: absent
-  register: result

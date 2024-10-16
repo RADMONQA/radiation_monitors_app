@@ -1,7 +1,0 @@
-fetcher_container_name: fetcher_adev
-
-VOLUME_NAME: /radem_data
-
-FTP_USER: ifjagh
-FTP_PASSWORD: 1$Welcome1$
-FTP_URL: ftp://ftptrans.psi.ch/to_radem/

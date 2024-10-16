@@ -1,7 +1,0 @@
-- name: Deploy
-  ansible.builtin.import_tasks: deploy.yml
-  when: mode == "deploy"
-
-- name: Clean up
-  ansible.builtin.import_tasks: clean.yml
-  when: mode == "clean"
