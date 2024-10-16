@@ -1,0 +1,1 @@
+30 * * * * /app/scripts/load_to_influxdb.sh 2>&1

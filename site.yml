@@ -1,9 +1,0 @@
-- hosts: all
-  become: yes
-  roles:
-    - docker
-    - influxdb
-    # - grafana
-    - radem
-  vars:
-    docker_network_name: radem_network

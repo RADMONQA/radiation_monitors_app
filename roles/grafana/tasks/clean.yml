@@ -1,4 +1,0 @@
-- name: Remove default grafana containers
-  community.docker.docker_container:
-    name: "{{ grafana_docker_container_name }}"
-    state: absent
