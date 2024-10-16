@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 #
-# Fetches RADEM data from FTP server
+# Fetches RADEM data from FTP server.
 
 # Build required folder structure
 mkdir -p ${DATA_DIR}/radem

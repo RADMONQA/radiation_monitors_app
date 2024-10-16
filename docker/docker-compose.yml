@@ -1,5 +1,12 @@
 services:  
   radem_fetcher:
+  # Service fetching the data.
+  #  
+  # Description:
+  # * periodically fetch data available on external locations (cron job)
+  #   * RADEM data (FTP connection)
+  #   * IREM data (publicly available)
+  # * store the data in DATA_DIR, which is shared with other containers
     build:
       context: ./fetcher
       dockerfile: Dockerfile
@@ -14,10 +21,11 @@ services:
     restart: unless-stopped
 
   radem_influxdb:
+  # Sets up the InfluxDB instance.
     image: influxdb:alpine
     container_name: influxdb_dev
     environment:
-      DOCKER_INFLUXDB_INIT_MODE: ${DOCKER_INFLUXDB_INIT_MODE}
+      DOCKER_INFLUXDB_INIT_MODE: setup
       DOCKER_INFLUXDB_INIT_USERNAME: ${DOCKER_INFLUXDB_INIT_USERNAME}
       DOCKER_INFLUXDB_INIT_PASSWORD: ${DOCKER_INFLUXDB_INIT_PASSWORD}
       DOCKER_INFLUXDB_INIT_ORG: ${DOCKER_INFLUXDB_INIT_ORG}
@@ -31,10 +39,10 @@ services:
       - "8186:8086"
     restart: unless-stopped
 
-  radem_loader:
+  radem_publisher:
     build:
-      context: ./loader
-    container_name: loader_dev
+      context: ./publisher
+    container_name: publisher_dev
     environment:
       INFLUXDB_TOKEN: ${DOCKER_INFLUXDB_INIT_ADMIN_TOKEN}
       INFLUXDB_ORG: ${DOCKER_INFLUXDB_INIT_ORG}
@@ -46,8 +54,29 @@ services:
         - ${DOCKER_NETWORK_NAME}
     restart: unless-stopped
 
+  radem_grafana:
+    build:
+      context: ./grafana
+      dockerfile: Dockerfile
+    image: grafana/grafana-oss
+    container_name: grafana_dev
+    environment:
+      GF_SECURITY_ADMIN_USER: ${GF_SECURITY_ADMIN_USER}
+      GF_SECURITY_ADMIN_PASSWORD: ${GF_SECURITY_ADMIN_PASSWORD}
+      GF_PATHS_PROVISIONING: /etc/grafana/provisioning
+      GF_AUTH_ANONYMOUS_ENABLED: false
+    volumes:
+      - radem_grafana_data:/var/lib/grafana
+    networks:
+      - ${DOCKER_NETWORK_NAME}
+    ports:
+      - "80:3000"
+    restart: unless-stopped
+
 volumes:
   radem_data:
+    driver: local
+  radem_grafana_data:
     driver: local
 
 networks:

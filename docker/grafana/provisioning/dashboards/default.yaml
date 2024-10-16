@@ -1,0 +1,18 @@
+# default.yaml
+#
+# More resources on Grafana provisioning:
+# - https://grafana.com/docs/grafana/latest/administration/provisioning/#dashboards
+#
+apiVersion: 1
+
+providers:
+  - name: RademDashboardProvider # an unique provider name
+    type: file
+    disableDeletion: false
+    updateIntervalSeconds: 10
+    allowUiUpdates: true
+    options:
+      # path to dashboard files on disk. Required when using the 'file' type
+      path: /etc/grafana/dashboards
+      # use folder names from filesystem to create folders in Grafana
+      foldersFromFilesStructure: true

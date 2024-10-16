@@ -1,0 +1,24 @@
+# default.yaml
+#
+# More resources on Grafana data sources:
+# - https://grafana.com/docs/grafana/latest/administration/provisioning/#data-sources
+#
+apiVersion: 1
+
+datasources:
+  - name: Radem
+    type: influxdb
+    access: proxy
+    url: http://radem_influxdb:8086
+    uid: radem_influxdb_datasource
+    isDefault: true
+    basicAuth: true
+    basicAuthUser: admin
+    jsonData:
+      version: Flux
+      organization: radem
+      defaultBucket: radem
+      tlsSkipVerify: true
+    secureJsonData:
+      basicAuthPassword: adminadmin
+      token: verylongtokenforinfluxdb

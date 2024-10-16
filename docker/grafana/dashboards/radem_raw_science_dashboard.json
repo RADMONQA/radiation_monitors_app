@@ -206,28 +206,6 @@
                 "value": "Others"
               }
             ]
-          },
-          {
-            "__systemRef": "hideSeriesFrom",
-            "matcher": {
-              "id": "byNames",
-              "options": {
-                "mode": "exclude",
-                "names": ["Bin 1", "Bin 2", "Bin 3", "Bin 4"],
-                "prefix": "All except:",
-                "readOnly": true
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": true
-                }
-              }
-            ]
           }
         ]
       },
@@ -239,7 +217,6 @@
       },
       "id": 4,
       "interval": "1m",
-      "maxDataPoints": 1000,
       "options": {
         "legend": {
           "calcs": [],
@@ -249,7 +226,7 @@
         },
         "tooltip": {
           "mode": "multi",
-          "sort": "asc"
+          "sort": "none"
         }
       },
       "targets": [
@@ -340,8 +317,7 @@
             "lineWidth": 1,
             "pointSize": 5,
             "scaleDistribution": {
-              "log": 10,
-              "type": "log"
+              "type": "linear"
             },
             "showPoints": "auto",
             "spanNulls": false,
@@ -478,14 +454,13 @@
         ]
       },
       "gridPos": {
-        "h": 8,
+        "h": 16,
         "w": 12,
         "x": 12,
         "y": 1
       },
-      "id": 21,
-      "interval": "4h",
-      "maxDataPoints": 1000,
+      "id": 36,
+      "interval": "1m",
       "options": {
         "legend": {
           "calcs": [],
@@ -495,7 +470,7 @@
         },
         "tooltip": {
           "mode": "multi",
-          "sort": "asc"
+          "sort": "none"
         }
       },
       "targets": [
@@ -545,521 +520,6 @@
           ]
         }
       ],
-      "title": "Protons",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "default": true,
-        "type": "influxdb",
-        "uid": "radem_influxdb_datasource"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "fixedColor": "red",
-            "mode": "palette-classic",
-            "seriesBy": "max"
-          },
-          "custom": {
-            "axisBorderShow": true,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisGridShow": true,
-            "axisLabel": "Flux [?]",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "barWidthFactor": 0.6,
-            "drawStyle": "line",
-            "fillOpacity": 2,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineStyle": {
-              "fill": "solid"
-            },
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "log": 10,
-              "type": "log"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "fieldMinMax": false,
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              }
-            ]
-          },
-          "unit": "none"
-        },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "value 1"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "Bin 1"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "value 2"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "Bin 2"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "value 3"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "Bin 3"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "value 4"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "Bin 4"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "value 5"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "Bin 5"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "value 6"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "Bin 6"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "value 7"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "Bin 7"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "value 8"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "Bin 8"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "value 9"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "Others"
-              }
-            ]
-          },
-          {
-            "__systemRef": "hideSeriesFrom",
-            "matcher": {
-              "id": "byNames",
-              "options": {
-                "mode": "exclude",
-                "names": ["value"],
-                "prefix": "All except:",
-                "readOnly": true
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": true
-                }
-              }
-            ]
-          }
-        ]
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 12,
-        "y": 9
-      },
-      "id": 27,
-      "interval": "1m",
-      "maxDataPoints": 1000,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "right",
-          "showLegend": false
-        },
-        "tooltip": {
-          "mode": "multi",
-          "sort": "asc"
-        }
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "influxdb",
-            "uid": "radem_influxdb_datasource"
-          },
-          "groupBy": [
-            {
-              "params": ["$__interval"],
-              "type": "time"
-            },
-            {
-              "params": ["channel::tag"],
-              "type": "tag"
-            },
-            {
-              "params": ["null"],
-              "type": "fill"
-            }
-          ],
-          "measurement": "my_measurement",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "import \"date\"\r\nfrom(bucket: \"radem\")\r\n  |> range(start: date.sub(d: 10m, from: v.timeRangeStart), stop:date.add(d: 10m, to: v.timeRangeStop))\r\n  |> filter(fn: (r) =>\r\n    r._measurement == \"protons_flux\"\r\n  )\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: true)",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": ["value"],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "event_type::tag",
-              "operator": "=",
-              "value": "p"
-            }
-          ]
-        }
-      ],
-      "title": "Proton Flux",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "default": true,
-        "type": "influxdb",
-        "uid": "radem_influxdb_datasource"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "fixedColor": "red",
-            "mode": "palette-classic",
-            "seriesBy": "max"
-          },
-          "custom": {
-            "axisBorderShow": true,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisGridShow": true,
-            "axisLabel": "Counts",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "barWidthFactor": 0.6,
-            "drawStyle": "line",
-            "fillOpacity": 2,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineStyle": {
-              "fill": "solid"
-            },
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "log": 10,
-              "type": "log"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "fieldMinMax": false,
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              }
-            ]
-          },
-          "unit": "none"
-        },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "value 1"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "Bin 1"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "value 2"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "Bin 2"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "value 3"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "Bin 3"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "value 4"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "Bin 4"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "value 5"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "Bin 5"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "value 6"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "Bin 6"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "value 7"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "Bin 7"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "value 8"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "Bin 8"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "value 9"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "Others"
-              }
-            ]
-          }
-        ]
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 24,
-        "x": 0,
-        "y": 17
-      },
-      "id": 18,
-      "interval": "1m",
-      "maxDataPoints": 1000,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "right",
-          "showLegend": true
-        },
-        "tooltip": {
-          "mode": "multi",
-          "sort": "asc"
-        }
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "influxdb",
-            "uid": "radem_influxdb_datasource"
-          },
-          "groupBy": [
-            {
-              "params": ["$__interval"],
-              "type": "time"
-            },
-            {
-              "params": ["channel::tag"],
-              "type": "tag"
-            },
-            {
-              "params": ["null"],
-              "type": "fill"
-            }
-          ],
-          "measurement": "my_measurement",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "import \"date\"\r\nfrom(bucket: \"radem\")\r\n  |> range(start: date.sub(d: 10m, from: v.timeRangeStart), stop:date.add(d: 10m, to: v.timeRangeStop))\r\n  |> filter(fn: (r) =>\r\n    r._measurement == \"protons\"\r\n  )\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: true)",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": ["value"],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "event_type::tag",
-              "operator": "=",
-              "value": "p"
-            }
-          ]
-        }
-      ],
-      "timeFrom": "now-1y",
       "title": "Protons",
       "type": "timeseries"
     },
@@ -1069,7 +529,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 25
+        "y": 17
       },
       "id": 22,
       "panels": [],
@@ -1287,11 +747,10 @@
         "h": 16,
         "w": 12,
         "x": 0,
-        "y": 26
+        "y": 18
       },
       "id": 23,
       "interval": "1m",
-      "maxDataPoints": 1000,
       "options": {
         "legend": {
           "calcs": [],
@@ -1301,7 +760,7 @@
         },
         "tooltip": {
           "mode": "multi",
-          "sort": "asc"
+          "sort": "none"
         }
       },
       "targets": [
@@ -1360,6 +819,7 @@
         "type": "influxdb",
         "uid": "radem_influxdb_datasource"
       },
+      "description": "",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1392,8 +852,7 @@
             "lineWidth": 1,
             "pointSize": 5,
             "scaleDistribution": {
-              "log": 10,
-              "type": "log"
+              "type": "linear"
             },
             "showPoints": "auto",
             "spanNulls": false,
@@ -1526,18 +985,48 @@
                 "value": "Others"
               }
             ]
+          },
+          {
+            "__systemRef": "hideSeriesFrom",
+            "matcher": {
+              "id": "byNames",
+              "options": {
+                "mode": "exclude",
+                "names": [
+                  "Bin 1",
+                  "Bin 2",
+                  "Bin 3",
+                  "Bin 4",
+                  "Bin 5",
+                  "Bin 6",
+                  "Bin 7",
+                  "Bin 8"
+                ],
+                "prefix": "All except:",
+                "readOnly": true
+              }
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom",
+                "value": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": true
+                }
+              }
+            ]
           }
         ]
       },
       "gridPos": {
-        "h": 8,
+        "h": 16,
         "w": 12,
         "x": 12,
-        "y": 26
+        "y": 18
       },
-      "id": 25,
-      "interval": "4h",
-      "maxDataPoints": 1000,
+      "id": 37,
+      "interval": "1m",
       "options": {
         "legend": {
           "calcs": [],
@@ -1547,7 +1036,7 @@
         },
         "tooltip": {
           "mode": "multi",
-          "sort": "asc"
+          "sort": "none"
         }
       },
       "targets": [
@@ -1618,7 +1107,7 @@
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisGridShow": true,
-            "axisLabel": "Flux [?]",
+            "axisLabel": "Counts",
             "axisPlacement": "auto",
             "barAlignment": 0,
             "barWidthFactor": 0.6,
@@ -1779,7 +1268,7 @@
               "id": "byNames",
               "options": {
                 "mode": "exclude",
-                "names": ["value"],
+                "names": ["Bin 1", "Bin 2"],
                 "prefix": "All except:",
                 "readOnly": true
               }
@@ -1799,23 +1288,22 @@
       },
       "gridPos": {
         "h": 8,
-        "w": 12,
-        "x": 12,
+        "w": 24,
+        "x": 0,
         "y": 34
       },
-      "id": 28,
+      "id": 18,
       "interval": "1m",
-      "maxDataPoints": 1000,
       "options": {
         "legend": {
           "calcs": [],
           "displayMode": "list",
           "placement": "right",
-          "showLegend": false
+          "showLegend": true
         },
         "tooltip": {
           "mode": "multi",
-          "sort": "asc"
+          "sort": "none"
         }
       },
       "targets": [
@@ -1841,7 +1329,7 @@
           "measurement": "my_measurement",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "import \"date\"\r\nfrom(bucket: \"radem\")\r\n  |> range(start: date.sub(d: 10m, from: v.timeRangeStart), stop:date.add(d: 10m, to: v.timeRangeStop))\r\n  |> filter(fn: (r) =>\r\n    r._measurement == \"electrons_flux\"\r\n  )\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: true)",
+          "query": "import \"date\"\r\nfrom(bucket: \"radem\")\r\n  |> range(start: date.sub(d: 10m, from: v.timeRangeStart), stop:date.add(d: 10m, to: v.timeRangeStop))\r\n  |> filter(fn: (r) =>\r\n    r._measurement == \"protons\"\r\n  )\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: true)",
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -1865,8 +1353,22 @@
           ]
         }
       ],
-      "title": "Electrons Flux",
+      "timeFrom": "now-1y",
+      "title": "Protons",
       "type": "timeseries"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 42
+      },
+      "id": 38,
+      "panels": [],
+      "title": "YEARLY",
+      "type": "row"
     },
     {
       "datasource": {
@@ -2040,6 +1542,28 @@
                 "value": "Others"
               }
             ]
+          },
+          {
+            "__systemRef": "hideSeriesFrom",
+            "matcher": {
+              "id": "byNames",
+              "options": {
+                "mode": "exclude",
+                "names": ["Bin 1", "Bin 2"],
+                "prefix": "All except:",
+                "readOnly": true
+              }
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom",
+                "value": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": true
+                }
+              }
+            ]
           }
         ]
       },
@@ -2047,11 +1571,10 @@
         "h": 8,
         "w": 24,
         "x": 0,
-        "y": 42
+        "y": 43
       },
       "id": 24,
       "interval": "1m",
-      "maxDataPoints": 1000,
       "options": {
         "legend": {
           "calcs": [],
@@ -2121,11 +1644,488 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 50
+        "y": 51
+      },
+      "id": 33,
+      "panels": [],
+      "title": "LOCALIZATIONS",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "default": true,
+        "type": "influxdb",
+        "uid": "radem_influxdb_datasource"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "dark-red",
+            "mode": "fixed",
+            "seriesBy": "max"
+          },
+          "custom": {
+            "axisBorderShow": true,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisGridShow": true,
+            "axisLabel": "Distance to Sun [au]",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 2,
+            "gradientMode": "opacity",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "smooth",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "fieldMinMax": false,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "value"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Distance to Sun"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 24,
+        "x": 0,
+        "y": 52
+      },
+      "id": 34,
+      "interval": "1m",
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "right",
+          "showLegend": false
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "asc"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "radem_influxdb_datasource"
+          },
+          "groupBy": [
+            {
+              "params": ["$__interval"],
+              "type": "time"
+            },
+            {
+              "params": ["channel::tag"],
+              "type": "tag"
+            },
+            {
+              "params": ["null"],
+              "type": "fill"
+            }
+          ],
+          "measurement": "my_measurement",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "import \"date\"\r\nfrom(bucket: \"radem\")\r\n  |> range(start: date.sub(d: 10m, from: v.timeRangeStart), stop:date.add(d: 10m, to: v.timeRangeStop))\r\n  |> filter(fn: (r) =>\r\n    r._measurement == \"dist_sun\"\r\n  )\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: true)",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": ["value"],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "event_type::tag",
+              "operator": "=",
+              "value": "p"
+            }
+          ]
+        }
+      ],
+      "timeFrom": "now-1y",
+      "title": "Distance to Sun ",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "default": true,
+        "type": "influxdb",
+        "uid": "radem_influxdb_datasource"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "dark-blue",
+            "mode": "fixed",
+            "seriesBy": "max"
+          },
+          "custom": {
+            "axisBorderShow": true,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisGridShow": true,
+            "axisLabel": "Distance to Earth [au]",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 2,
+            "gradientMode": "opacity",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "smooth",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "fieldMinMax": false,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "value"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Distance to Earth"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 24,
+        "x": 0,
+        "y": 58
+      },
+      "id": 31,
+      "interval": "1m",
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "right",
+          "showLegend": false
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "asc"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "radem_influxdb_datasource"
+          },
+          "groupBy": [
+            {
+              "params": ["$__interval"],
+              "type": "time"
+            },
+            {
+              "params": ["channel::tag"],
+              "type": "tag"
+            },
+            {
+              "params": ["null"],
+              "type": "fill"
+            }
+          ],
+          "measurement": "my_measurement",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "import \"date\"\r\nfrom(bucket: \"radem\")\r\n  |> range(start: date.sub(d: 10m, from: v.timeRangeStart), stop:date.add(d: 10m, to: v.timeRangeStop))\r\n  |> filter(fn: (r) =>\r\n    r._measurement == \"dist_earth\"\r\n  )\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: true)",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": ["value"],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "event_type::tag",
+              "operator": "=",
+              "value": "p"
+            }
+          ]
+        }
+      ],
+      "timeFrom": "now-1y",
+      "title": "Distance to Earth ",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "default": true,
+        "type": "influxdb",
+        "uid": "radem_influxdb_datasource"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "yellow",
+            "mode": "palette-classic",
+            "seriesBy": "max"
+          },
+          "custom": {
+            "axisBorderShow": true,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisGridShow": true,
+            "axisLabel": "Angle [°]",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "smooth",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 1,
+            "pointSize": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "fieldMinMax": false,
+          "mappings": [],
+          "max": 360,
+          "min": -90,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "ra"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Right ascension angle [°]"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "dec"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Declination angle [°]"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 24,
+        "x": 0,
+        "y": 63
+      },
+      "id": 35,
+      "interval": "1m",
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "asc"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "radem_influxdb_datasource"
+          },
+          "groupBy": [
+            {
+              "params": ["$__interval"],
+              "type": "time"
+            },
+            {
+              "params": ["channel::tag"],
+              "type": "tag"
+            },
+            {
+              "params": ["null"],
+              "type": "fill"
+            }
+          ],
+          "measurement": "my_measurement",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "import \"date\"\r\nfrom(bucket: \"radem\")\r\n  |> range(start: date.sub(d: 10m, from: v.timeRangeStart), stop:date.add(d: 10m, to: v.timeRangeStop))\r\n  |> filter(fn: (r) =>\r\n    r._measurement == \"angles_sun\"\r\n  )\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: true)",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": ["value"],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "event_type::tag",
+              "operator": "=",
+              "value": "p"
+            }
+          ]
+        }
+      ],
+      "timeFrom": "now-1y",
+      "title": "PSD Angles to Sun",
+      "type": "timeseries"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 69
       },
       "id": 26,
       "panels": [],
-      "title": "HEAVY IONS & DIRECTIONAL",
+      "title": "DIRECTIONAL",
       "type": "row"
     },
     {
@@ -2162,265 +2162,8 @@
             "lineWidth": 1,
             "pointSize": 5,
             "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "fieldMinMax": false,
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              }
-            ]
-          },
-          "unit": "none"
-        },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "value 1"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "Bin 1"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "value 2"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "Bin 2"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "value 3"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "Bin 3"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "value 4"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "Bin 4"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "value 5"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "Bin 5"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "value 6"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "Bin 6"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "value 7"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "Bin 7"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "value 8"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "Others"
-              }
-            ]
-          },
-          {
-            "__systemRef": "hideSeriesFrom",
-            "matcher": {
-              "id": "byNames",
-              "options": {
-                "mode": "exclude",
-                "names": [
-                  "Bin 1",
-                  "Bin 2",
-                  "Bin 3",
-                  "Bin 4",
-                  "Bin 5",
-                  "Bin 6",
-                  "Bin 7"
-                ],
-                "prefix": "All except:",
-                "readOnly": true
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": true
-                }
-              }
-            ]
-          }
-        ]
-      },
-      "gridPos": {
-        "h": 12,
-        "w": 12,
-        "x": 0,
-        "y": 51
-      },
-      "id": 17,
-      "interval": "1m",
-      "maxDataPoints": 1000,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "right",
-          "showLegend": true
-        },
-        "tooltip": {
-          "mode": "multi",
-          "sort": "none"
-        }
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "influxdb",
-            "uid": "radem_influxdb_datasource"
-          },
-          "groupBy": [
-            {
-              "params": ["$__interval"],
-              "type": "time"
-            },
-            {
-              "params": ["channel::tag"],
-              "type": "tag"
-            },
-            {
-              "params": ["null"],
-              "type": "fill"
-            }
-          ],
-          "measurement": "my_measurement",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "import \"date\"\r\nfrom(bucket: \"radem\")\r\n  |> range(start: date.sub(d: 10m, from: v.timeRangeStart), stop:date.add(d: 10m, to: v.timeRangeStop))\r\n  |> filter(fn: (r) =>\r\n    r._measurement == \"heavy_ions\"\r\n  )\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: true)",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": ["value"],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "event_type::tag",
-              "operator": "=",
-              "value": "p"
-            }
-          ]
-        }
-      ],
-      "title": "Heavy Ions",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "influxdb",
-        "uid": "radem_influxdb_datasource"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "fixedColor": "red",
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": true,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisGridShow": true,
-            "axisLabel": "Counts",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "barWidthFactor": 0.6,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
+              "log": 2,
+              "type": "log"
             },
             "showPoints": "auto",
             "spanNulls": false,
@@ -2450,12 +2193,11 @@
       "gridPos": {
         "h": 12,
         "w": 12,
-        "x": 12,
-        "y": 51
+        "x": 0,
+        "y": 70
       },
       "id": 16,
       "interval": "1m",
-      "maxDataPoints": 100,
       "options": {
         "legend": {
           "calcs": [],
@@ -2528,20 +2270,19 @@
         "defaults": {
           "color": {
             "fixedColor": "red",
-            "mode": "palette-classic",
-            "seriesBy": "max"
+            "mode": "palette-classic"
           },
           "custom": {
             "axisBorderShow": true,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisGridShow": true,
-            "axisLabel": "Flux [?]",
+            "axisLabel": "Counts",
             "axisPlacement": "auto",
             "barAlignment": 0,
             "barWidthFactor": 0.6,
             "drawStyle": "line",
-            "fillOpacity": 2,
+            "fillOpacity": 0,
             "gradientMode": "none",
             "hideFrom": {
               "legend": false,
@@ -2550,13 +2291,1079 @@
             },
             "insertNulls": false,
             "lineInterpolation": "linear",
-            "lineStyle": {
-              "fill": "solid"
-            },
             "lineWidth": 1,
             "pointSize": 5,
             "scaleDistribution": {
-              "log": 10,
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "fieldMinMax": false,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 12,
+        "x": 12,
+        "y": 70
+      },
+      "id": 40,
+      "interval": "1m",
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "radem_influxdb_datasource"
+          },
+          "groupBy": [
+            {
+              "params": ["$__interval"],
+              "type": "time"
+            },
+            {
+              "params": ["channel::tag"],
+              "type": "tag"
+            },
+            {
+              "params": ["null"],
+              "type": "fill"
+            }
+          ],
+          "measurement": "my_measurement",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "import \"date\"\r\nfrom(bucket: \"radem\")\r\n  |> range(start: date.sub(d: 10m, from: v.timeRangeStart), stop:date.add(d: 10m, to: v.timeRangeStop))\r\n  |> filter(fn: (r) =>\r\n    r._measurement == \"dd\"\r\n  )\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: true)",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": ["value"],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "event_type::tag",
+              "operator": "=",
+              "value": "p"
+            }
+          ]
+        }
+      ],
+      "title": "Directional",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "default": true,
+        "type": "influxdb",
+        "uid": "radem_influxdb_datasource"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": true,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisGridShow": true,
+            "axisLabel": "Counts",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "log": 2,
+              "type": "log"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 12,
+        "x": 0,
+        "y": 82
+      },
+      "id": 43,
+      "interval": "1m",
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "11.2.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "radem_influxdb_datasource"
+          },
+          "groupBy": [
+            {
+              "params": ["$__interval"],
+              "type": "time"
+            },
+            {
+              "params": ["channel::tag"],
+              "type": "tag"
+            },
+            {
+              "params": ["null"],
+              "type": "fill"
+            }
+          ],
+          "measurement": "my_measurement",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "import \"date\"\r\nfrom(bucket: \"radem\")\r\n  |> range(start: date.sub(d: 10m, from: v.timeRangeStart), stop:date.add(d: 10m, to: v.timeRangeStop))\r\n  |> filter(fn: (r) =>\r\n    r._measurement == \"dd\"\r\n  )\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: true)",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": ["value"],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "event_type::tag",
+              "operator": "=",
+              "value": "p"
+            }
+          ]
+        }
+      ],
+      "title": "Directional - Grouped by zenithal directions",
+      "transformations": [
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "Mean 0°",
+            "binary": {
+              "left": "value {bin=\"1\", name=\"dd\"}",
+              "right": "value {bin=\"2\", name=\"dd\"}"
+            },
+            "cumulative": {
+              "field": "value {bin=\"1\", name=\"dd\"}",
+              "reducer": "sum"
+            },
+            "mode": "reduceRow",
+            "reduce": {
+              "include": ["value {bin=\"1\", name=\"dd\"}"],
+              "reducer": "mean"
+            },
+            "replaceFields": false
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "Mean 22.5°",
+            "mode": "reduceRow",
+            "reduce": {
+              "include": [
+                "value {bin=\"2\", name=\"dd\"}",
+                "value {bin=\"3\", name=\"dd\"}",
+                "value {bin=\"4\", name=\"dd\"}",
+                "value {bin=\"5\", name=\"dd\"}",
+                "value {bin=\"6\", name=\"dd\"}",
+                "value {bin=\"7\", name=\"dd\"}",
+                "value {bin=\"8\", name=\"dd\"}",
+                "value {bin=\"9\", name=\"dd\"}",
+                "Total 0°"
+              ],
+              "reducer": "mean"
+            }
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "Mean 45°",
+            "mode": "reduceRow",
+            "reduce": {
+              "include": [
+                "value {bin=\"11\", name=\"dd\"}",
+                "value {bin=\"12\", name=\"dd\"}",
+                "value {bin=\"13\", name=\"dd\"}",
+                "value {bin=\"14\", name=\"dd\"}",
+                "value {bin=\"15\", name=\"dd\"}",
+                "value {bin=\"16\", name=\"dd\"}",
+                "value {bin=\"17\", name=\"dd\"}",
+                "value {bin=\"18\", name=\"dd\"}",
+                "value {bin=\"19\", name=\"dd\"}"
+              ],
+              "reducer": "mean"
+            },
+            "replaceFields": false
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "Mean 67.5°",
+            "mode": "reduceRow",
+            "reduce": {
+              "include": [
+                "value {bin=\"20\", name=\"dd\"}",
+                "value {bin=\"21\", name=\"dd\"}",
+                "value {bin=\"22\", name=\"dd\"}",
+                "value {bin=\"23\", name=\"dd\"}",
+                "value {bin=\"24\", name=\"dd\"}",
+                "value {bin=\"25\", name=\"dd\"}",
+                "value {bin=\"26\", name=\"dd\"}",
+                "value {bin=\"27\", name=\"dd\"}",
+                "value {bin=\"28\", name=\"dd\"}"
+              ],
+              "reducer": "mean"
+            },
+            "replaceFields": false
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "Background",
+            "mode": "reduceRow",
+            "reduce": {
+              "include": [
+                "value {bin=\"30\", name=\"dd\"}",
+                "value {bin=\"31\", name=\"dd\"}",
+                "value {bin=\"29\", name=\"dd\"}"
+              ],
+              "reducer": "mean"
+            }
+          }
+        },
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "Time",
+                "Mean 0°",
+                "Mean 45°",
+                "Mean 67.5°",
+                "Background",
+                "Mean 22.5°"
+              ]
+            }
+          }
+        },
+        {
+          "id": "filterByValue",
+          "options": {
+            "filters": [
+              {
+                "config": {
+                  "id": "isNull",
+                  "options": {}
+                },
+                "fieldName": "Mean 0°"
+              }
+            ],
+            "match": "all",
+            "type": "exclude"
+          }
+        }
+      ],
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "default": true,
+        "type": "influxdb",
+        "uid": "radem_influxdb_datasource"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": true,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisGridShow": true,
+            "axisLabel": "Counts",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 12,
+        "x": 12,
+        "y": 82
+      },
+      "id": 47,
+      "interval": "1m",
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "11.2.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "radem_influxdb_datasource"
+          },
+          "groupBy": [
+            {
+              "params": ["$__interval"],
+              "type": "time"
+            },
+            {
+              "params": ["channel::tag"],
+              "type": "tag"
+            },
+            {
+              "params": ["null"],
+              "type": "fill"
+            }
+          ],
+          "measurement": "my_measurement",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "import \"date\"\r\nfrom(bucket: \"radem\")\r\n  |> range(start: date.sub(d: 10m, from: v.timeRangeStart), stop:date.add(d: 10m, to: v.timeRangeStop))\r\n  |> filter(fn: (r) =>\r\n    r._measurement == \"dd\"\r\n  )\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: true)",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": ["value"],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "event_type::tag",
+              "operator": "=",
+              "value": "p"
+            }
+          ]
+        }
+      ],
+      "title": "Directional - Grouped by zenithal directions",
+      "transformations": [
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "Mean 0°",
+            "binary": {
+              "left": "value {bin=\"1\", name=\"dd\"}",
+              "right": "value {bin=\"2\", name=\"dd\"}"
+            },
+            "cumulative": {
+              "field": "value {bin=\"1\", name=\"dd\"}",
+              "reducer": "sum"
+            },
+            "mode": "reduceRow",
+            "reduce": {
+              "include": ["value {bin=\"1\", name=\"dd\"}"],
+              "reducer": "mean"
+            },
+            "replaceFields": false
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "Mean 22.5°",
+            "mode": "reduceRow",
+            "reduce": {
+              "include": [
+                "value {bin=\"2\", name=\"dd\"}",
+                "value {bin=\"3\", name=\"dd\"}",
+                "value {bin=\"4\", name=\"dd\"}",
+                "value {bin=\"5\", name=\"dd\"}",
+                "value {bin=\"6\", name=\"dd\"}",
+                "value {bin=\"7\", name=\"dd\"}",
+                "value {bin=\"8\", name=\"dd\"}",
+                "value {bin=\"9\", name=\"dd\"}",
+                "Total 0°"
+              ],
+              "reducer": "mean"
+            }
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "Mean 45°",
+            "mode": "reduceRow",
+            "reduce": {
+              "include": [
+                "value {bin=\"11\", name=\"dd\"}",
+                "value {bin=\"12\", name=\"dd\"}",
+                "value {bin=\"13\", name=\"dd\"}",
+                "value {bin=\"14\", name=\"dd\"}",
+                "value {bin=\"15\", name=\"dd\"}",
+                "value {bin=\"16\", name=\"dd\"}",
+                "value {bin=\"17\", name=\"dd\"}",
+                "value {bin=\"18\", name=\"dd\"}",
+                "value {bin=\"19\", name=\"dd\"}"
+              ],
+              "reducer": "mean"
+            },
+            "replaceFields": false
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "Mean 67.5°",
+            "mode": "reduceRow",
+            "reduce": {
+              "include": [
+                "value {bin=\"20\", name=\"dd\"}",
+                "value {bin=\"21\", name=\"dd\"}",
+                "value {bin=\"22\", name=\"dd\"}",
+                "value {bin=\"23\", name=\"dd\"}",
+                "value {bin=\"24\", name=\"dd\"}",
+                "value {bin=\"25\", name=\"dd\"}",
+                "value {bin=\"26\", name=\"dd\"}",
+                "value {bin=\"27\", name=\"dd\"}",
+                "value {bin=\"28\", name=\"dd\"}"
+              ],
+              "reducer": "mean"
+            },
+            "replaceFields": false
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "Background",
+            "mode": "reduceRow",
+            "reduce": {
+              "include": [
+                "value {bin=\"30\", name=\"dd\"}",
+                "value {bin=\"31\", name=\"dd\"}",
+                "value {bin=\"29\", name=\"dd\"}"
+              ],
+              "reducer": "mean"
+            }
+          }
+        },
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "Time",
+                "Mean 0°",
+                "Mean 45°",
+                "Mean 67.5°",
+                "Background",
+                "Mean 22.5°"
+              ]
+            }
+          }
+        },
+        {
+          "id": "filterByValue",
+          "options": {
+            "filters": [
+              {
+                "config": {
+                  "id": "isNull",
+                  "options": {}
+                },
+                "fieldName": "Mean 0°"
+              }
+            ],
+            "match": "all",
+            "type": "exclude"
+          }
+        }
+      ],
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "default": true,
+        "type": "influxdb",
+        "uid": "radem_influxdb_datasource"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "red",
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": true,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisGridShow": true,
+            "axisLabel": "Counts",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "fieldMinMax": false,
+          "mappings": [],
+          "max": 150,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 93
+      },
+      "id": 42,
+      "interval": "1m",
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "radem_influxdb_datasource"
+          },
+          "groupBy": [
+            {
+              "params": ["$__interval"],
+              "type": "time"
+            },
+            {
+              "params": ["channel::tag"],
+              "type": "tag"
+            },
+            {
+              "params": ["null"],
+              "type": "fill"
+            }
+          ],
+          "measurement": "my_measurement",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "import \"date\"\r\nfrom(bucket: \"radem\")\r\n  |> range(start: date.sub(d: 10m, from: v.timeRangeStart), stop:date.add(d: 10m, to: v.timeRangeStop))\r\n  |> filter(fn: (r) =>\r\n    r._measurement == \"dd\"\r\n  )\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: true)",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": ["value"],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "event_type::tag",
+              "operator": "=",
+              "value": "p"
+            }
+          ]
+        }
+      ],
+      "timeFrom": "now-1y",
+      "title": "Directional",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "default": true,
+        "type": "influxdb",
+        "uid": "radem_influxdb_datasource"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": true,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisGridShow": true,
+            "axisLabel": "Counts",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "max": 200,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 101
+      },
+      "id": 46,
+      "interval": "1m",
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "11.2.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "radem_influxdb_datasource"
+          },
+          "groupBy": [
+            {
+              "params": ["$__interval"],
+              "type": "time"
+            },
+            {
+              "params": ["channel::tag"],
+              "type": "tag"
+            },
+            {
+              "params": ["null"],
+              "type": "fill"
+            }
+          ],
+          "measurement": "my_measurement",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "import \"date\"\r\nfrom(bucket: \"radem\")\r\n  |> range(start: date.sub(d: 10m, from: v.timeRangeStart), stop:date.add(d: 10m, to: v.timeRangeStop))\r\n  |> filter(fn: (r) =>\r\n    r._measurement == \"dd\"\r\n  )\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: true)",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": ["value"],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "event_type::tag",
+              "operator": "=",
+              "value": "p"
+            }
+          ]
+        }
+      ],
+      "timeFrom": "now-1y",
+      "title": "Directional - Grouped by zenithal directions",
+      "transformations": [
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "Mean 0°",
+            "binary": {
+              "left": "value {bin=\"1\", name=\"dd\"}",
+              "right": "value {bin=\"2\", name=\"dd\"}"
+            },
+            "cumulative": {
+              "field": "value {bin=\"1\", name=\"dd\"}",
+              "reducer": "sum"
+            },
+            "mode": "reduceRow",
+            "reduce": {
+              "include": ["value {bin=\"1\", name=\"dd\"}"],
+              "reducer": "mean"
+            },
+            "replaceFields": false
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "Mean 22.5°",
+            "mode": "reduceRow",
+            "reduce": {
+              "include": [
+                "value {bin=\"2\", name=\"dd\"}",
+                "value {bin=\"3\", name=\"dd\"}",
+                "value {bin=\"4\", name=\"dd\"}",
+                "value {bin=\"5\", name=\"dd\"}",
+                "value {bin=\"6\", name=\"dd\"}",
+                "value {bin=\"7\", name=\"dd\"}",
+                "value {bin=\"8\", name=\"dd\"}",
+                "value {bin=\"9\", name=\"dd\"}",
+                "Total 0°"
+              ],
+              "reducer": "mean"
+            }
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "Mean 45°",
+            "mode": "reduceRow",
+            "reduce": {
+              "include": [
+                "value {bin=\"11\", name=\"dd\"}",
+                "value {bin=\"12\", name=\"dd\"}",
+                "value {bin=\"13\", name=\"dd\"}",
+                "value {bin=\"14\", name=\"dd\"}",
+                "value {bin=\"15\", name=\"dd\"}",
+                "value {bin=\"16\", name=\"dd\"}",
+                "value {bin=\"17\", name=\"dd\"}",
+                "value {bin=\"18\", name=\"dd\"}",
+                "value {bin=\"19\", name=\"dd\"}"
+              ],
+              "reducer": "mean"
+            },
+            "replaceFields": false
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "Mean 67.5°",
+            "mode": "reduceRow",
+            "reduce": {
+              "include": [
+                "value {bin=\"20\", name=\"dd\"}",
+                "value {bin=\"21\", name=\"dd\"}",
+                "value {bin=\"22\", name=\"dd\"}",
+                "value {bin=\"23\", name=\"dd\"}",
+                "value {bin=\"24\", name=\"dd\"}",
+                "value {bin=\"25\", name=\"dd\"}",
+                "value {bin=\"26\", name=\"dd\"}",
+                "value {bin=\"27\", name=\"dd\"}",
+                "value {bin=\"28\", name=\"dd\"}"
+              ],
+              "reducer": "mean"
+            },
+            "replaceFields": false
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "Background",
+            "mode": "reduceRow",
+            "reduce": {
+              "include": [
+                "value {bin=\"30\", name=\"dd\"}",
+                "value {bin=\"31\", name=\"dd\"}",
+                "value {bin=\"29\", name=\"dd\"}"
+              ],
+              "reducer": "mean"
+            }
+          }
+        },
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "Time",
+                "Mean 0°",
+                "Mean 45°",
+                "Mean 67.5°",
+                "Background",
+                "Mean 22.5°"
+              ]
+            }
+          }
+        },
+        {
+          "id": "filterByValue",
+          "options": {
+            "filters": [
+              {
+                "config": {
+                  "id": "isNull",
+                  "options": {}
+                },
+                "fieldName": "Mean 0°"
+              }
+            ],
+            "match": "all",
+            "type": "exclude"
+          }
+        }
+      ],
+      "type": "timeseries"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 109
+      },
+      "id": 45,
+      "panels": [],
+      "title": "HEAVY IONS",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "default": true,
+        "type": "influxdb",
+        "uid": "radem_influxdb_datasource"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "red",
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": true,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisGridShow": true,
+            "axisLabel": "Counts",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "log": 2,
               "type": "log"
             },
             "showPoints": "auto",
@@ -2675,18 +3482,6 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Bin 8"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "value 9"
-            },
-            "properties": [
-              {
-                "id": "displayName",
                 "value": "Others"
               }
             ]
@@ -2697,7 +3492,7 @@
               "id": "byNames",
               "options": {
                 "mode": "exclude",
-                "names": ["value"],
+                "names": ["Bin 1"],
                 "prefix": "All except:",
                 "readOnly": true
               }
@@ -2716,24 +3511,23 @@
         ]
       },
       "gridPos": {
-        "h": 8,
+        "h": 12,
         "w": 12,
-        "x": 12,
-        "y": 63
+        "x": 0,
+        "y": 110
       },
-      "id": 30,
+      "id": 17,
       "interval": "1m",
-      "maxDataPoints": 1000,
       "options": {
         "legend": {
           "calcs": [],
           "displayMode": "list",
           "placement": "right",
-          "showLegend": false
+          "showLegend": true
         },
         "tooltip": {
           "mode": "multi",
-          "sort": "asc"
+          "sort": "none"
         }
       },
       "targets": [
@@ -2759,7 +3553,7 @@
           "measurement": "my_measurement",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "import \"date\"\r\nfrom(bucket: \"radem\")\r\n  |> range(start: date.sub(d: 10m, from: v.timeRangeStart), stop:date.add(d: 10m, to: v.timeRangeStop))\r\n  |> filter(fn: (r) =>\r\n    r._measurement == \"dd_flux\"\r\n  )\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: true)",
+          "query": "import \"date\"\r\nfrom(bucket: \"radem\")\r\n  |> range(start: date.sub(d: 10m, from: v.timeRangeStart), stop:date.add(d: 10m, to: v.timeRangeStop))\r\n  |> filter(fn: (r) =>\r\n    r._measurement == \"heavy_ions\"\r\n  )\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: true)",
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -2783,7 +3577,509 @@
           ]
         }
       ],
-      "title": "Directional Flux",
+      "title": "Heavy Ions",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "default": true,
+        "type": "influxdb",
+        "uid": "radem_influxdb_datasource"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "red",
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": true,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisGridShow": true,
+            "axisLabel": "Counts",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "fieldMinMax": false,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "value 1"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Bin 1"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "value 2"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Bin 2"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "value 3"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Bin 3"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "value 4"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Bin 4"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "value 5"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Bin 5"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "value 6"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Bin 6"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "value 7"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Bin 7"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "value 8"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Others"
+              }
+            ]
+          },
+          {
+            "__systemRef": "hideSeriesFrom",
+            "matcher": {
+              "id": "byNames",
+              "options": {
+                "mode": "exclude",
+                "names": ["Bin 1"],
+                "prefix": "All except:",
+                "readOnly": true
+              }
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom",
+                "value": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 12,
+        "x": 12,
+        "y": 110
+      },
+      "id": 39,
+      "interval": "1m",
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "radem_influxdb_datasource"
+          },
+          "groupBy": [
+            {
+              "params": ["$__interval"],
+              "type": "time"
+            },
+            {
+              "params": ["channel::tag"],
+              "type": "tag"
+            },
+            {
+              "params": ["null"],
+              "type": "fill"
+            }
+          ],
+          "measurement": "my_measurement",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "import \"date\"\r\nfrom(bucket: \"radem\")\r\n  |> range(start: date.sub(d: 10m, from: v.timeRangeStart), stop:date.add(d: 10m, to: v.timeRangeStop))\r\n  |> filter(fn: (r) =>\r\n    r._measurement == \"heavy_ions\"\r\n  )\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: true)",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": ["value"],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "event_type::tag",
+              "operator": "=",
+              "value": "p"
+            }
+          ]
+        }
+      ],
+      "title": "Heavy Ions",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "default": true,
+        "type": "influxdb",
+        "uid": "radem_influxdb_datasource"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "red",
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": true,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisGridShow": true,
+            "axisLabel": "Counts",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "log": 2,
+              "type": "log"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "fieldMinMax": false,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "value 1"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Bin 1"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "value 2"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Bin 2"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "value 3"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Bin 3"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "value 4"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Bin 4"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "value 5"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Bin 5"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "value 6"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Bin 6"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "value 7"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Bin 7"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "value 8"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Others"
+              }
+            ]
+          },
+          {
+            "__systemRef": "hideSeriesFrom",
+            "matcher": {
+              "id": "byNames",
+              "options": {
+                "mode": "exclude",
+                "names": ["Bin 1"],
+                "prefix": "All except:",
+                "readOnly": true
+              }
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom",
+                "value": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 122
+      },
+      "id": 41,
+      "interval": "1m",
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "radem_influxdb_datasource"
+          },
+          "groupBy": [
+            {
+              "params": ["$__interval"],
+              "type": "time"
+            },
+            {
+              "params": ["channel::tag"],
+              "type": "tag"
+            },
+            {
+              "params": ["null"],
+              "type": "fill"
+            }
+          ],
+          "measurement": "my_measurement",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "import \"date\"\r\nfrom(bucket: \"radem\")\r\n  |> range(start: date.sub(d: 10m, from: v.timeRangeStart), stop:date.add(d: 10m, to: v.timeRangeStop))\r\n  |> filter(fn: (r) =>\r\n    r._measurement == \"heavy_ions\"\r\n  )\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: true)",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": ["value"],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "event_type::tag",
+              "operator": "=",
+              "value": "p"
+            }
+          ]
+        }
+      ],
+      "timeFrom": "now-1y",
+      "title": "Heavy Ions",
       "type": "timeseries"
     }
   ],
@@ -2794,13 +4090,13 @@
     "list": []
   },
   "time": {
-    "from": "now-1M",
+    "from": "now/M",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "browser",
   "title": "RADEM - Raw Science",
   "uid": "bdhr2sl11a2gwa",
-  "version": 6,
+  "version": 32,
   "weekStart": ""
 }

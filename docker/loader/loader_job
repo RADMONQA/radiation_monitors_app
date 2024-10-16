@@ -1,1 +1,0 @@
-0 20 * * * /app/scripts/load_to_influxdb.sh >> /var/log/loader.log 2>&1
