@@ -22,11 +22,9 @@ RUN chmod 0644 /etc/cron.d/fetcher_job
 # Apply the cron job
 RUN crontab /etc/cron.d/fetcher_job
 
-# Create the log file to be accessible by cron
-RUN touch /var/log/fetcher.log
-
 # Expose a volume to be shared with other containers
 VOLUME /radem_data
 
 # Command to run the script on startup and then start the cron service
-CMD /app/scripts/fetch_all.sh >> /var/log/fetcher.log 2>&1 && crond -f
+CMD /app/scripts/fetch_all.sh 2>&1 \
+    && crond -f

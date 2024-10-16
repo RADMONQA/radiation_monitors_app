@@ -46,9 +46,7 @@ RUN chmod 0644 /etc/cron.d/publisher_job
 # Apply the cron job
 RUN crontab /etc/cron.d/publisher_job
 
-# Create the log file to be accessible by cron
-RUN touch /var/log/publisher.log
-
 
 ######## FINALIZATION ########
-CMD /app/scripts/load_to_influxdb.sh && cron -f 
+CMD /app/scripts/load_to_influxdb.sh 2>&1 \
+    && cron -f
