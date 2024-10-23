@@ -6,3 +6,7 @@ scrape_configs:
     static_configs:
       - targets:
           - radem_cadvisor:8080
+  - job_name: node_exporter
+    static_configs:
+      - targets:
+          - radem_node_exporter:9100

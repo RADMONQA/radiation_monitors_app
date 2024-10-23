@@ -22,6 +22,35 @@ RADEM App is a web application that allows users to visualize and analyze the da
     ```
 3. Visit the application in your browser at `http://localhost:81`
 
+## Containers
+
+| **Service**     | **Host's port** |
+|-----------------|-----------------|
+| RADEM Fetcher   | -               |
+| RADEM Publisher | -               |
+| InfluxDB        | 8186            |
+| Grafana         | 81              |
+| Prometheus      | 9090            |
+| Node Exporter   | 9100            |
+| cAdvisor        | 8080            |
 
 
+### RADEM Fetcher
 
+Service fetching the data.
+ * periodically fetch data available on external locations (cron job)
+  * RADEM data (FTP connection)
+  * IREM data (publicly available)
+* store the data in DATA_DIR, which is shared with other containers
+
+### RADEM Publisher
+
+### InfluxDB
+
+### Grafana
+
+### Prometheus
+
+### Node Exporter
+
+### cAdvisor

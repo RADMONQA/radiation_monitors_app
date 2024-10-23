@@ -112,6 +112,7 @@ services:
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
     depends_on:
       - radem_cadvisor
+      - radem_node_exporter
     networks:
       - ${DOCKER_NETWORK_NAME}
     restart: unless-stopped
@@ -126,8 +127,20 @@ services:
       - /var/run:/var/run:rw
       - /sys:/sys:ro
       - /var/lib/docker/:/var/lib/docker:ro
-    # depends_on:
-    #   - redis
     networks:
       - ${DOCKER_NETWORK_NAME}
+    restart: unless-stopped
+
+  radem_node_exporter:
+    image: quay.io/prometheus/node-exporter:latest
+    container_name: node_exporter_dev
+    command:
+      - '--path.rootfs=/host'
+    networks:
+      - ${DOCKER_NETWORK_NAME}
+    ports:
+      - 9100:9100
+    pid: host
+    volumes:
+      - '/:/host:ro,rslave'
     restart: unless-stopped
