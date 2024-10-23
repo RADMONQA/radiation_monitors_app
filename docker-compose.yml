@@ -19,6 +19,11 @@ services:
     volumes:
       - radem_data:/radem_data
     restart: unless-stopped
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "10"
 
   radem_influxdb:
   # Service with the InfluxDB database.
@@ -38,6 +43,11 @@ services:
     ports:
       - "8186:8086"
     restart: unless-stopped
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "10"
 
   radem_publisher:
   # Service processing the raw fetched data and publishing it to the InfluxDB.
@@ -54,6 +64,11 @@ services:
     networks:
         - ${DOCKER_NETWORK_NAME}
     restart: unless-stopped
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "10"
 
   radem_grafana:
   # Service with the Grafana dashboard.
@@ -72,6 +87,11 @@ services:
     ports:
       - "81:3000"
     restart: unless-stopped
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "10"
 
 volumes:
   radem_data:
