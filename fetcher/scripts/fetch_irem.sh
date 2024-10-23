@@ -19,6 +19,7 @@ wget \
     --no-parent \
     --continue \
     --no-clobber \
+    --no-verbose \
     -A gz \
     http://srem.psi.ch/datarepo/V0/irem/ \
     -P ${DATA_DIR}/irem
