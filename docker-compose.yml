@@ -1,12 +1,20 @@
-services:  
+volumes:
+  radem_data:
+    driver: local
+
+networks:
+  radem_network:
+    driver: bridge
+
+services:
   radem_fetcher:
-  # Service fetching the data.
-  #  
-  # Description:
-  # * periodically fetch data available on external locations (cron job)
-  #   * RADEM data (FTP connection)
-  #   * IREM data (publicly available)
-  # * store the data in DATA_DIR, which is shared with other containers
+    # Service fetching the data.
+    #  
+    # Description:
+    # * periodically fetch data available on external locations (cron job)
+    #   * RADEM data (FTP connection)
+    #   * IREM data (publicly available)
+    # * store the data in DATA_DIR, which is shared with other containers
     build:
       context: ./fetcher
       dockerfile: Dockerfile
@@ -26,7 +34,7 @@ services:
         max-file: "10"
 
   radem_influxdb:
-  # Service with the InfluxDB database.
+    # Service with the InfluxDB database.
     image: influxdb:alpine
     container_name: influxdb_dev
     environment:
@@ -50,7 +58,7 @@ services:
         max-file: "10"
 
   radem_publisher:
-  # Service processing the raw fetched data and publishing it to the InfluxDB.
+    # Service processing the raw fetched data and publishing it to the InfluxDB.
     build:
       context: ./publisher
     container_name: publisher_dev
@@ -62,7 +70,7 @@ services:
     volumes:
       - radem_data:/radem_data
     networks:
-        - ${DOCKER_NETWORK_NAME}
+      - ${DOCKER_NETWORK_NAME}
     restart: unless-stopped
     logging:
       driver: "json-file"
@@ -71,7 +79,7 @@ services:
         max-file: "10"
 
   radem_grafana:
-  # Service with the Grafana dashboard.
+    # Service with the Grafana dashboard.
     build:
       context: ./grafana
       dockerfile: Dockerfile
@@ -93,10 +101,46 @@ services:
         max-size: "10m"
         max-file: "10"
 
-volumes:
-  radem_data:
-    driver: local
+  radem_prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus_dev
+    ports:
+      - 9090:9090
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    depends_on:
+      - radem_cadvisor
+      - radem_node_exporter
+    networks:
+      - ${DOCKER_NETWORK_NAME}
+    restart: unless-stopped
 
-networks:
-  radem_network:
-    driver: bridge
+  radem_cadvisor:
+    image: gcr.io/cadvisor/cadvisor:latest
+    container_name: cadvisor_dev
+    ports:
+      - 8080:8080
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:rw
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+    networks:
+      - ${DOCKER_NETWORK_NAME}
+    restart: unless-stopped
+
+  radem_node_exporter:
+    image: quay.io/prometheus/node-exporter:latest
+    container_name: node_exporter_dev
+    command:
+      - '--path.rootfs=/host'
+    networks:
+      - ${DOCKER_NETWORK_NAME}
+    ports:
+      - 9100:9100
+    pid: host
+    volumes:
+      - '/:/host:ro,rslave'
+    restart: unless-stopped
