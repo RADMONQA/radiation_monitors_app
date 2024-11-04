@@ -22,6 +22,8 @@ DATA_IREM_RAW_DIR = DATA_IREM_DIR / "raw"
 DATA_IREM_EXTRACTED_DIR = DATA_IREM_DIR / "extracted"
 DATA_IREM_CSV_DIR = DATA_IREM_DIR / "csv"
 
+
+os.environ.setdefault("CDF_LIB", "/home/szymon/repos/cdf39_0-dist/src/lib")
 # Verify CDF_LIB environment variable (required for pycdf)
 if not os.environ.get('CDF_LIB'):
     raise EnvironmentError(
@@ -34,7 +36,7 @@ class IremDataProcessor:
         self.data_extracted = DATA_IREM_EXTRACTED_DIR
         self.data_csv = DATA_IREM_CSV_DIR
 
-        self.datetime_filter = datetime(2023, 9, 1)
+        self.datetime_filter = datetime(2022, 9, 1)
 
     def get_data_raw_filenames(self) -> List[Path]:
         filenames = [self.data_raw / dirname / filename
@@ -80,7 +82,7 @@ class IremDataProcessor:
         return file_date >= datetime_filter
 
     def fix_dataframe(self, df: pd.DataFrame) -> pd.DataFrame:
-        df['time'] = pd.to_datetime(df['time']).dt.floor('S')
+        df['time'] = pd.to_datetime(df['time']).dt.floor('s')
         df.drop_duplicates(inplace=True)
         df.sort_values("time", inplace=True)
         return df
