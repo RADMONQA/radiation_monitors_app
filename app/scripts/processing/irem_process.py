@@ -11,22 +11,31 @@ from datetime import datetime
 from dotenv import load_dotenv
 from spacepy import pycdf
 
+import influxdb_utils
+
 
 # Optionally load .env file
 load_dotenv("../.env")
 
 # Data directories
-# Path(os.getenv("DATA_DIR"))
+#
 # <---------------
-DATA_DIR = Path("/home/szymon/repos/radem_ops/app/scripts/fetching")
+# Path("/home/szymon/repos/radem_ops/app/scripts/fetching")
+DATA_DIR = Path(os.getenv("DATA_DIR"))
 DATA_IREM_DIR = DATA_DIR / "irem"
 DATA_IREM_RAW_DIR = DATA_IREM_DIR / "raw"
 DATA_IREM_EXTRACTED_DIR = DATA_IREM_DIR / "extracted"
 DATA_IREM_CSV_DIR = DATA_IREM_DIR / "csv"
 
+# Database
+TOKEN = os.environ.get("INFLUXDB_TOKEN")
+URL = os.environ.get("INFLUXDB_URL")
+ORG = os.environ.get("INFLUXDB_ORG")
+BUCKET = os.environ.get("INFLUXDB_IREM_BUCKET")
 
-os.environ.setdefault(
-    "CDF_LIB", "/home/szymon/repos/cdf39_0-dist/src/lib")  # <---------------
+
+# os.environ.setdefault(
+#     "CDF_LIB", "/home/szymon/repos/cdf39_0-dist/src/lib")  # <---------------
 # Verify CDF_LIB environment variable (required for pycdf)
 if not os.environ.get('CDF_LIB'):
     raise EnvironmentError(
@@ -103,6 +112,7 @@ class IremDataProcessor:
     def process_pipeline(self, cdfs: List[pycdf.CDF], process_fn) -> None:
         df = pd.concat(process_fn(cdf) for cdf in cdfs)
         df = self.fix_dataframe(df)
+        df.reset_index(drop=True, inplace=True)
         return df
 
     def process_irem_particles(self, cdf: pycdf.CDF, scaler_start: int, scaler_end: int) -> pd.DataFrame:
@@ -181,11 +191,11 @@ class IremDataProcessor:
                 for filename in filenames
                 if self._is_filename_after_datetime(filename.name, from_datetime)]
 
-    def process_cdf(self, cdf_filename: Path) -> Optional[Tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame]]:
+    def process_cdf(self, cdf_filename: Path) -> Tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame]:
         cdf = self._read_cdf(cdf_filename)
 
         if not cdf:
-            return None
+            return (pd.DataFrame(), pd.DataFrame(), pd.DataFrame(), pd.DataFrame())
 
         result = (
             self.process_pipeline([cdf], self.process_irem_d1),
@@ -198,18 +208,51 @@ class IremDataProcessor:
         self._close_cdf(cdf)
         return result
 
+    def process_cdfs(self, cdf_filenames: List[Path]) -> Optional[Tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame]]:
+        cdfs = []
+        for cdf_filename in cdf_filenames:
+            cdf = self._read_cdf(cdf_filename)
+            if cdf:
+                cdfs.append(cdf)
+
+        result = (
+            self.process_pipeline(cdfs, self.process_irem_d1),
+            self.process_pipeline(cdfs, self.process_irem_d2),
+            self.process_pipeline(cdfs, self.process_irem_d3),
+            self.process_pipeline(
+                cdfs, self.process_irem_coincidence)
+        )
+
+        for cdf in cdfs:
+            self._close_cdf(cdf)
+
+        return result
+
     def process_all_data(self, after_datetime: datetime) -> None:
         filenames = self.get_cdf_filenames()
         filtered_filenames = self.filter_filenames_after_datetime(
             filenames, after_datetime)
 
-        for filename in filtered_filenames:
-            print(f"Processing {filename}")
-            self.process_cdf(filename)
+        influxdb = influxdb_utils.InfluxDbUtils(
+            token=TOKEN, org=ORG, bucket=BUCKET, url=URL,
+        )
+        if not influxdb.find_bucket_by_name():
+            influxdb.create_bucket()
+
+        FILE_BATCH_SIZE = 500
+        for i in range(0, len(filtered_filenames), FILE_BATCH_SIZE):
+            batch_filenames = filtered_filenames[i:i+FILE_BATCH_SIZE]
+            print(f"Processing batch {i}...", flush=True)
+            processed = self.process_cdfs(batch_filenames)
+
+            for df, measurement_name in zip(processed, ["irem_d1", "irem_d2", "irem_coin", "irem_d3"]):
+                preprocessed = influxdb_utils.preprocess_particles(df)
+                line_protocol = influxdb_utils.convert_particles_to_line_protocol(
+                    preprocessed, measurement_name)
+                influxdb.upload_line_protocol(line_protocol)
 
 
 if __name__ == "__main__":
     processor = IremDataProcessor()
     processor.extract_data_raw()
-    processor.process_all_data(datetime(2020, 1, 1))
-    # processor.process_and_save_all_data()
+    processor.process_all_data(datetime(1900, 1, 1))

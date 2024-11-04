@@ -28,12 +28,6 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the entire directory with scripts from the host to the container
-COPY ./scripts /app/scripts
-
-# Set permissions for the script directory
-RUN chmod -R +x /app/scripts
-
 
 ######## SETTING UP THE CRON ########
 # Copy the cron job file into the container and set permissions
