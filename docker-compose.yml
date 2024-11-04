@@ -1,6 +1,8 @@
 volumes:
   radem_data:
     driver: local
+  grafana_data:
+    driver: local
 
 networks:
   radem_network:
@@ -74,6 +76,7 @@ services:
       GF_PATHS_PROVISIONING: /etc/grafana/provisioning
       GF_AUTH_ANONYMOUS_ENABLED: false
     volumes:
+      - grafana_data:/var/lib/grafana
       - ./grafana/provisioning:/etc/grafana/provisioning
       - ./grafana/dashboards:/etc/grafana/dashboards
       - ./grafana/grafana.ini:/etc/grafana/grafana.ini
