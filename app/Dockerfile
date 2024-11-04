@@ -1,4 +1,3 @@
-
 FROM python:3.10
 
 
@@ -37,16 +36,13 @@ RUN chmod -R +x /app/scripts
 
 
 ######## SETTING UP THE CRON ########
-# Copy the cron job file into the container
-COPY publisher_job /etc/cron.d/publisher_job
-
-# Give execution rights on the cron job file
-RUN chmod 0644 /etc/cron.d/publisher_job
-
-# Apply the cron job
-RUN crontab /etc/cron.d/publisher_job
+# Copy the cron job file into the container and set permissions
+COPY app_job /etc/cron.d/app_job
+# Give execution rights on the cron job file and apply the cron job
+RUN chmod 0644 /etc/cron.d/app_job && \
+    crontab /etc/cron.d/app_job
 
 
-######## FINALIZATION ########
-CMD /app/scripts/load_to_influxdb.sh 2>&1 \
+# Run the script on startup and then start the cron service
+CMD /app/scripts/fetch_and_publish.sh 2>&1 \
     && cron -f
