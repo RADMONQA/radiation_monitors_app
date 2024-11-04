@@ -11,11 +11,13 @@ from datetime import datetime
 from dotenv import load_dotenv
 from spacepy import pycdf
 
+
 # Optionally load .env file
 load_dotenv("../.env")
 
 # Data directories
 # Path(os.getenv("DATA_DIR"))
+# <---------------
 DATA_DIR = Path("/home/szymon/repos/radem_ops/app/scripts/fetching")
 DATA_IREM_DIR = DATA_DIR / "irem"
 DATA_IREM_RAW_DIR = DATA_IREM_DIR / "raw"
@@ -23,7 +25,8 @@ DATA_IREM_EXTRACTED_DIR = DATA_IREM_DIR / "extracted"
 DATA_IREM_CSV_DIR = DATA_IREM_DIR / "csv"
 
 
-os.environ.setdefault("CDF_LIB", "/home/szymon/repos/cdf39_0-dist/src/lib")
+os.environ.setdefault(
+    "CDF_LIB", "/home/szymon/repos/cdf39_0-dist/src/lib")  # <---------------
 # Verify CDF_LIB environment variable (required for pycdf)
 if not os.environ.get('CDF_LIB'):
     raise EnvironmentError(
@@ -36,7 +39,7 @@ class IremDataProcessor:
         self.data_extracted = DATA_IREM_EXTRACTED_DIR
         self.data_csv = DATA_IREM_CSV_DIR
 
-        self.datetime_filter = datetime(2022, 9, 1)
+        self.datetime_filter = datetime(1900, 9, 1)
 
     def get_data_raw_filenames(self) -> List[Path]:
         filenames = [self.data_raw / dirname / filename
@@ -52,7 +55,8 @@ class IremDataProcessor:
                 print(f"Extracting {filename} to {output_filename}")
                 self._extract_file(filename, output_filename)
             else:
-                print(f"File {output_filename} already exists.")
+                print(
+                    f"Skipping extracting {output_filename} - already exists.")
 
     @staticmethod
     def _extract_file(input_filename: Path, output_filename: Path) -> None:
@@ -63,7 +67,7 @@ class IremDataProcessor:
     def read_irem_cdfs(self) -> List[pycdf.CDF]:
         cdfs = []
         for filename in sorted(self.data_extracted.glob("*.cdf")):
-            if self._is_filename_in_datetime_filter(filename.name, self.datetime_filter):
+            if self._is_filename_after_datetime(filename.name, self.datetime_filter):
                 cdf = self._read_cdf(filename)
                 if cdf:
                     cdfs.append(cdf)
@@ -75,8 +79,12 @@ class IremDataProcessor:
             return None
         return pycdf.CDF(str(cdf_path))
 
+    def _close_cdf(self, cdf: Optional[pycdf.CDF]) -> None:
+        if cdf:
+            cdf.close()
+
     @staticmethod
-    def _is_filename_in_datetime_filter(filename: str, datetime_filter: datetime) -> bool:
+    def _is_filename_after_datetime(filename: str, datetime_filter: datetime) -> bool:
         date_str = filename[10:18]
         file_date = datetime.strptime(date_str, "%Y%m%d")
         return file_date >= datetime_filter
@@ -92,10 +100,10 @@ class IremDataProcessor:
         filename = self.data_csv / f"{name}_{latest_time}.csv"
         df.to_csv(filename, index=False)
 
-    def process_pipeline(self, cdfs: List[pycdf.CDF], process_fn, name: str) -> None:
+    def process_pipeline(self, cdfs: List[pycdf.CDF], process_fn) -> None:
         df = pd.concat(process_fn(cdf) for cdf in cdfs)
         df = self.fix_dataframe(df)
-        self.save_dataframe_to_csv(df, name)
+        return df
 
     def process_irem_particles(self, cdf: pycdf.CDF, scaler_start: int, scaler_end: int) -> pd.DataFrame:
         # According do the IREM User Manual:
@@ -142,27 +150,66 @@ class IremDataProcessor:
         # label_COUNTERS[11:15] is [TC3 S32 S33 S34] which is D3
         return self.process_irem_particles(cdf, 11, 15)
 
-    def process_all_data(self) -> None:
+    def process_and_save_all_data(self) -> None:
         irem_cdfs = self.read_irem_cdfs()
 
         print(f"Processing D1...")
-        self.process_pipeline(
-            irem_cdfs, self.process_irem_d1, "irem_d1")
+        df = self.process_pipeline(
+            irem_cdfs, self.process_irem_d1)
+        self.save_dataframe_to_csv(df, "irem_d1")
 
         print(f"Processing D2...")
-        self.process_pipeline(
-            irem_cdfs, self.process_irem_d2, "irem_d2")
+        df = self.process_pipeline(
+            irem_cdfs, self.process_irem_d2)
+        self.save_dataframe_to_csv(df, "irem_d2")
 
         print(f"Processing D3...")
-        self.process_pipeline(
-            irem_cdfs, self.process_irem_d3, "irem_d3")
+        df = self.process_pipeline(
+            irem_cdfs, self.process_irem_d3)
+        self.save_dataframe_to_csv(df, "irem_d3")
 
         print(f"Processing Coincidence...")
-        self.process_pipeline(
-            irem_cdfs, self.process_irem_coincidence, "irem_coincidence")
+        df = self.process_pipeline(
+            irem_cdfs, self.process_irem_coincidence)
+        self.save_dataframe_to_csv(df, "irem_coincidence")
+
+    def get_cdf_filenames(self) -> List[Path]:
+        return sorted(self.data_extracted.glob("*.cdf"))
+
+    def filter_filenames_after_datetime(self, filenames: List[Path], from_datetime: datetime) -> List[Path]:
+        return [filename
+                for filename in filenames
+                if self._is_filename_after_datetime(filename.name, from_datetime)]
+
+    def process_cdf(self, cdf_filename: Path) -> Optional[Tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame]]:
+        cdf = self._read_cdf(cdf_filename)
+
+        if not cdf:
+            return None
+
+        result = (
+            self.process_pipeline([cdf], self.process_irem_d1),
+            self.process_pipeline([cdf], self.process_irem_d2),
+            self.process_pipeline([cdf], self.process_irem_d3),
+            self.process_pipeline(
+                [cdf], self.process_irem_coincidence)
+        )
+
+        self._close_cdf(cdf)
+        return result
+
+    def process_all_data(self, after_datetime: datetime) -> None:
+        filenames = self.get_cdf_filenames()
+        filtered_filenames = self.filter_filenames_after_datetime(
+            filenames, after_datetime)
+
+        for filename in filtered_filenames:
+            print(f"Processing {filename}")
+            self.process_cdf(filename)
 
 
 if __name__ == "__main__":
     processor = IremDataProcessor()
     processor.extract_data_raw()
-    processor.process_all_data()
+    processor.process_all_data(datetime(2020, 1, 1))
+    # processor.process_and_save_all_data()
