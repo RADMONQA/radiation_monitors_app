@@ -1,2 +1,2 @@
 # Supercronic job schedule
-*/1 * * * * /app/scripts/fetch_and_publish.sh
+0 * * * * /app/scripts/fetch_and_publish.sh
