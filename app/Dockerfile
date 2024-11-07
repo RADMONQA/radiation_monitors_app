@@ -1,11 +1,17 @@
 FROM python:3.10
 
 
-######## INSTALLING DEPENDENCIES ########
-# Install cron using apt
-RUN apt-get update && \
-    apt-get install -y cron
+######## INSTALLING SUPERCRONIC ########
+# Install supercronic
+ENV SUPERCRONIC_URL=https://github.com/aptible/supercronic/releases/download/v0.2.33/supercronic-linux-amd64 \
+    SUPERCRONIC_SHA1SUM=71b0d58cc53f6bd72cf2f293e09e294b79c666d8 \
+    SUPERCRONIC=supercronic-linux-amd64
 
+RUN curl -fsSLO "$SUPERCRONIC_URL" \
+    && echo "${SUPERCRONIC_SHA1SUM}  ${SUPERCRONIC}" | sha1sum -c - \
+    && chmod +x "$SUPERCRONIC" \
+    && mv "$SUPERCRONIC" "/usr/local/bin/${SUPERCRONIC}" \
+    && ln -s "/usr/local/bin/${SUPERCRONIC}" /usr/local/bin/supercronic
 
 ######## INSTALLING CDF UTILITIES ########
 # Set the working directory for the build
@@ -19,7 +25,6 @@ RUN wget https://spdf.gsfc.nasa.gov/pub/software/cdf/dist/cdf39_1/linux/cdf39_1-
 # Add the CDF utilities to the CDF_LIB
 ENV CDF_LIB="/opt/cdf39_1-dist/src/lib"
 
-
 ######## DEPLOYING THE CODE ########
 # Set the working directory in the container
 WORKDIR /app
@@ -28,15 +33,5 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-
-######## SETTING UP THE CRON ########
-# Copy the cron job file into the container and set permissions
-COPY app_job /etc/cron.d/app_job
-# Give execution rights on the cron job file and apply the cron job
-RUN chmod 0644 /etc/cron.d/app_job && \
-    crontab /etc/cron.d/app_job
-
-
 # Run the script on startup and then start the cron service
-CMD /app/scripts/fetch_and_publish.sh 2>&1 \
-    && cron -f
+CMD ["/usr/local/bin/supercronic", "-passthrough-logs", "/app/scripts/app_job.cron"]

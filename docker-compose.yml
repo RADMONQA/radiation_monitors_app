@@ -59,6 +59,7 @@ services:
     volumes:
       - radem_data:/radem_data
       - ./app/scripts:/app/scripts
+      - ./app/app_job:/etc/cron.d/app_job
     networks:
       - radem_network
     restart: unless-stopped

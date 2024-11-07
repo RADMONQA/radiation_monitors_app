@@ -1,5 +1,7 @@
 #!/usr/bin/env sh
 
+echo "Starting the fetch and publish script"
+
 # Get the directory of the script
 SCRIPTS_DIR="$(cd "$(dirname "$0")" && pwd)"
 
