@@ -18,13 +18,13 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
-  "id": 9,
+  "id": 1,
   "links": [],
   "panels": [
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "radem_influxdb_datasource"
+        "uid": "irem_influxdb_datasource"
       },
       "fieldConfig": {
         "defaults": {
@@ -40,6 +40,7 @@
             "axisLabel": "counts / sec",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "none",
@@ -150,7 +151,6 @@
       },
       "id": 4,
       "interval": "1m",
-      "maxDataPoints": 100,
       "options": {
         "legend": {
           "calcs": [],
@@ -163,11 +163,12 @@
           "sort": "none"
         }
       },
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "radem_influxdb_datasource"
+            "uid": "irem_influxdb_datasource"
           },
           "groupBy": [
             {
@@ -186,7 +187,7 @@
           "measurement": "my_measurement",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "import \"date\"\r\nfrom(bucket: \"radem\")\r\n  |> range(start: date.sub(d: 10m, from: v.timeRangeStart), stop:date.add(d: 10m, to: v.timeRangeStop))\r\n  |> filter(fn: (r) =>\r\n    r._measurement == \"irem_d1\"\r\n  )\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: true)",
+          "query": "import \"date\"\r\nfrom(bucket: \"irem\")\r\n  |> range(start: date.sub(d: 10m, from: v.timeRangeStart), stop:date.add(d: 10m, to: v.timeRangeStop))\r\n  |> filter(fn: (r) =>\r\n    r._measurement == \"irem_d1\"\r\n  )\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: true)",
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -216,7 +217,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "radem_influxdb_datasource"
+        "uid": "irem_influxdb_datasource"
       },
       "fieldConfig": {
         "defaults": {
@@ -232,6 +233,7 @@
             "axisLabel": "counts / sec",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "none",
@@ -342,7 +344,6 @@
       },
       "id": 23,
       "interval": "1m",
-      "maxDataPoints": 100,
       "options": {
         "legend": {
           "calcs": [],
@@ -355,11 +356,12 @@
           "sort": "none"
         }
       },
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "radem_influxdb_datasource"
+            "uid": "irem_influxdb_datasource"
           },
           "groupBy": [
             {
@@ -378,7 +380,7 @@
           "measurement": "my_measurement",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "import \"date\"\r\nfrom(bucket: \"radem\")\r\n  |> range(start: date.sub(d: 10m, from: v.timeRangeStart), stop:date.add(d: 10m, to: v.timeRangeStop))\r\n  |> filter(fn: (r) =>\r\n    r._measurement == \"irem_d2\"\r\n  )\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: true)",
+          "query": "import \"date\"\r\nfrom(bucket: \"irem\")\r\n  |> range(start: date.sub(d: 10m, from: v.timeRangeStart), stop:date.add(d: 10m, to: v.timeRangeStop))\r\n  |> filter(fn: (r) =>\r\n    r._measurement == \"irem_d2\"\r\n  )\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: true)",
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -408,7 +410,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "radem_influxdb_datasource"
+        "uid": "irem_influxdb_datasource"
       },
       "fieldConfig": {
         "defaults": {
@@ -424,6 +426,7 @@
             "axisLabel": "counts / sec",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "none",
@@ -534,7 +537,6 @@
       },
       "id": 24,
       "interval": "1m",
-      "maxDataPoints": 100,
       "options": {
         "legend": {
           "calcs": [],
@@ -547,11 +549,12 @@
           "sort": "none"
         }
       },
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "radem_influxdb_datasource"
+            "uid": "irem_influxdb_datasource"
           },
           "groupBy": [
             {
@@ -570,7 +573,7 @@
           "measurement": "my_measurement",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "import \"date\"\r\nfrom(bucket: \"radem\")\r\n  |> range(start: date.sub(d: 10m, from: v.timeRangeStart), stop:date.add(d: 10m, to: v.timeRangeStop))\r\n  |> filter(fn: (r) =>\r\n    r._measurement == \"irem_d3\"\r\n  )\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: true)",
+          "query": "import \"date\"\r\nfrom(bucket: \"irem\")\r\n  |> range(start: date.sub(d: 10m, from: v.timeRangeStart), stop:date.add(d: 10m, to: v.timeRangeStop))\r\n  |> filter(fn: (r) =>\r\n    r._measurement == \"irem_d3\"\r\n  )\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: true)",
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -600,7 +603,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "radem_influxdb_datasource"
+        "uid": "irem_influxdb_datasource"
       },
       "fieldConfig": {
         "defaults": {
@@ -616,6 +619,7 @@
             "axisLabel": "counts / sec",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "none",
@@ -726,7 +730,6 @@
       },
       "id": 21,
       "interval": "1m",
-      "maxDataPoints": 100,
       "options": {
         "legend": {
           "calcs": [],
@@ -739,11 +742,12 @@
           "sort": "none"
         }
       },
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "radem_influxdb_datasource"
+            "uid": "irem_influxdb_datasource"
           },
           "groupBy": [
             {
@@ -762,7 +766,7 @@
           "measurement": "my_measurement",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "import \"date\"\r\nfrom(bucket: \"radem\")\r\n  |> range(start: date.sub(d: 10m, from: v.timeRangeStart), stop:date.add(d: 10m, to: v.timeRangeStop))\r\n  |> filter(fn: (r) =>\r\n    r._measurement == \"irem_d1\"\r\n  )\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: true)",
+          "query": "import \"date\"\r\nfrom(bucket: \"irem\")\r\n  |> range(start: date.sub(d: 10m, from: v.timeRangeStart), stop:date.add(d: 10m, to: v.timeRangeStop))\r\n  |> filter(fn: (r) =>\r\n    r._measurement == \"irem_d1\"\r\n  )\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: true)",
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -793,7 +797,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "radem_influxdb_datasource"
+        "uid": "irem_influxdb_datasource"
       },
       "fieldConfig": {
         "defaults": {
@@ -809,6 +813,7 @@
             "axisLabel": "counts / sec",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "none",
@@ -919,7 +924,6 @@
       },
       "id": 27,
       "interval": "1m",
-      "maxDataPoints": 100,
       "options": {
         "legend": {
           "calcs": [],
@@ -932,11 +936,12 @@
           "sort": "none"
         }
       },
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "radem_influxdb_datasource"
+            "uid": "irem_influxdb_datasource"
           },
           "groupBy": [
             {
@@ -955,7 +960,7 @@
           "measurement": "my_measurement",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "import \"date\"\r\nfrom(bucket: \"radem\")\r\n  |> range(start: date.sub(d: 10m, from: v.timeRangeStart), stop:date.add(d: 10m, to: v.timeRangeStop))\r\n  |> filter(fn: (r) =>\r\n    r._measurement == \"irem_d2\"\r\n  )\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: true)",
+          "query": "import \"date\"\r\nfrom(bucket: \"irem\")\r\n  |> range(start: date.sub(d: 10m, from: v.timeRangeStart), stop:date.add(d: 10m, to: v.timeRangeStop))\r\n  |> filter(fn: (r) =>\r\n    r._measurement == \"irem_d2\"\r\n  )\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: true)",
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -986,7 +991,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "radem_influxdb_datasource"
+        "uid": "irem_influxdb_datasource"
       },
       "fieldConfig": {
         "defaults": {
@@ -1002,6 +1007,7 @@
             "axisLabel": "counts / sec",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "none",
@@ -1112,7 +1118,6 @@
       },
       "id": 25,
       "interval": "1m",
-      "maxDataPoints": 100,
       "options": {
         "legend": {
           "calcs": [],
@@ -1125,11 +1130,12 @@
           "sort": "none"
         }
       },
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "radem_influxdb_datasource"
+            "uid": "irem_influxdb_datasource"
           },
           "groupBy": [
             {
@@ -1148,7 +1154,7 @@
           "measurement": "my_measurement",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "import \"date\"\r\nfrom(bucket: \"radem\")\r\n  |> range(start: date.sub(d: 10m, from: v.timeRangeStart), stop:date.add(d: 10m, to: v.timeRangeStop))\r\n  |> filter(fn: (r) =>\r\n    r._measurement == \"irem_d3\"\r\n  )\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: true)",
+          "query": "import \"date\"\r\nfrom(bucket: \"irem\")\r\n  |> range(start: date.sub(d: 10m, from: v.timeRangeStart), stop:date.add(d: 10m, to: v.timeRangeStop))\r\n  |> filter(fn: (r) =>\r\n    r._measurement == \"irem_d3\"\r\n  )\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: true)",
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -1179,7 +1185,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "radem_influxdb_datasource"
+        "uid": "irem_influxdb_datasource"
       },
       "fieldConfig": {
         "defaults": {
@@ -1195,6 +1201,7 @@
             "axisLabel": "counts / sec",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "none",
@@ -1305,7 +1312,6 @@
       },
       "id": 22,
       "interval": "1m",
-      "maxDataPoints": 100,
       "options": {
         "legend": {
           "calcs": [],
@@ -1318,11 +1324,12 @@
           "sort": "none"
         }
       },
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "radem_influxdb_datasource"
+            "uid": "irem_influxdb_datasource"
           },
           "groupBy": [
             {
@@ -1341,7 +1348,7 @@
           "measurement": "my_measurement",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "import \"date\"\r\nfrom(bucket: \"radem\")\r\n  |> range(start: date.sub(d: 10m, from: v.timeRangeStart), stop:date.add(d: 10m, to: v.timeRangeStop))\r\n  |> filter(fn: (r) =>\r\n    r._measurement == \"irem_d1\"\r\n  )\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: true)",
+          "query": "import \"date\"\r\nfrom(bucket: \"irem\")\r\n  |> range(start: date.sub(d: 10m, from: v.timeRangeStart), stop:date.add(d: 10m, to: v.timeRangeStop))\r\n  |> filter(fn: (r) =>\r\n    r._measurement == \"irem_d1\"\r\n  )\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: true)",
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -1372,7 +1379,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "radem_influxdb_datasource"
+        "uid": "irem_influxdb_datasource"
       },
       "fieldConfig": {
         "defaults": {
@@ -1388,6 +1395,7 @@
             "axisLabel": "counts / sec",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "none",
@@ -1498,7 +1506,6 @@
       },
       "id": 28,
       "interval": "1m",
-      "maxDataPoints": 100,
       "options": {
         "legend": {
           "calcs": [],
@@ -1511,11 +1518,12 @@
           "sort": "none"
         }
       },
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "radem_influxdb_datasource"
+            "uid": "irem_influxdb_datasource"
           },
           "groupBy": [
             {
@@ -1534,7 +1542,7 @@
           "measurement": "my_measurement",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "import \"date\"\r\nfrom(bucket: \"radem\")\r\n  |> range(start: date.sub(d: 10m, from: v.timeRangeStart), stop:date.add(d: 10m, to: v.timeRangeStop))\r\n  |> filter(fn: (r) =>\r\n    r._measurement == \"irem_d2\"\r\n  )\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: true)",
+          "query": "import \"date\"\r\nfrom(bucket: \"irem\")\r\n  |> range(start: date.sub(d: 10m, from: v.timeRangeStart), stop:date.add(d: 10m, to: v.timeRangeStop))\r\n  |> filter(fn: (r) =>\r\n    r._measurement == \"irem_d2\"\r\n  )\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: true)",
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -1565,7 +1573,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "radem_influxdb_datasource"
+        "uid": "irem_influxdb_datasource"
       },
       "fieldConfig": {
         "defaults": {
@@ -1581,6 +1589,7 @@
             "axisLabel": "counts / sec",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "none",
@@ -1691,7 +1700,6 @@
       },
       "id": 26,
       "interval": "1m",
-      "maxDataPoints": 100,
       "options": {
         "legend": {
           "calcs": [],
@@ -1704,11 +1712,12 @@
           "sort": "none"
         }
       },
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "radem_influxdb_datasource"
+            "uid": "irem_influxdb_datasource"
           },
           "groupBy": [
             {
@@ -1727,7 +1736,7 @@
           "measurement": "my_measurement",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "import \"date\"\r\nfrom(bucket: \"radem\")\r\n  |> range(start: date.sub(d: 10m, from: v.timeRangeStart), stop:date.add(d: 10m, to: v.timeRangeStop))\r\n  |> filter(fn: (r) =>\r\n    r._measurement == \"irem_d3\"\r\n  )\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: true)",
+          "query": "import \"date\"\r\nfrom(bucket: \"irem\")\r\n  |> range(start: date.sub(d: 10m, from: v.timeRangeStart), stop:date.add(d: 10m, to: v.timeRangeStop))\r\n  |> filter(fn: (r) =>\r\n    r._measurement == \"irem_d3\"\r\n  )\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: true)",
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -1758,7 +1767,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "radem_influxdb_datasource"
+        "uid": "irem_influxdb_datasource"
       },
       "fieldConfig": {
         "defaults": {
@@ -1774,6 +1783,7 @@
             "axisLabel": "counts / sec",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "none",
@@ -1884,7 +1894,6 @@
       },
       "id": 29,
       "interval": "1m",
-      "maxDataPoints": 100,
       "options": {
         "legend": {
           "calcs": [],
@@ -1897,11 +1906,12 @@
           "sort": "none"
         }
       },
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "radem_influxdb_datasource"
+            "uid": "irem_influxdb_datasource"
           },
           "groupBy": [
             {
@@ -1920,7 +1930,7 @@
           "measurement": "my_measurement",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "import \"date\"\r\nfrom(bucket: \"radem\")\r\n  |> range(start: date.sub(d: 10m, from: v.timeRangeStart), stop:date.add(d: 10m, to: v.timeRangeStop))\r\n  |> filter(fn: (r) =>\r\n    r._measurement == \"irem_coin\"\r\n  )\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: true)",
+          "query": "import \"date\"\r\nfrom(bucket: \"irem\")\r\n  |> range(start: date.sub(d: 10m, from: v.timeRangeStart), stop:date.add(d: 10m, to: v.timeRangeStop))\r\n  |> filter(fn: (r) =>\r\n    r._measurement == \"irem_coin\"\r\n  )\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: true)",
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -1950,7 +1960,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "radem_influxdb_datasource"
+        "uid": "irem_influxdb_datasource"
       },
       "fieldConfig": {
         "defaults": {
@@ -1966,6 +1976,7 @@
             "axisLabel": "counts / sec",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "none",
@@ -1998,7 +2009,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
           },
@@ -2075,7 +2087,6 @@
       },
       "id": 30,
       "interval": "1m",
-      "maxDataPoints": 100,
       "options": {
         "legend": {
           "calcs": [],
@@ -2088,11 +2099,12 @@
           "sort": "none"
         }
       },
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "radem_influxdb_datasource"
+            "uid": "irem_influxdb_datasource"
           },
           "groupBy": [
             {
@@ -2111,7 +2123,7 @@
           "measurement": "my_measurement",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "import \"date\"\r\nfrom(bucket: \"radem\")\r\n  |> range(start: date.sub(d: 10m, from: v.timeRangeStart), stop:date.add(d: 10m, to: v.timeRangeStop))\r\n  |> filter(fn: (r) =>\r\n    r._measurement == \"irem_coin\"\r\n  )\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: true)",
+          "query": "import \"date\"\r\nfrom(bucket: \"irem\")\r\n  |> range(start: date.sub(d: 10m, from: v.timeRangeStart), stop:date.add(d: 10m, to: v.timeRangeStop))\r\n  |> filter(fn: (r) =>\r\n    r._measurement == \"irem_coin\"\r\n  )\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: true)",
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -2142,7 +2154,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "radem_influxdb_datasource"
+        "uid": "irem_influxdb_datasource"
       },
       "fieldConfig": {
         "defaults": {
@@ -2158,6 +2170,7 @@
             "axisLabel": "counts / sec",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "none",
@@ -2190,7 +2203,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
           },
@@ -2267,7 +2281,6 @@
       },
       "id": 31,
       "interval": "1m",
-      "maxDataPoints": 100,
       "options": {
         "legend": {
           "calcs": [],
@@ -2280,11 +2293,12 @@
           "sort": "none"
         }
       },
+      "pluginVersion": "11.3.0",
       "targets": [
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "radem_influxdb_datasource"
+            "uid": "irem_influxdb_datasource"
           },
           "groupBy": [
             {
@@ -2303,7 +2317,7 @@
           "measurement": "my_measurement",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "import \"date\"\r\nfrom(bucket: \"radem\")\r\n  |> range(start: date.sub(d: 10m, from: v.timeRangeStart), stop:date.add(d: 10m, to: v.timeRangeStop))\r\n  |> filter(fn: (r) =>\r\n    r._measurement == \"irem_coin\"\r\n  )\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: true)",
+          "query": "import \"date\"\r\nfrom(bucket: \"irem\")\r\n  |> range(start: date.sub(d: 10m, from: v.timeRangeStart), stop:date.add(d: 10m, to: v.timeRangeStop))\r\n  |> filter(fn: (r) =>\r\n    r._measurement == \"irem_coin\"\r\n  )\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: true)",
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -2332,20 +2346,21 @@
       "type": "timeseries"
     }
   ],
+  "preload": false,
   "refresh": "",
-  "schemaVersion": 39,
+  "schemaVersion": 40,
   "tags": [],
   "templating": {
     "list": []
   },
   "time": {
-    "from": "2024-02-19T13:58:11.190Z",
-    "to": "2024-03-08T13:06:53.046Z"
+    "from": "now-30d",
+    "to": "now"
   },
   "timepicker": {},
   "timezone": "browser",
   "title": "IREM - Raw Science",
   "uid": "irem_raw_science_dashboard",
-  "version": 1,
+  "version": 3,
   "weekStart": ""
 }

@@ -22,3 +22,19 @@ datasources:
     secureJsonData:
       basicAuthPassword: adminadmin
       token: verylongtokenforinfluxdb
+  - name: Irem
+    type: influxdb
+    access: proxy
+    url: http://radem_influxdb:8086
+    uid: irem_influxdb_datasource
+    isDefault: false
+    basicAuth: true
+    basicAuthUser: admin
+    jsonData:
+      version: Flux
+      organization: radem
+      defaultBucket: irem
+      tlsSkipVerify: true
+    secureJsonData:
+      basicAuthPassword: adminadmin
+      token: verylongtokenforinfluxdb

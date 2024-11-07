@@ -1,1 +1,0 @@
-30 * * * * /app/scripts/fetch_and_publish.sh 2>&1

@@ -10,7 +10,9 @@ mkdir -p ${DATA_DIR}/irem/csv
 # Create a symlink to the raw directory
 DATA_RAW_DIR=${DATA_DIR}/irem/raw
 if [ ! -L "$DATA_RAW_DIR" ]; then
-    ln -s ${DATA_DIR}/irem/srem.psi.ch/datarepo/V0/irem/ ${DATA_RAW_DIR}
+    ABS_DATA_RAW_DIR=$(readlink -f ${DATA_RAW_DIR})
+    ABS_DATA_DIR=$(readlink -f ${DATA_DIR})
+    ln -s ${ABS_DATA_DIR}/irem/srem.psi.ch/datarepo/V0/irem/ ${ABS_DATA_RAW_DIR}
 fi
 
 # Get data recursively, don't download existing files
