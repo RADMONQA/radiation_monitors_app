@@ -38,3 +38,9 @@ datasources:
     secureJsonData:
       basicAuthPassword: adminadmin
       token: verylongtokenforinfluxdb
+  - name: Prometheus
+    type: prometheus
+    access: proxy
+    url: http://radem_prometheus:9090
+    isDefault: false
+    editable: true
