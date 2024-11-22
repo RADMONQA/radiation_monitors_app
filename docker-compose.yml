@@ -56,6 +56,9 @@ services:
       - INFLUXDB_BUCKET=${DOCKER_INFLUXDB_INIT_BUCKET}
       - INFLUXDB_IREM_BUCKET=${DOCKER_INFLUXDB_INIT_IREM_BUCKET}
       - INFLUXDB_URL=http://radem_influxdb:8086
+      - KERNELS_DIR=/radem_data/spice
+      - KERNELS_MK=5.1 150lb_23_1
+      - KERNELS_VERSION=v451
     volumes:
       - radem_data:/radem_data
       - ./app/scripts:/app/scripts

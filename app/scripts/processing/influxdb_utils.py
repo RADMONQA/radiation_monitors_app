@@ -19,6 +19,26 @@ def preprocess_particles(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
+def preprocess_trajectories(df: pd.DataFrame) -> pd.DataFrame:
+    df['time'] = pd.to_datetime(df['time'])
+    df['time_ns'] = pd.to_datetime(df['time']).astype('int64')
+    for column in df.columns:
+        if column not in ['time', 'time_ns']:
+            df[column] = df[column].astype('float64')
+    return df
+
+
+def convert_trajectories_to_line_protocol(df: pd.DataFrame,
+                                          col_name: str) -> pd.DataFrame:
+    df = pd.DataFrame(
+        col_name +
+        ",value=" + df[col_name].astype(str) + " " +
+        df['time_ns'].astype(str),
+        columns=["line"]
+    )
+    return df
+
+
 def convert_particles_to_line_protocol(
         df: pd.DataFrame,
         measurement_name: str) -> pd.DataFrame:
