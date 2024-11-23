@@ -21,7 +21,9 @@ def preprocess_particles(df: pd.DataFrame) -> pd.DataFrame:
 
 def preprocess_trajectories(df: pd.DataFrame) -> pd.DataFrame:
     df['time'] = pd.to_datetime(df['time'])
-    df['time_ns'] = pd.to_datetime(df['time']).astype('int64')
+    df['time_ns'] = (df['time'] - pd.Timestamp("1970-01-01")
+                     ) // pd.Timedelta('1ns')
+
     for column in df.columns:
         if column not in ['time', 'time_ns']:
             df[column] = df[column].astype('float64')
@@ -30,10 +32,15 @@ def preprocess_trajectories(df: pd.DataFrame) -> pd.DataFrame:
 
 def convert_trajectories_to_line_protocol(df: pd.DataFrame,
                                           col_name: str) -> pd.DataFrame:
+    measurement = col_name
+    value = df[col_name].astype(str)
+    ts = df['time_ns'].astype(str)
+
     df = pd.DataFrame(
-        col_name +
-        ",value=" + df[col_name].astype(str) + " " +
-        df['time_ns'].astype(str),
+        measurement +
+        ",bin=" + "1" + " "
+        "value=" + value + " " +
+        ts,
         columns=["line"]
     )
     return df
@@ -125,6 +132,6 @@ class InfluxDbUtils:
             print(
                 f"Uploading batch of {batch_indices.stop - batch_indices.start + 1} records, from {batch_indices.start} to {batch_indices.stop}.", flush=True)
             self.write_api.write(
-                self.bucket, self.org, df_lines.loc[batch_indices, 'line'])
+                self.bucket, self.org, df_lines.loc[batch_indices, 'line'], verbose=True)
 
         self.write_api.flush()
