@@ -9,4 +9,5 @@ SCRIPTS_DIR="$(cd "$(dirname "$0")" && pwd)"
 ${SCRIPTS_DIR}/fetching/fetch_all.sh
 
 # Processing
+${SCRIPTS_DIR}/processing/trajectory.py
 ${SCRIPTS_DIR}/processing/process_irem.sh
