@@ -26,6 +26,7 @@ BUCKET = "juice_trajectory"
 def build_juice_tour(target):
     return TourConfig(
         spacecraft='JUICE',
+        instrument='RADEM_PSD',
         target=target,
         download_kernels=True,
         kernels_dir=KERNELS_DIR,
