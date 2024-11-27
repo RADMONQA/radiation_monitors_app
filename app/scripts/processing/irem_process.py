@@ -34,9 +34,6 @@ ORG = os.environ.get("INFLUXDB_ORG")
 BUCKET = os.environ.get("INFLUXDB_IREM_BUCKET")
 
 
-# os.environ.setdefault(
-#     "CDF_LIB", "/home/szymon/repos/cdf39_0-dist/src/lib")  # <---------------
-# Verify CDF_LIB environment variable (required for pycdf)
 if not os.environ.get('CDF_LIB'):
     raise EnvironmentError(
         "No CDF_LIB environment variable found for CDF file processing.")
@@ -60,12 +57,9 @@ class IremDataProcessor:
     def extract_data_raw(self) -> None:
         for filename in self.get_data_raw_filenames():
             output_filename = self.data_extracted / filename.stem
-            if not output_filename.exists():
-                print(f"Extracting {filename} to {output_filename}")
-                self._extract_file(filename, output_filename)
-            else:
-                print(
-                    f"Skipping extracting {output_filename} - already exists.")
+            # older files will be overwritten
+            print(f"Extracting {filename} to {output_filename}")
+            self._extract_file(filename, output_filename)
 
     @staticmethod
     def _extract_file(input_filename: Path, output_filename: Path) -> None:
