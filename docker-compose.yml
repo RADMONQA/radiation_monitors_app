@@ -1,2 +1,6 @@
+# docker-compose.yml
+#
+# This is just an alias for the private Docker Compose file.
+
 include:
   - docker-compose.private.yml
