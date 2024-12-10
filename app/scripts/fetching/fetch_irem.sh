@@ -17,10 +17,10 @@ fi
 
 # Get data recursively, don't download existing files
 wget \
+    --timestamping \
     --recursive \
     --no-parent \
     --continue \
-    --no-clobber \
     --no-verbose \
     -A gz \
     http://srem.psi.ch/datarepo/V0/irem/ \
