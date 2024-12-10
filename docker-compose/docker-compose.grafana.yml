@@ -1,0 +1,35 @@
+# docker-compose.grafana.yml
+#
+# This service is responsible for running the Grafana dashboard.
+
+services:
+  grafana:
+    image: grafana/grafana-oss
+    container_name: grafana
+    environment:
+      GF_SECURITY_ADMIN_USER: ${GF_SECURITY_ADMIN_USER}
+      GF_SECURITY_ADMIN_PASSWORD: ${GF_SECURITY_ADMIN_PASSWORD}
+      GF_PATHS_PROVISIONING: /etc/grafana/provisioning
+      URL_GRAFANA: http://radem_grafana:3000
+      URL_INFLUXDB: http://radem_influxdb:8086
+      URL_PROMETHEUS: http://radem_prometheus:9090
+      INFLUXDB_TOKEN: ${DOCKER_INFLUXDB_INIT_ADMIN_TOKEN}
+      INFLUXDB_PASSWORD: ${DOCKER_INFLUXDB_INIT_PASSWORD}
+      INFLUXDB_ORG: ${DOCKER_INFLUXDB_INIT_ORG}
+      INFLUXDB_BUCKET: ${DOCKER_INFLUXDB_INIT_BUCKET}
+      INFLUXDB_IREM_BUCKET: ${DOCKER_INFLUXDB_INIT_IREM_BUCKET}
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ../grafana/provisioning:/etc/grafana/provisioning
+      - ../grafana/dashboards:/etc/grafana/dashboards
+      - ../grafana/grafana.ini:/etc/grafana/grafana.ini
+    networks:
+      - radem_network
+    ports:
+      - "81:3000"
+    restart: unless-stopped
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "10"

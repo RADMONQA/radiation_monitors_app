@@ -1,0 +1,20 @@
+# docker-compose.node-exporter.yml  
+#
+# This service is responsible for running the Node Exporter.
+# Node Exporter is a Prometheus exporter for hardware and OS metrics. 
+# It collects metrics from the host machine and makes them available for monitoring and analysis.
+
+services:
+  node-exporter:
+    image: quay.io/prometheus/node-exporter:latest
+    container_name: node-exporter
+    command:
+      - '--path.rootfs=/host'
+    networks:
+      - radem_network
+    ports:
+      - 9100:9100
+    pid: host
+    volumes:
+      - '/:/host:ro,rslave'
+    restart: unless-stopped

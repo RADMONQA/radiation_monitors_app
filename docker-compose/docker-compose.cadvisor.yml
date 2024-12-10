@@ -1,0 +1,19 @@
+# docker-compose.cadvisor.yml
+#
+# cAdvisor (Container Advisor) provides container users an understanding of the resource usage
+# and performance characteristics of their running containers. It is a monitoring tool that
+# collects, aggregates, processes, and exports information about running containers.
+
+services:
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:latest
+    container_name: cadvisor
+    ports:
+      - 8080:8080
+    volumes:
+      - /:/rootfs:ro # Mount the root filesystem as read-only
+      - /var/run:/var/run:rw # Mount /var/run for read-write access
+      - /sys:/sys:ro # Mount /sys as read-only to access system information
+      - /var/lib/docker/:/var/lib/docker:ro # Mount Docker's lib directory as read-only
+    networks:
+      - radem_network # Network for inter-service communication

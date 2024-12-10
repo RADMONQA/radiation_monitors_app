@@ -1,0 +1,41 @@
+# docker-compose.app.yml
+#
+# Defines the configuration for the 'app' service.
+# The service is responsible for fetching, processing, and publishing data
+# to the InfluxDB database. It periodically fetches data from external sources
+# and processes it for storage and analysis.
+
+services:
+  app:
+    build:
+      context: ../app
+    container_name: app
+    environment:
+      - DATA_DIR=/radem_data
+      - FTP_USER=${FTP_USER}
+      - FTP_PASSWORD=${FTP_PASSWORD}
+      - FTP_URL=${FTP_URL}
+      - INFLUXDB_TOKEN=${DOCKER_INFLUXDB_INIT_ADMIN_TOKEN}
+      - INFLUXDB_ORG=${DOCKER_INFLUXDB_INIT_ORG}
+      - INFLUXDB_BUCKET=${DOCKER_INFLUXDB_INIT_BUCKET}
+      - INFLUXDB_IREM_BUCKET=${DOCKER_INFLUXDB_INIT_IREM_BUCKET}
+      - INFLUXDB_URL=http://radem_influxdb:8086
+      - KERNELS_DIR=/radem_data/spice
+      - KERNELS_MK=5.1 150lb_23_1
+      - KERNELS_VERSION=v451
+    volumes:
+      - radem_data:/radem_data
+      - ../app/scripts:/app/scripts
+      - ../app/app_job:/etc/cron.d/app_job
+    networks:
+      - radem_network
+    depends_on:
+      - cadvisor
+      - node-exporter
+      - prometheus
+    restart: unless-stopped
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "10"

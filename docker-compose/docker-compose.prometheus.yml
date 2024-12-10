@@ -1,0 +1,22 @@
+# docker-compose.prometheus.yml
+#
+# This service is responsible for running the Prometheus monitoring system.
+# It collects metrics from the host machine and makes them available for monitoring and analysis. 
+# It is used to monitor the performance and health of the host machine and the services running on it.  
+
+services:
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    ports:
+      - 9090:9090
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+    volumes:
+      - ../prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    depends_on:
+      - cadvisor
+      - node-exporter
+    networks:
+      - radem_network
+    restart: unless-stopped
