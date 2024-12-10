@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Wait for Grafana to be ready
-until curl -s http://radem_grafana:3000/api/health | grep -q '"database": "ok"'; do
+until curl -s http://grafana:3000/api/health | grep -q '"database": "ok"'; do
     echo "Waiting for Grafana to be ready..."
     sleep 1
 done
@@ -15,4 +15,4 @@ curl -X POST \
         "OrgId": 1,
         "role": "Viewer"
     }' \
-    http://${GF_SECURITY_ADMIN_USER}:${GF_SECURITY_ADMIN_PASSWORD}@radem_grafana:3000/api/admin/users
+    http://${GF_SECURITY_ADMIN_USER}:${GF_SECURITY_ADMIN_PASSWORD}@grafana:3000/api/admin/users

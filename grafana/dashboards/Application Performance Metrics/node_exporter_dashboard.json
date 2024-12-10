@@ -22938,8 +22938,8 @@
       },
       {
         "current": {
-          "text": "radem_node_exporter:9100",
-          "value": "radem_node_exporter:9100"
+          "text": "node-exporter:9100",
+          "value": "node-exporter:9100"
         },
         "datasource": {
           "type": "prometheus",
