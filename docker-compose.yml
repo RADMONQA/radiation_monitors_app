@@ -43,6 +43,11 @@ services:
       file: ./docker-compose/docker-compose.grafana.yml
       service: grafana
 
+  grafana-init-users:
+    extends:
+      file: ./docker-compose/docker-compose.grafana-init-users.yml
+      service: grafana-init-users
+
   influxdb:
     extends:
       file: ./docker-compose/docker-compose.influxdb.yml
