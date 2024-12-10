@@ -9,5 +9,10 @@ SCRIPTS_DIR="$(cd "$(dirname "$0")" && pwd)"
 ${SCRIPTS_DIR}/fetching/fetch_all.sh
 
 # Processing
-${SCRIPTS_DIR}/processing/trajectory.py
-${SCRIPTS_DIR}/processing/process_irem.sh
+if [ "$IS_USING_RADEM" -ne 0 ]; then
+    ${SCRIPTS_DIR}/processing/trajectory.py
+fi
+
+if [ "$IS_USING_IREM" -ne 0 ]; then
+    ${SCRIPTS_DIR}/processing/process_irem.sh
+fi

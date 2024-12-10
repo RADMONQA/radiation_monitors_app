@@ -11,6 +11,8 @@ services:
       context: ../app
     container_name: app
     environment:
+      - IS_USING_IREM=1
+      - IS_USING_RADEM=1
       - DATA_DIR=/radem_data
       - FTP_USER=${FTP_USER}
       - FTP_PASSWORD=${FTP_PASSWORD}
