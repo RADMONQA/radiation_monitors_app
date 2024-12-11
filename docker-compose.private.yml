@@ -30,7 +30,7 @@ services:
       service: grafana
     container_name: grafana-private
     ports:
-      - "3001:3000"
+      - "81:3000"
     volumes:
       - ./grafana/grafana.private.ini:/etc/grafana/grafana.ini
 
