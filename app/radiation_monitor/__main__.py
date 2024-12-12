@@ -23,8 +23,7 @@ else:
 def main():
     """Main entry point for the radiation monitor application."""
     try:
-
-        fetchers.fetch_irem_data()
+        fetchers.fetch_all()
 
     except Exception as e:
         logger.critical(f"Fatal error: {e}")
