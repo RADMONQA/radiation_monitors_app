@@ -6,6 +6,7 @@
 mkdir -p ${DATA_DIR}/irem
 mkdir -p ${DATA_DIR}/irem/extracted
 mkdir -p ${DATA_DIR}/irem/csv
+mkdir -p ${DATA_DIR}/irem/hdf5
 
 # Create a symlink to the raw directory
 DATA_RAW_DIR=${DATA_DIR}/irem/raw

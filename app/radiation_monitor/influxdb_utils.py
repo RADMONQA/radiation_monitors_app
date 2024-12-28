@@ -2,37 +2,9 @@ import pandas as pd
 import influxdb_client
 from influxdb_client.client.write_api import SYNCHRONOUS
 from pathlib import Path
+import logging
 
-
-def _preprocess_df_for_influxdb(df: pd.DataFrame) -> pd.DataFrame:
-    # Convert time for influxdb
-    df['time'] = pd.to_datetime(df['time'])
-
-    # Convert time to ns for influxdb
-    df['time_ns'] = (df['time'] - pd.Timestamp("1970-01-01")
-                     ) // pd.Timedelta('1ns')
-
-    # Convert all columns to coresponding influxdb types
-    for column in df.columns:
-        if df[column].dtype == 'float' or \
-                df[column].dtype == 'float16' or \
-                df[column].dtype == 'float32':
-            df[column] = df[column].astype('float64')
-        elif df[column].dtype == 'int8' or \
-                df[column].dtype == 'int16' or \
-                df[column].dtype == 'int32' or \
-                df[column].dtype == 'int64':
-            df[column] = df[column].astype('int64')
-        elif df[column].dtype == 'bool':
-            df[column] = df[column].astype('boolean')
-
-    return df
-
-
-def convert_df_to_line_protocol(df: pd.DataFrame) -> pd.DataFrame:
-    df = _preprocess_df_for_influxdb(df)
-
-    return df
+logger = logging.getLogger(__name__)
 
 
 def preprocess_particles(df: pd.DataFrame) -> pd.DataFrame:
@@ -133,6 +105,12 @@ class InfluxDbUtils:
         return buckets_api
 
     def create_bucket(self) -> influxdb_client.Bucket:
+        logger.info(f"Creating bucket {self.bucket}.")
+        if self.find_bucket_by_name():
+            logger.info(
+                f"Bucket {self.bucket} already exists. Skipping creation.")
+            return
+
         bucket = self.buckets_api.create_bucket(
             bucket_name=self.bucket, org=self.org)
         return bucket
@@ -145,23 +123,76 @@ class InfluxDbUtils:
         return None
 
     def delete_bucket(self) -> bool:
+        logger.info(f"Deleting bucket {self.bucket}.")
         bucket = self.find_bucket_by_name()
         if bucket:
             self.buckets_api.delete_bucket(bucket)
             return True
         return False
 
-    def upload_line_protocol(
-            self,
-            df_lines: pd.DataFrame,
-            batch_size: int = 1000000) -> None:
-        for batch in range(0, len(df_lines), batch_size):
-            batch_end = min(batch + batch_size - 1, len(df_lines) - 1)
-            batch_indices = slice(batch, batch_end)
+    @staticmethod
+    def _preprocess_df_for_influxdb(df: pd.DataFrame) -> pd.DataFrame:
+        # Convert time to ns for influxdb
+        df['time_ns'] = (df.index - pd.Timestamp("1970-01-01")
+                         ) // pd.Timedelta('1ns')
 
-            print(
-                f"Uploading batch of {batch_indices.stop - batch_indices.start + 1} records, from {batch_indices.start} to {batch_indices.stop}.", flush=True)
+        # Convert all columns to coresponding influxdb types
+        for column in df.columns:
+            if df[column].dtype == 'float' or \
+                    df[column].dtype == 'float16' or \
+                    df[column].dtype == 'float32':
+                df[column] = df[column].astype('float64')
+            elif df[column].dtype == 'int8' or \
+                    df[column].dtype == 'int16' or \
+                    df[column].dtype == 'int32' or \
+                    df[column].dtype == 'int64':
+                df[column] = df[column].astype('int64')
+            elif df[column].dtype == 'bool':
+                df[column] = df[column].astype('boolean')
+        return df
+
+    def upload_df(self, df: pd.DataFrame) -> None:
+        self.create_bucket()
+
+        df = InfluxDbUtils._preprocess_df_for_influxdb(df)
+        self._upload_line_protocol(df)
+
+    def _convert_row_to_line_protocol(self, measurement: str,
+                                      **kwargs) -> str:
+        line = f"{measurement}"
+        line += " "
+        line += ",".join(f"{key}={value}" for key, value in kwargs.items())
+        line += " "
+        line += f"{kwargs['time_ns']:.0f}"
+        return line
+
+    def _convert_to_line_protocol(self,
+                                  measurement: str,
+                                  df: pd.DataFrame) -> pd.DataFrame:
+        time_ns_col = df['time_ns'].astype(str)
+        lines = [
+            f"{measurement} " +
+            ",".join(f"{key}={value}" for key, value in row.items() if key != 'time_ns') +
+            f" {time_ns}"
+            for row, time_ns in zip(df.to_dict(orient='records'), time_ns_col)
+        ]
+
+        df_lines = pd.DataFrame(lines, columns=["line"])
+        return df_lines
+
+    def _upload_line_protocol(
+            self,
+            df: pd.DataFrame,
+            batch_size: int = 100000) -> None:
+        for batch_start in range(0, len(df), batch_size):
+            batch_end = min(batch_start + batch_size - 1, len(df) - 1)
+
+            df_lines = self._convert_to_line_protocol(
+                "irem", df.iloc[batch_start:batch_end])
+
+            logger.info(
+                f"Uploading batch of {batch_end - batch_start + 1} records, from {batch_start} to {batch_end}.")
             self.write_api.write(
-                self.bucket, self.org, df_lines.loc[batch_indices, 'line'], verbose=True)
+                self.bucket, self.org, df_lines['line'])
 
         self.write_api.flush()
