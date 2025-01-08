@@ -12,9 +12,9 @@ RADEM App is a web application that allows users to visualize and analyze the da
 
 ## Installation
 
-1. Copy the `.env.example` file to `.env` and update the values as needed.
+1. Copy the `.env.template` file to `.env` and update the values as needed.
     ```bash
-    $ cp .env.example .env
+    $ cp .env.template .env
     ```
 
 1. Build the docker image
