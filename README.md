@@ -1,19 +1,20 @@
 # RADEM App
 
-RADEM App is a web application that allows users to visualize and analyze the data collected by the RADEM detector as well as the data collected by the other services running on the host machine.
+RADEM App is a web application that allows users to visualize and analyze the data collected by the RADEM and IREM detectors as well as the data collected by the other services running on the host machine.
 
-[👉 LIVE DEMO](http://149.156.10.136:51820/)
+[👉 LIVE DEMO WITH IREM DATA](http://149.156.10.136:51820/) at Cyfronet C3 cloud.
 
 ## Prerequisites
 
 - Docker
 - Docker Compose
+- git
 
 ## Installation
 
-1. Copy the `.env.example` file to `.env` and update the values as needed.
+1. Copy the `.env.template` file to `.env` and update the values as needed.
     ```bash
-    $ cp .env.example .env
+    $ cp .env.template .env
     ```
 
 1. Build the docker image
