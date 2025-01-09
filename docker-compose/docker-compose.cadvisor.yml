@@ -15,5 +15,6 @@ services:
       - /var/run:/var/run:rw # Mount /var/run for read-write access
       - /sys:/sys:ro # Mount /sys as read-only to access system information
       - /var/lib/docker/:/var/lib/docker:ro # Mount Docker's lib directory as read-only
+    restart: unless-stopped
     networks:
       - radem_network # Network for inter-service communication
