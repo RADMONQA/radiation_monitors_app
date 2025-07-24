@@ -14,11 +14,11 @@ services:
       DOCKER_INFLUXDB_INIT_BUCKET: ${DOCKER_INFLUXDB_INIT_BUCKET}
       DOCKER_INFLUXDB_INIT_ADMIN_TOKEN: ${DOCKER_INFLUXDB_INIT_ADMIN_TOKEN}
     volumes:
-      - radem_data:/radem_data
+      - app_data:/app_data
       - influxdb_config_data:/etc/influxdb2
       - influxdb_data:/var/lib/influxdb2
     networks:
-      - radem_network
+      - app_network
     ports:
       - "8186:8086"
     restart: unless-stopped

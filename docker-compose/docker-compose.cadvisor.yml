@@ -17,4 +17,4 @@ services:
       - /var/lib/docker/:/var/lib/docker:ro # Mount Docker's lib directory as read-only
     restart: unless-stopped
     networks:
-      - radem_network # Network for inter-service communication
+      - app_network # Network for inter-service communication

@@ -18,5 +18,5 @@ services:
       - cadvisor
       - node-exporter
     networks:
-      - radem_network
+      - app_network
     restart: unless-stopped

@@ -1,6 +1,63 @@
 # docker-compose.yml
 #
-# This is just an alias for the private Docker Compose file.
+# This file is the Docker Compose configuration that used to be for only public networks - serves IREM data.
+# It defines the volumes and networks that are shared across all services.
 
-include:
-  - docker-compose.private.yml
+volumes:
+  app_data:
+    driver: local
+  grafana_data:
+    driver: local
+  influxdb_data:
+    driver: local
+  influxdb_config_data:
+    driver: local
+
+networks:
+  app_network:
+    driver: bridge
+
+services:
+  app:
+    extends:
+      file: ./docker-compose/docker-compose.app.yml
+      service: app
+    container_name: app-default
+    environment:
+      - IS_USING_IREM=1
+      - IS_USING_RADEM=0
+
+  grafana:
+    extends:
+      file: ./docker-compose/docker-compose.grafana.yml
+      service: grafana
+    container_name: grafana-default
+    ports:
+      - "51820:3000"
+    volumes:
+      - ./grafana/grafana.default.ini:/etc/grafana/grafana.ini
+
+  grafana-init-users:
+    extends:
+      file: ./docker-compose/docker-compose.grafana-init-users.yml
+      service: grafana-init-users
+
+  cadvisor:
+    extends:
+      file: ./docker-compose/docker-compose.cadvisor.yml
+      service: cadvisor
+
+  node-exporter:
+    extends:
+      file: ./docker-compose/docker-compose.node-exporter.yml
+      service: node-exporter
+
+  prometheus:
+    extends:
+      file: ./docker-compose/docker-compose.prometheus.yml
+      service: prometheus
+
+  influxdb:
+    extends:
+      file: ./docker-compose/docker-compose.influxdb.yml
+      service: influxdb

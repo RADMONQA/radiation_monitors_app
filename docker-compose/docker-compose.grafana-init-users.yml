@@ -18,4 +18,4 @@ services:
       GF_VIEWER_PASSWORD: ${GF_VIEWER_PASSWORD}
     entrypoint: [ "/bin/sh", "/init_users.sh" ]
     networks:
-      - radem_network
+      - app_network

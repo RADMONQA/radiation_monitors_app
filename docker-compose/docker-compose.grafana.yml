@@ -22,9 +22,9 @@ services:
       - grafana_data:/var/lib/grafana
       - ../grafana/provisioning:/etc/grafana/provisioning
       - ../grafana/dashboards:/etc/grafana/dashboards
-      - ../grafana/grafana.private.ini:/etc/grafana/grafana.ini
+      - ../grafana/grafana.legacy.ini:/etc/grafana/grafana.ini
     networks:
-      - radem_network
+      - app_network
     ports:
       - "81:3000"
     restart: unless-stopped
