@@ -5,16 +5,21 @@
 
 volumes:
   app_data:
+    name: app_data
     driver: local
   grafana_data:
+    name: grafana_data
     driver: local
   influxdb_data:
+    name: influxdb_data
     driver: local
   influxdb_config_data:
+    name: influxdb_config_data
     driver: local
 
 networks:
   app_network:
+    name: app_network
     driver: bridge
 
 services:
@@ -23,6 +28,7 @@ services:
       file: ./docker-compose/docker-compose.app.yml
       service: app
     container_name: app-default
+    image: app-default:latest
     environment:
       - IS_USING_IREM=1
       - IS_USING_RADEM=0
