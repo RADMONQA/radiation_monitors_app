@@ -7,15 +7,19 @@ volumes:
   app_data:
     name: app_data
     driver: local
+    external: true
   grafana_data:
     name: grafana_data
     driver: local
+    external: true
   influxdb_data:
     name: influxdb_data
     driver: local
+    external: true
   influxdb_config_data:
     name: influxdb_config_data
     driver: local
+    external: true
 
 networks:
   app_network:
