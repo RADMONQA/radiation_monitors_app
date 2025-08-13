@@ -3,7 +3,7 @@
 
 RADMONQA App is a web application that allows users to visualize and analyze the data collected by the IREM detector as well as the data collected by the other services running on the host machine.
 
-[legacy - probably doesnt work as of now: 👉 LIVE DEMO WITH IREM DATA(http://149.156.10.136:51820/) at Cyfronet C3 cloud.]: # 
+[legacy - probably doesn't work as of now: 👉 LIVE DEMO WITH IREM DATA(http://149.156.10.136:51820/) at Cyfronet C3 cloud.]: # 
 
 ## Prerequisites
 
@@ -48,7 +48,7 @@ $ docker compose -f docker-compose.yml up -d
 
 ### Legacy Environment (previously called private)
 
-The private environment used to include both IREM and RADEM data, the second of which is not officially published as of time of writing (24.07.2025). This setup is intended for testing the legacy code which used past RADEM data and is not reccomended as of now.
+The private environment used to include both IREM and RADEM data, the second of which is not officially published as of time of writing (24.07.2025). This setup is intended for testing the legacy code which used past RADEM data and is not recommended as of now.
 
 - **Configuration File**: `docker-compose.legacy.yml`
 - **Data**: IREM and RADEM data.
