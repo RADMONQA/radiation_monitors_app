@@ -16,6 +16,9 @@ volumes:
   influxdb_config_data:
     name: influxdb_config_data
     driver: local
+  prometheus_data:
+    name: prometheus_data
+    driver: local
 
 networks:
   app_network:
