@@ -18,7 +18,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
-  "id": 8,
+  "id": 13,
   "links": [],
   "panels": [
     {
@@ -101,7 +101,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Ch. 1"
+                "value": "TC1"
               }
             ]
           },
@@ -113,7 +113,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Ch. 2"
+                "value": "S1_2"
               }
             ]
           },
@@ -125,7 +125,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Ch. 3"
+                "value": "S1_3"
               }
             ]
           },
@@ -137,7 +137,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Ch. 4"
+                "value": "S1_4"
               }
             ]
           },
@@ -149,7 +149,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Ch. 5"
+                "value": "S1_5"
               }
             ]
           }
@@ -185,21 +185,15 @@
           },
           "groupBy": [
             {
-              "params": [
-                "$__interval"
-              ],
+              "params": ["$__interval"],
               "type": "time"
             },
             {
-              "params": [
-                "channel::tag"
-              ],
+              "params": ["channel::tag"],
               "type": "tag"
             },
             {
-              "params": [
-                "null"
-              ],
+              "params": ["null"],
               "type": "fill"
             }
           ],
@@ -212,9 +206,7 @@
           "select": [
             [
               {
-                "params": [
-                  "value"
-                ],
+                "params": ["value"],
                 "type": "field"
               },
               {
@@ -302,7 +294,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Ch. 1"
+                "value": "TC2"
               }
             ]
           },
@@ -314,7 +306,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Ch. 2"
+                "value": "S2_5"
               }
             ]
           },
@@ -386,21 +378,15 @@
           },
           "groupBy": [
             {
-              "params": [
-                "$__interval"
-              ],
+              "params": ["$__interval"],
               "type": "time"
             },
             {
-              "params": [
-                "channel::tag"
-              ],
+              "params": ["channel::tag"],
               "type": "tag"
             },
             {
-              "params": [
-                "null"
-              ],
+              "params": ["null"],
               "type": "fill"
             }
           ],
@@ -413,9 +399,7 @@
           "select": [
             [
               {
-                "params": [
-                  "value"
-                ],
+                "params": ["value"],
                 "type": "field"
               },
               {
@@ -503,7 +487,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Ch. 1"
+                "value": "C1"
               }
             ]
           },
@@ -515,7 +499,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Ch. 2"
+                "value": "C2"
               }
             ]
           },
@@ -527,7 +511,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Ch. 3"
+                "value": "C3"
               }
             ]
           },
@@ -539,7 +523,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Ch. 4"
+                "value": "C4"
               }
             ]
           },
@@ -587,21 +571,15 @@
           },
           "groupBy": [
             {
-              "params": [
-                "$__interval"
-              ],
+              "params": ["$__interval"],
               "type": "time"
             },
             {
-              "params": [
-                "channel::tag"
-              ],
+              "params": ["channel::tag"],
               "type": "tag"
             },
             {
-              "params": [
-                "null"
-              ],
+              "params": ["null"],
               "type": "fill"
             }
           ],
@@ -614,9 +592,7 @@
           "select": [
             [
               {
-                "params": [
-                  "value"
-                ],
+                "params": ["value"],
                 "type": "field"
               },
               {
@@ -634,7 +610,7 @@
           ]
         }
       ],
-      "title": "Detector 3 - Protons+Electrons",
+      "title": "Coincidence - Protons",
       "type": "timeseries"
     },
     {
@@ -704,7 +680,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Ch. 1"
+                "value": "TC3"
               }
             ]
           },
@@ -716,7 +692,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Ch. 2"
+                "value": "S3_2"
               }
             ]
           },
@@ -728,7 +704,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Ch. 3"
+                "value": "S3_3"
               }
             ]
           },
@@ -740,7 +716,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Ch. 4"
+                "value": "S3_4"
               }
             ]
           },
@@ -788,21 +764,15 @@
           },
           "groupBy": [
             {
-              "params": [
-                "$__interval"
-              ],
+              "params": ["$__interval"],
               "type": "time"
             },
             {
-              "params": [
-                "channel::tag"
-              ],
+              "params": ["channel::tag"],
               "type": "tag"
             },
             {
-              "params": [
-                "null"
-              ],
+              "params": ["null"],
               "type": "fill"
             }
           ],
@@ -815,9 +785,7 @@
           "select": [
             [
               {
-                "params": [
-                  "value"
-                ],
+                "params": ["value"],
                 "type": "field"
               },
               {
@@ -835,7 +803,7 @@
           ]
         }
       ],
-      "title": "Coincidence - Protons",
+      "title": "Detector 3 - Protons+Electrons",
       "type": "timeseries"
     },
     {
@@ -918,7 +886,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Ch. 1"
+                "value": "TC1"
               }
             ]
           },
@@ -930,7 +898,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Ch. 2"
+                "value": "S1_2"
               }
             ]
           },
@@ -942,7 +910,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Ch. 3"
+                "value": "S1_3"
               }
             ]
           },
@@ -954,7 +922,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Ch. 4"
+                "value": "S1_4"
               }
             ]
           },
@@ -966,7 +934,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Ch. 5"
+                "value": "S1_5"
               }
             ]
           }
@@ -1002,21 +970,15 @@
           },
           "groupBy": [
             {
-              "params": [
-                "$__interval"
-              ],
+              "params": ["$__interval"],
               "type": "time"
             },
             {
-              "params": [
-                "channel::tag"
-              ],
+              "params": ["channel::tag"],
               "type": "tag"
             },
             {
-              "params": [
-                "null"
-              ],
+              "params": ["null"],
               "type": "fill"
             }
           ],
@@ -1029,9 +991,7 @@
           "select": [
             [
               {
-                "params": [
-                  "value"
-                ],
+                "params": ["value"],
                 "type": "field"
               },
               {
@@ -1120,7 +1080,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Ch. 1"
+                "value": "TC2"
               }
             ]
           },
@@ -1132,7 +1092,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Ch. 2"
+                "value": "S2_5"
               }
             ]
           },
@@ -1204,21 +1164,15 @@
           },
           "groupBy": [
             {
-              "params": [
-                "$__interval"
-              ],
+              "params": ["$__interval"],
               "type": "time"
             },
             {
-              "params": [
-                "channel::tag"
-              ],
+              "params": ["channel::tag"],
               "type": "tag"
             },
             {
-              "params": [
-                "null"
-              ],
+              "params": ["null"],
               "type": "fill"
             }
           ],
@@ -1231,9 +1185,7 @@
           "select": [
             [
               {
-                "params": [
-                  "value"
-                ],
+                "params": ["value"],
                 "type": "field"
               },
               {
@@ -1322,7 +1274,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Ch. 1"
+                "value": "C1"
               }
             ]
           },
@@ -1334,7 +1286,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Ch. 2"
+                "value": "C2"
               }
             ]
           },
@@ -1346,7 +1298,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Ch. 3"
+                "value": "C3"
               }
             ]
           },
@@ -1358,7 +1310,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Ch. 4"
+                "value": "C4"
               }
             ]
           },
@@ -1406,21 +1358,15 @@
           },
           "groupBy": [
             {
-              "params": [
-                "$__interval"
-              ],
+              "params": ["$__interval"],
               "type": "time"
             },
             {
-              "params": [
-                "channel::tag"
-              ],
+              "params": ["channel::tag"],
               "type": "tag"
             },
             {
-              "params": [
-                "null"
-              ],
+              "params": ["null"],
               "type": "fill"
             }
           ],
@@ -1433,9 +1379,7 @@
           "select": [
             [
               {
-                "params": [
-                  "value"
-                ],
+                "params": ["value"],
                 "type": "field"
               },
               {
@@ -1454,7 +1398,7 @@
         }
       ],
       "timeFrom": "1y",
-      "title": "Detector 3 - Protons+Electrons",
+      "title": "Coincidence - Protons",
       "type": "timeseries"
     },
     {
@@ -1524,7 +1468,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Ch. 1"
+                "value": "TC3"
               }
             ]
           },
@@ -1536,7 +1480,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Ch. 2"
+                "value": "S3_2"
               }
             ]
           },
@@ -1548,7 +1492,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Ch. 3"
+                "value": "S3_3"
               }
             ]
           },
@@ -1560,7 +1504,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Ch. 4"
+                "value": "S3_4"
               }
             ]
           },
@@ -1608,21 +1552,15 @@
           },
           "groupBy": [
             {
-              "params": [
-                "$__interval"
-              ],
+              "params": ["$__interval"],
               "type": "time"
             },
             {
-              "params": [
-                "channel::tag"
-              ],
+              "params": ["channel::tag"],
               "type": "tag"
             },
             {
-              "params": [
-                "null"
-              ],
+              "params": ["null"],
               "type": "fill"
             }
           ],
@@ -1635,9 +1573,7 @@
           "select": [
             [
               {
-                "params": [
-                  "value"
-                ],
+                "params": ["value"],
                 "type": "field"
               },
               {
@@ -1656,7 +1592,7 @@
         }
       ],
       "timeFrom": "1y",
-      "title": "Coincidence - Protons",
+      "title": "Detector 3 - Protons+Electrons",
       "type": "timeseries"
     },
     {
@@ -1762,21 +1698,15 @@
           },
           "groupBy": [
             {
-              "params": [
-                "$__interval"
-              ],
+              "params": ["$__interval"],
               "type": "time"
             },
             {
-              "params": [
-                "channel::tag"
-              ],
+              "params": ["channel::tag"],
               "type": "tag"
             },
             {
-              "params": [
-                "null"
-              ],
+              "params": ["null"],
               "type": "fill"
             }
           ],
@@ -1789,9 +1719,7 @@
           "select": [
             [
               {
-                "params": [
-                  "value"
-                ],
+                "params": ["value"],
                 "type": "field"
               },
               {
@@ -1814,7 +1742,7 @@
         {
           "id": "calculateField",
           "options": {
-            "alias": "D1 Ch.1 / D3 Ch.1",
+            "alias": "TC1/TC3",
             "binary": {
               "left": {
                 "matcher": {
@@ -1826,7 +1754,7 @@
               "right": {
                 "matcher": {
                   "id": "byName",
-                  "options": "value {bin=\"1\", name=\"irem_d3\"}"
+                  "options": "value {bin=\"1\", name=\"irem_coin\"}"
                 }
               }
             },
@@ -1840,7 +1768,7 @@
         {
           "id": "calculateField",
           "options": {
-            "alias": "D2 Ch.1 / D3 Ch.1",
+            "alias": "TC2/TC3",
             "binary": {
               "left": {
                 "matcher": {
@@ -1852,7 +1780,7 @@
               "right": {
                 "matcher": {
                   "id": "byName",
-                  "options": "value {bin=\"1\", name=\"irem_d3\"}"
+                  "options": "value {bin=\"1\", name=\"irem_coin\"}"
                 }
               }
             },
@@ -2002,21 +1930,15 @@
           },
           "groupBy": [
             {
-              "params": [
-                "$__interval"
-              ],
+              "params": ["$__interval"],
               "type": "time"
             },
             {
-              "params": [
-                "channel::tag"
-              ],
+              "params": ["channel::tag"],
               "type": "tag"
             },
             {
-              "params": [
-                "null"
-              ],
+              "params": ["null"],
               "type": "fill"
             }
           ],
@@ -2029,9 +1951,7 @@
           "select": [
             [
               {
-                "params": [
-                  "value"
-                ],
+                "params": ["value"],
                 "type": "field"
               },
               {
@@ -2054,19 +1974,19 @@
         {
           "id": "calculateField",
           "options": {
-            "alias": "Coinc. Ch.2 / Coinc. Ch.1",
+            "alias": "C2/C1",
             "binary": {
               "left": {
                 "matcher": {
                   "id": "byName",
-                  "options": "value {bin=\"2\", name=\"irem_coin\"}"
+                  "options": "value {bin=\"2\", name=\"irem_d3\"}"
                 }
               },
               "operator": "/",
               "right": {
                 "matcher": {
                   "id": "byName",
-                  "options": "value {bin=\"1\", name=\"irem_coin\"}"
+                  "options": "value {bin=\"1\", name=\"irem_d3\"}"
                 }
               }
             },
@@ -2080,19 +2000,19 @@
         {
           "id": "calculateField",
           "options": {
-            "alias": "Coinc. Ch.3 / Coinc. Ch.1",
+            "alias": "C3/C1",
             "binary": {
               "left": {
                 "matcher": {
                   "id": "byName",
-                  "options": "value {bin=\"3\", name=\"irem_coin\"}"
+                  "options": "value {bin=\"3\", name=\"irem_d3\"}"
                 }
               },
               "operator": "/",
               "right": {
                 "matcher": {
                   "id": "byName",
-                  "options": "value {bin=\"1\", name=\"irem_coin\"}"
+                  "options": "value {bin=\"1\", name=\"irem_d3\"}"
                 }
               }
             },
@@ -2105,18 +2025,19 @@
         {
           "id": "calculateField",
           "options": {
-            "alias": "Coinc. Ch.4 / Coinc. Ch.1",
+            "alias": "C4/C1",
             "binary": {
               "left": {
                 "matcher": {
                   "id": "byName",
-                  "options": "value {bin=\"4\", name=\"irem_coin\"}"
+                  "options": "value {bin=\"4\", name=\"irem_d3\"}"
                 }
               },
+              "operator": "/",
               "right": {
                 "matcher": {
                   "id": "byName",
-                  "options": "value {bin=\"1\", name=\"irem_coin\"}"
+                  "options": "value {bin=\"1\", name=\"irem_d3\"}"
                 }
               }
             },
@@ -2266,21 +2187,15 @@
           },
           "groupBy": [
             {
-              "params": [
-                "$__interval"
-              ],
+              "params": ["$__interval"],
               "type": "time"
             },
             {
-              "params": [
-                "channel::tag"
-              ],
+              "params": ["channel::tag"],
               "type": "tag"
             },
             {
-              "params": [
-                "null"
-              ],
+              "params": ["null"],
               "type": "fill"
             }
           ],
@@ -2293,9 +2208,7 @@
           "select": [
             [
               {
-                "params": [
-                  "value"
-                ],
+                "params": ["value"],
                 "type": "field"
               },
               {
@@ -2319,7 +2232,7 @@
         {
           "id": "calculateField",
           "options": {
-            "alias": "D1 Ch.1 / D3 Ch.1",
+            "alias": "TC1/TC3",
             "binary": {
               "left": {
                 "matcher": {
@@ -2331,7 +2244,7 @@
               "right": {
                 "matcher": {
                   "id": "byName",
-                  "options": "value {bin=\"1\", name=\"irem_d3\"}"
+                  "options": "value {bin=\"1\", name=\"irem_coin\"}"
                 }
               }
             },
@@ -2345,7 +2258,7 @@
         {
           "id": "calculateField",
           "options": {
-            "alias": "D2 Ch.1 / D3 Ch.1",
+            "alias": "TC2/TC3",
             "binary": {
               "left": {
                 "matcher": {
@@ -2357,7 +2270,7 @@
               "right": {
                 "matcher": {
                   "id": "byName",
-                  "options": "value {bin=\"1\", name=\"irem_d3\"}"
+                  "options": "value {bin=\"1\", name=\"irem_coin\"}"
                 }
               }
             },
@@ -2507,21 +2420,15 @@
           },
           "groupBy": [
             {
-              "params": [
-                "$__interval"
-              ],
+              "params": ["$__interval"],
               "type": "time"
             },
             {
-              "params": [
-                "channel::tag"
-              ],
+              "params": ["channel::tag"],
               "type": "tag"
             },
             {
-              "params": [
-                "null"
-              ],
+              "params": ["null"],
               "type": "fill"
             }
           ],
@@ -2534,9 +2441,7 @@
           "select": [
             [
               {
-                "params": [
-                  "value"
-                ],
+                "params": ["value"],
                 "type": "field"
               },
               {
@@ -2560,19 +2465,19 @@
         {
           "id": "calculateField",
           "options": {
-            "alias": "Coinc. Ch.2 / Coinc. Ch.1",
+            "alias": "C2/C1",
             "binary": {
               "left": {
                 "matcher": {
                   "id": "byName",
-                  "options": "value {bin=\"2\", name=\"irem_coin\"}"
+                  "options": "value {bin=\"2\", name=\"irem_d3\"}"
                 }
               },
               "operator": "/",
               "right": {
                 "matcher": {
                   "id": "byName",
-                  "options": "value {bin=\"1\", name=\"irem_coin\"}"
+                  "options": "value {bin=\"1\", name=\"irem_d3\"}"
                 }
               }
             },
@@ -2586,19 +2491,19 @@
         {
           "id": "calculateField",
           "options": {
-            "alias": "Coinc. Ch.3 / Coinc. Ch.1",
+            "alias": "C3/C1",
             "binary": {
               "left": {
                 "matcher": {
                   "id": "byName",
-                  "options": "value {bin=\"3\", name=\"irem_coin\"}"
+                  "options": "value {bin=\"3\", name=\"irem_d3\"}"
                 }
               },
               "operator": "/",
               "right": {
                 "matcher": {
                   "id": "byName",
-                  "options": "value {bin=\"1\", name=\"irem_coin\"}"
+                  "options": "value {bin=\"1\", name=\"irem_d3\"}"
                 }
               }
             },
@@ -2611,18 +2516,19 @@
         {
           "id": "calculateField",
           "options": {
-            "alias": "Coinc. Ch.4 / Coinc. Ch.1",
+            "alias": "C4/C1",
             "binary": {
               "left": {
                 "matcher": {
                   "id": "byName",
-                  "options": "value {bin=\"4\", name=\"irem_coin\"}"
+                  "options": "value {bin=\"4\", name=\"irem_d3\"}"
                 }
               },
+              "operator": "/",
               "right": {
                 "matcher": {
                   "id": "byName",
-                  "options": "value {bin=\"1\", name=\"irem_coin\"}"
+                  "options": "value {bin=\"1\", name=\"irem_d3\"}"
                 }
               }
             },
@@ -2733,12 +2639,12 @@
     ]
   },
   "time": {
-    "from": "now-30d",
-    "to": "now"
+    "from": "2013-05-20T22:00:00.000Z",
+    "to": "2013-05-21T21:59:59.000Z"
   },
   "timepicker": {},
   "timezone": "browser",
   "title": "IREM - Raw Science",
-  "uid": "irem_raw_science_dashboard",
-  "version": 3
+  "uid": "23f0629f-dab7-4275-9cdd-86d686e0a6fb",
+  "version": 1
 }
