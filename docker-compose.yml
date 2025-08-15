@@ -19,6 +19,9 @@ volumes:
   prometheus_data:
     name: prometheus_data
     driver: local
+  elastic_data:
+    name: elastic_data
+    driver: local
 
 networks:
   app_network:
@@ -70,3 +73,18 @@ services:
     extends:
       file: ./docker-compose/docker-compose.influxdb.yml
       service: influxdb
+
+  elasticsearch:
+    extends:
+      file: ./docker-compose/docker-compose.elasticsearch.yml
+      service: elasticsearch
+  
+  logstash:
+    extends:
+      file: ./docker-compose/docker-compose.logstash.yml
+      service: logstash
+
+  kibana:
+    extends:
+      file: ./docker-compose/docker-compose.kibana.yml
+      service: kibana

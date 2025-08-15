@@ -1,0 +1,16 @@
+services:
+  logstash:
+    image: docker.elastic.co/logstash/logstash:8.17.1
+    container_name: logstash
+    volumes:
+      - ../logstash/:/logstash_dir
+    command: logstash -f /logstash_dir/pipeline/logstash.conf
+    depends_on:
+      - elasticsearch
+    ports:
+      - '5044:5044'
+    environment:
+      - LS_JAVA_OPTS=-Xmx256m -Xms256m
+    networks:
+      - app_network
+    restart: unless-stopped
