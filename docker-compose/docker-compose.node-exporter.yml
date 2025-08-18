@@ -18,3 +18,10 @@ services:
     volumes:
       - '/:/host:ro,rslave'
     restart: unless-stopped
+    logging:
+      driver: "gelf"
+      options:
+        gelf-address: "udp://localhost:5000"
+    depends_on:
+      logstash:
+        condition: service_healthy

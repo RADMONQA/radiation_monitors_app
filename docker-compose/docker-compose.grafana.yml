@@ -29,7 +29,9 @@ services:
       - "81:3000"
     restart: unless-stopped
     logging:
-      driver: "json-file"
+      driver: "gelf"
       options:
-        max-size: "10m"
-        max-file: "10"
+        gelf-address: "udp://localhost:5000"
+    depends_on:
+      logstash:
+        condition: service_healthy

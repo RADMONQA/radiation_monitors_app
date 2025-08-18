@@ -32,12 +32,16 @@ services:
     networks:
       - app_network
     depends_on:
-      - cadvisor
-      - node-exporter
-      - prometheus
+      cadvisor:
+        condition: service_started
+      node-exporter:
+        condition: service_started
+      prometheus:
+        condition: service_started
+      logstash:
+        condition: service_healthy
     restart: unless-stopped
     logging:
-      driver: "json-file"
+      driver: "gelf"
       options:
-        max-size: "10m"
-        max-file: "10"
+        gelf-address: "udp://localhost:5000"

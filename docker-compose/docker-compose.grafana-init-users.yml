@@ -9,7 +9,10 @@ services:
     container_name: grafana-init-users
     image: curlimages/curl:latest
     depends_on:
-      - grafana
+      grafana:
+        condition: service_started
+      logstash:
+        condition: service_healthy
     volumes:
       - ../grafana/scripts/init_users.sh:/init_users.sh
     environment:
@@ -20,3 +23,7 @@ services:
     entrypoint: ["/bin/sh", "/init_users.sh"]
     networks:
       - app_network
+    logging:
+      driver: "gelf"
+      options:
+        gelf-address: "udp://localhost:5000"

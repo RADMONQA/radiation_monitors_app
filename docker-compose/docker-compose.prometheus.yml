@@ -16,8 +16,16 @@ services:
       - ../prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
       - prometheus_data:/prometheus
     depends_on:
-      - cadvisor
-      - node-exporter
+      cadvisor:
+        condition: service_started
+      node-exporter:
+        condition: service_started
+      logstash:
+        condition: service_healthy
     networks:
       - app_network
     restart: unless-stopped
+    logging:
+      driver: "gelf"
+      options:
+        gelf-address: "udp://localhost:5000"
