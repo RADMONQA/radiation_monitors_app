@@ -17,7 +17,7 @@ load_dotenv("../.env")
 # In[ ]:
 
 
-DATA_CSV = Path("/radem_data/radem/csv/")
+DATA_CSV = Path("/app_data/radem/csv/")
 
 
 # # Level 2: Processing CSV

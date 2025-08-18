@@ -22,10 +22,10 @@ import time
 from dotenv import load_dotenv
 load_dotenv("../.env")
 
-os.makedirs("/radem_data/radem/line_protocol", exist_ok=True)
+os.makedirs("/app_data/radem/line_protocol", exist_ok=True)
 
-DATA_PREROCESSED_DIR = Path("/radem_data/radem/csv")
-DATA_LINE_PROTOCOL_DIR = Path("/radem_data/radem/line_protocol")
+DATA_PREROCESSED_DIR = Path("/app_data/radem/csv")
+DATA_LINE_PROTOCOL_DIR = Path("/app_data/radem/line_protocol")
 
 TOKEN = os.environ.get("INFLUXDB_TOKEN")
 URL = os.environ.get("INFLUXDB_URL")  # "http://localhost:8086"

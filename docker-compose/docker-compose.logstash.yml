@@ -1,0 +1,22 @@
+services:
+  logstash:
+    image: docker.elastic.co/logstash/logstash:8.17.1
+    container_name: logstash
+    volumes:
+      - ../logstash/:/logstash_dir
+    command: logstash -f /logstash_dir/pipeline/logstash.conf
+    depends_on:
+      - elasticsearch
+    ports:
+      - "5000:5000/udp"
+    environment:
+      - LS_JAVA_OPTS=-Xmx256m -Xms256m
+    networks:
+      - app_network
+    restart: unless-stopped
+    healthcheck:
+      test:
+        ["CMD-SHELL", "curl -f http://localhost:9600/_node/pipelines || exit 1"]
+      interval: 10s
+      timeout: 3s
+      retries: 5

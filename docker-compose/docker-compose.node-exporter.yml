@@ -11,10 +11,17 @@ services:
     command:
       - '--path.rootfs=/host'
     networks:
-      - radem_network
+      - app_network
     ports:
       - 9100:9100
     pid: host
     volumes:
       - '/:/host:ro,rslave'
     restart: unless-stopped
+    logging:
+      driver: "gelf"
+      options:
+        gelf-address: "udp://localhost:5000"
+    depends_on:
+      logstash:
+        condition: service_healthy

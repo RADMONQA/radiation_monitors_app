@@ -6,7 +6,7 @@
 apiVersion: 1
 
 providers:
-  - name: RademDashboardProvider # an unique provider name
+  - name: AppDashboardProvider # an unique provider name
     type: file
     disableDeletion: false
     updateIntervalSeconds: 10

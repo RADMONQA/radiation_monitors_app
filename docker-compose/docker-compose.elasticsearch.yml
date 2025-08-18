@@ -1,0 +1,15 @@
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.17.1
+    container_name: elasticsearch
+    volumes:
+      - elastic_data:/usr/share/elasticsearch/data/
+    environment:
+      - xpack.security.enabled=false # Disable security for local development
+      - ES_JAVA_OPTS=-Xmx1024m -Xms1024m
+      - discovery.type=single-node
+    ports:
+      - "9200:9200"
+    networks:
+      - app_network
+    restart: unless-stopped
