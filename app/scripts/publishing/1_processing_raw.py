@@ -26,9 +26,9 @@ if os.environ.get('CDF_LIB', '') == '':
 # In[ ]:
 
 
-DATA_RAW = Path("/radem_data/radem/raw/")
-DATA_EXTRACTED = Path("/radem_data/radem/extracted/")
-DATA_CSV = Path("/radem_data/radem/csv/")
+DATA_RAW = Path("/app_data/radem/raw/")
+DATA_EXTRACTED = Path("/app_data/radem/extracted/")
+DATA_CSV = Path("/app_data/radem/csv/")
 
 
 # ## Fetching data

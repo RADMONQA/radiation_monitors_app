@@ -13,7 +13,7 @@ services:
     environment:
       - IS_USING_IREM=1
       - IS_USING_RADEM=1
-      - DATA_DIR=/radem_data
+      - DATA_DIR=/app_data
       - FTP_USER=${FTP_USER}
       - FTP_PASSWORD=${FTP_PASSWORD}
       - FTP_URL=${FTP_URL}
@@ -22,15 +22,15 @@ services:
       - INFLUXDB_BUCKET=${DOCKER_INFLUXDB_INIT_BUCKET}
       - INFLUXDB_IREM_BUCKET=${DOCKER_INFLUXDB_INIT_IREM_BUCKET}
       - INFLUXDB_URL=http://influxdb:8086
-      - KERNELS_DIR=/radem_data/spice
+      - KERNELS_DIR=/app_data/spice
       - KERNELS_MK=5.1 150lb_23_1
       - KERNELS_VERSION=v451
     volumes:
-      - radem_data:/radem_data
+      - app_data:/app_data
       - ../app/scripts:/app/scripts
       - ../app/app_job:/etc/cron.d/app_job
     networks:
-      - radem_network
+      - app_network
     depends_on:
       - cadvisor
       - node-exporter

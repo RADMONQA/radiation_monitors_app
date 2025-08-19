@@ -11,7 +11,7 @@ services:
     command:
       - '--path.rootfs=/host'
     networks:
-      - radem_network
+      - app_network
     ports:
       - 9100:9100
     pid: host
