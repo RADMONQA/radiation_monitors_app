@@ -64,9 +64,9 @@ docker compose -f docker-compose.legacy.yml up -d
 
 | **Service**     | **Host's port** | **Description** |
 |-----------------|-----------------|-----------------|
-| App             | `81` for admin, `51820` for public | The main service that fetches the data from the external sources and stores it in the database. |   
+| App             | `80` for admin, `51820` for public | The main service that fetches the data from the external sources and stores it in the database. |   
 | InfluxDB        | `8186`            | The time series database that stores the data collected by the RADEM detector. |
-| Grafana         | `81`              | The visualization tool that allows users to visualize the data collected by the RADEM detector. |
+| Grafana         | `80`              | The visualization tool that allows users to visualize the data collected by the RADEM detector. |
 | Prometheus      | `9090`            | The monitoring system that collects metrics from the host machine and the services running on it. |
 | Node Exporter   | `9100`            | The service that collects metrics from the host machine. |
 | cAdvisor        | `8080`            | The service that collects metrics from the host machine and the services running on it. |
