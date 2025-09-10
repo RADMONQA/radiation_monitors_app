@@ -48,6 +48,7 @@ services:
       - "51820:3000"
     volumes:
       - ./grafana/grafana.default.ini:/etc/grafana/grafana.ini
+      - ./grafana/dashboards/specific/IREM:/etc/grafana/dashboards/specific
 
   grafana-init-users:
     extends:
@@ -78,7 +79,7 @@ services:
     extends:
       file: ./docker-compose/docker-compose.elasticsearch.yml
       service: elasticsearch
-  
+
   logstash:
     extends:
       file: ./docker-compose/docker-compose.logstash.yml
