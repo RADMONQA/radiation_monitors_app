@@ -15,21 +15,21 @@ RADMONQA App is a web application that allows users to visualize and analyze the
 
 1. Copy the `.env.template` file to `.env` and update the values as needed.
     ```bash
-    $ cp .env.template .env
+    cp .env.template .env
     ```
 
 1. Build the docker image
     ```bash
-    $ docker compose build
+    docker compose build
     ```
 2. Run the docker containers in the background
     ```bash
-    $ docker compose up -d
+    docker compose up -d
     ```
 3. Visit the application in your browser at `http://localhost:51820`
 4. Stop the docker containers
     ```bash 
-    $ docker compose down
+    docker compose down
     ```
 
 ## Target Environments
@@ -43,7 +43,7 @@ The default environment is configured for public access and includes only the IR
 
 To deploy the public environment, use the following command:
 ```bash
-$ docker compose -f docker-compose.yml up -d
+docker compose -f docker-compose.yml up -d
 ```
 
 ### Legacy Environment (previously called private)
@@ -56,7 +56,7 @@ The private environment used to include both IREM and RADEM data, the second of 
 
 To deploy the legacy environment, use the following command:
 ```bash
-$ docker compose -f docker-compose.legacy.yml up -d
+docker compose -f docker-compose.legacy.yml up -d
 ```
 
 
@@ -70,7 +70,13 @@ $ docker compose -f docker-compose.legacy.yml up -d
 | Prometheus      | `9090`            | The monitoring system that collects metrics from the host machine and the services running on it. |
 | Node Exporter   | `9100`            | The service that collects metrics from the host machine. |
 | cAdvisor        | `8080`            | The service that collects metrics from the host machine and the services running on it. |
+| Elasticsearch   | `9200`            | Search and analytics engine, stores data.        |
+| Logstash        | `5000/udp`        | Data processing pipeline, ingests logs via UDP on port 5000.                 |
+| Kibana          | `5601`            | Web UI for visualizing and exploring Elasticsearch data.                    |
 
-## App
+---
 
-The App is the main service that runs the periodic jobs that fetch the data from the external sources and store it in the database.
+**Tip for developers**: To access the virtual machine running this application in IREM mode (ltp-irem-01.psi.ch), use the following SSH command, replacing `<username>` with your actual PSI credentials:
+```bash
+ssh -J <username>@hopx.psi.ch -L 30080:ltp-irem-01.psi.ch:80 -L 5601:ltp-irem-01.psi.ch:5601 ext-gr
+```
