@@ -1,8 +1,8 @@
 # docker-compose.prometheus.yml
 #
 # This service is responsible for running the Prometheus monitoring system.
-# It collects metrics from the host machine and makes them available for monitoring and analysis. 
-# It is used to monitor the performance and health of the host machine and the services running on it.  
+# It collects metrics from the host machine and makes them available for monitoring and analysis.
+# It is used to monitor the performance and health of the host machine and the services running on it.
 
 services:
   prometheus:
@@ -12,11 +12,22 @@ services:
       - 9090:9090
     command:
       - --config.file=/etc/prometheus/prometheus.yml
+      - --storage.tsdb.retention.size=${RETENTION_SIZE} # maximum storage size, change as needed
+      - --storage.tsdb.wal-compression
     volumes:
       - ../prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus_data:/prometheus
     depends_on:
-      - cadvisor
-      - node-exporter
+      cadvisor:
+        condition: service_started
+      node-exporter:
+        condition: service_started
+      logstash:
+        condition: service_healthy
     networks:
       - app_network
     restart: unless-stopped
+    logging:
+      driver: "gelf"
+      options:
+        gelf-address: "udp://localhost:5000"

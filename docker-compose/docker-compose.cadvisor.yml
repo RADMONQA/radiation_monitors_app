@@ -18,3 +18,10 @@ services:
     restart: unless-stopped
     networks:
       - app_network # Network for inter-service communication
+    logging:
+      driver: "gelf"
+      options:
+        gelf-address: "udp://localhost:5000"
+    depends_on:
+      logstash:
+        condition: service_healthy

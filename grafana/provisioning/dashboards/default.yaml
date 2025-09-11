@@ -6,13 +6,26 @@
 apiVersion: 1
 
 providers:
-  - name: AppDashboardProvider # an unique provider name
+  - name: AppCommonDashboardProvider # an unique provider name
     type: file
+    folder: "Application Performance Metrics"
     disableDeletion: false
     updateIntervalSeconds: 10
     allowUiUpdates: true
     options:
       # path to dashboard files on disk. Required when using the 'file' type
-      path: /etc/grafana/dashboards
+      path: /etc/grafana/dashboards/common
       # use folder names from filesystem to create folders in Grafana
-      foldersFromFilesStructure: true
+      foldersFromFilesStructure: false
+
+  - name: AppSpecificDashboardProvider # an unique provider name
+    type: file
+    folder: "Mission Data"
+    disableDeletion: false
+    updateIntervalSeconds: 10
+    allowUiUpdates: true
+    options:
+      # path to dashboard files on disk. Required when using the 'file' type
+      path: /etc/grafana/dashboards/specific
+      # use folder names from filesystem to create folders in Grafana
+      foldersFromFilesStructure: false
