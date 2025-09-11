@@ -26,7 +26,7 @@ services:
     networks:
       - app_network
     ports:
-      - "81:3000"
+      - "80:3000"
     restart: unless-stopped
     logging:
       driver: "gelf"
