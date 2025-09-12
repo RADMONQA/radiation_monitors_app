@@ -56,8 +56,7 @@ def check_batch_dir(batch_dir: Path) -> bool:
 
     # eg for juicepsa-pds4-PI-01-juice_rad-20240417T191059
     #                                      ^-------^
-    #
-    return True
+    #                                      |       |
     ts0 = batch_dir.name[-15:-7]
     ts1 = batch_dir.name[-6:]
 
@@ -242,7 +241,7 @@ def fix_df_time(df: pd.DataFrame) -> pd.DataFrame:
     """
     Convert the time column to datetime and floor it to seconds, in place.
     """
-    df["time"] = pd.to_datetime(df['time']).dt.floor('s')
+    df["time"] = pd.to_datetime(df['time']).dt.floor('S')
 
     return df
 
@@ -308,7 +307,7 @@ def verify_df_sorted(df: pd.DataFrame) -> None:
 
 def verify_df_time_diffs(df: pd.DataFrame,
                          max_diff_tolerance: np.timedelta64 = np.timedelta64(
-                             90, 's'),
+                             90, 'S'),
                          min_diff_tolerance: np.timedelta64 = np.timedelta64(500, 'ms')) -> None:
     """
     Verify that the time differences between events are within tolerance.
@@ -418,7 +417,7 @@ for cdf in hk_cdfs:
     df = pd.DataFrame(
         np.vstack([
             cdf["TIME_UTC"][...],
-            *[convert_hk_temp(cdf["TEMPERATURES"][..., k]) for k in range(0,5)]]).T,
+            *[convert_hk_temp(cdf["TEMPERATURES"][..., k]) for k in range(len(temp_csv_keys) - 1)]]).T,
         columns=temp_csv_keys
     )
     hk_dfs.append(df)
