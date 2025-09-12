@@ -346,39 +346,39 @@ for particle in ["protons", "electrons", "dd", "heavy_ions"]:
     write_api.close()
 
 
-# ### Flux
+# # ### Flux - as of 12.09.2025 data is not available
 
-# In[ ]:
+# # In[ ]:
 
 
-for particle in ["protons_flux", "electrons_flux", "dd_flux"]:
-    print(f"Uploading {particle} data...", flush=True)
+# for particle in ["protons_flux", "electrons_flux", "dd_flux"]:
+#     print(f"Uploading {particle} data...", flush=True)
 
-    # 1. get the newest CSV filename
-    csv_filename = sorted(DATA_PREROCESSED_DIR.glob(f"{particle}_*.csv"))[-1]
+#     # 1. get the newest CSV filename
+#     csv_filename = sorted(DATA_PREROCESSED_DIR.glob(f"{particle}_*.csv"))[-1]
 
-    # 2. read the CSV file
-    df = read_flux(csv_filename)
-    print(f"Read {len(df)} records from {csv_filename}", flush=True)
+#     # 2. read the CSV file
+#     df = read_flux(csv_filename)
+#     print(f"Read {len(df)} records from {csv_filename}", flush=True)
 
-    # 3. convert the CSV file to line protocol
-    df_lines = convert_flux_to_line_protocol(df, particle)
+#     # 3. convert the CSV file to line protocol
+#     df_lines = convert_flux_to_line_protocol(df, particle)
 
-    # 4. (optional) save the line protocol to a file
-    line_protocol_filename = DATA_LINE_PROTOCOL_DIR / \
-        f"{csv_filename.stem}.line"
-    save_line_protocol(df_lines, line_protocol_filename)
+#     # 4. (optional) save the line protocol to a file
+#     line_protocol_filename = DATA_LINE_PROTOCOL_DIR / \
+#         f"{csv_filename.stem}.line"
+#     save_line_protocol(df_lines, line_protocol_filename)
 
-    # 5. upload the line protocol to InfluxDB
-    write_api = get_write_api(
-        url=URL,
-        token=TOKEN,
-        org=ORG)
+#     # 5. upload the line protocol to InfluxDB
+#     write_api = get_write_api(
+#         url=URL,
+#         token=TOKEN,
+#         org=ORG)
 
-    upload_line_protocol(
-        write_api=write_api,
-        df_lines=df_lines,
-        bucket=BUCKET,
-        org=ORG)
+#     upload_line_protocol(
+#         write_api=write_api,
+#         df_lines=df_lines,
+#         bucket=BUCKET,
+#         org=ORG)
 
-    write_api.close()
+#     write_api.close()
