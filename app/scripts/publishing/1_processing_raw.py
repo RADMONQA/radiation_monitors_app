@@ -16,8 +16,8 @@ import numpy as np
 import pandas as pd
 from typing import List, Tuple, Dict, Any
 
-from dotenv import load_dotenv
-load_dotenv("../.env")
+#from dotenv import load_dotenv
+#load_dotenv("../.env")
 
 if os.environ.get('CDF_LIB', '') == '':
     print('No CDF_LIB environment variable found for CDF file processing.')
@@ -25,11 +25,9 @@ if os.environ.get('CDF_LIB', '') == '':
 
 # In[ ]:
 
-
 DATA_RAW = Path("/app_data/radem/raw/")
 DATA_EXTRACTED = Path("/app_data/radem/extracted/")
 DATA_CSV = Path("/app_data/radem/csv/")
-
 
 # ## Fetching data
 
@@ -58,7 +56,7 @@ def check_batch_dir(batch_dir: Path) -> bool:
 
     # eg for juicepsa-pds4-PI-01-juice_rad-20240417T191059
     #                                      ^-------^
-    #                                               ^----^
+    #                                      |       |
     ts0 = batch_dir.name[-15:-7]
     ts1 = batch_dir.name[-6:]
 
@@ -93,8 +91,8 @@ def check_batch_dir(batch_dir: Path) -> bool:
 # In[ ]:
 
 
-# 2.
-extract_data(DATA_RAW, DATA_EXTRACTED)
+# 2. - data already extracted when downloading
+#extract_data(DATA_RAW, DATA_EXTRACTED)
 
 
 # In[ ]:
@@ -117,11 +115,11 @@ extract_data(DATA_RAW, DATA_EXTRACTED)
 
 
 def is_path_science_cdf(path: Path) -> bool:
-    return path.name.startswith("rad_raw_sc_") and path.name.endswith(".cdf")
+    return path.name.startswith("radem_raw_sc_") and path.name.endswith(".cdf")
 
 
 def is_path_housekeeping_cdf(path: Path) -> bool:
-    return path.name.startswith("rad_raw_hk_") and path.name.endswith(".cdf")
+    return path.name.startswith("radem_raw_hk_") and path.name.endswith(".cdf")
 
 
 # In[ ]:
@@ -141,23 +139,23 @@ def read_cdf(cdf_path: Path) -> pycdf.CDF:
 
 def read_science_cdfs(data_dir: Path) -> List[pycdf.CDF]:
     cdfs = []
+    cdf_dir = data_dir.joinpath("sc")
 
-    for batch_dir in sorted(data_dir.iterdir()):
-        cdf_dir = batch_dir.joinpath("juice_rad/data_raw")
-        for cdf_path in cdf_dir.glob("*.cdf"):
-            if is_path_science_cdf(cdf_path):
-                cdfs.append(read_cdf(cdf_path))
+    for cdf_path in sorted(cdf_dir.iterdir()):
+        if is_path_science_cdf(cdf_path):
+            cdfs.append(read_cdf(cdf_path))
+
     return cdfs
 
 
 def read_housekeeping_cdfs(data_dir: Path) -> List[pycdf.CDF]:
     cdfs = []
+    cdf_dir = data_dir.joinpath("hk")
 
-    for batch_dir in sorted(data_dir.iterdir()):
-        cdf_dir = batch_dir.joinpath("juice_rad/data_raw")
-        for cdf_path in cdf_dir.glob("*.cdf"):
-            if is_path_housekeeping_cdf(cdf_path):
-                cdfs.append(read_cdf(cdf_path))
+    for cdf_path in sorted(cdf_dir.iterdir()):
+        if is_path_housekeeping_cdf(cdf_path):
+            cdfs.append(read_cdf(cdf_path))
+            
     return cdfs
 
 
@@ -252,8 +250,8 @@ def fix_df_time_start(df: pd.DataFrame) -> pd.DataFrame:
     """
     Filter the dataframe to only include events after September 1, 2023, in place.
     """
-    df.query("time >= '2023-09-01'", inplace=True)
-
+    cutoff = pd.Timestamp("2023-09-01", tz="UTC")  # UTC-aware
+    df.query("time >= @cutoff", inplace=True)
     return df
 
 
@@ -309,7 +307,7 @@ def verify_df_sorted(df: pd.DataFrame) -> None:
 
 def verify_df_time_diffs(df: pd.DataFrame,
                          max_diff_tolerance: np.timedelta64 = np.timedelta64(
-                             90, 's'),
+                             90, 'S'),
                          min_diff_tolerance: np.timedelta64 = np.timedelta64(500, 'ms')) -> None:
     """
     Verify that the time differences between events are within tolerance.
@@ -404,21 +402,14 @@ print("Found hk CDFs:", len(hk_cdfs))
 print(f"Checking hk CDFs: {check_housekeeping_cdfs(hk_cdfs)}")
 
 # 2. Converting CDFs to DataFrames
-temp_cdf_keys = [
-    "HK_Temp1_CEU",
-    "HK_PandI_Stack_Temp2",
-    "HK_E_Stack_Temp3",
-    "HK_DD_Temp4",
-    "HK_Temp5_CPU",
-]
 
 temp_csv_keys = [
     "time",
+    "PCU Temperature (5)",
     "CEU Temperature (1)",
     "P&IDH Temperature (2)",
     "EDH Temperature (3)",
     "DDH Temperature (4)",
-    "PCU Temperature (5)",
 ]
 
 hk_dfs = []
@@ -426,7 +417,7 @@ for cdf in hk_cdfs:
     df = pd.DataFrame(
         np.vstack([
             cdf["TIME_UTC"][...],
-            *[convert_hk_temp(cdf[k][...]) for k in temp_cdf_keys]]).T,
+            *[convert_hk_temp(cdf["TEMPERATURES"][..., k]) for k in range(len(temp_csv_keys) - 1)]]).T,
         columns=temp_csv_keys
     )
     hk_dfs.append(df)
@@ -485,14 +476,14 @@ def process_particles(cdf: pycdf.CDF,
 
 
 def verify_df_time_p_counts(df: pd.DataFrame) -> None:
-    check = all(df["time"].value_counts() == 9)
+    check = all(df["time"].value_counts() == 8)
 
     if not check:
         raise ValueError("Incorrect number of proton events for some times")
 
 
 def verify_df_time_e_counts(df: pd.DataFrame) -> None:
-    check = all(df["time"].value_counts() == 9)
+    check = all(df["time"].value_counts() == 8)
 
     if not check:
         raise ValueError("Incorrect number of electron events for some times")
@@ -506,7 +497,7 @@ def verify_df_time_dd_counts(df: pd.DataFrame) -> None:
 
 
 def verify_df_time_hi_counts(df: pd.DataFrame) -> None:
-    check = all(df["time"].value_counts() == 8)
+    check = all(df["time"].value_counts() == 2)
 
     if not check:
         raise ValueError("Incorrect number of heavy ion events for some times")
@@ -540,7 +531,7 @@ df_d = pd.concat((
 ))
 
 df_h = pd.concat((
-    process_particles(cdf, "HI_IONS", "HI_ION_BINS")
+    process_particles(cdf, "HEAVY_IONS", "HEAVY_ION_BINS")
     for cdf in sc_cdfs
 ))
 
@@ -588,45 +579,45 @@ save_csv(df_d, "dd")
 save_csv(df_h, "heavy_ions")
 
 
-# ## Patricle Flux
+# ## Particle Flux - as of 12.09.2025 data is unavailable
 
 # In[ ]:
 
 
-# 1. Reading CDFs
-sc_cdfs = read_science_cdfs(DATA_EXTRACTED)
+# # 1. Reading CDFs
+# sc_cdfs = read_science_cdfs(DATA_EXTRACTED)
 
-print("Found sc CDFs:", len(sc_cdfs))
-print(f"Checking sc CDFs: {check_science_cdfs(sc_cdfs)}")
+# print("Found sc CDFs:", len(sc_cdfs))
+# print(f"Checking sc CDFs: {check_science_cdfs(sc_cdfs)}")
 
-# 2. Converting CDFs to DataFrames
-cdf = sc_cdfs[0]
-flux_labels = cdf["LABEL_FLUX"][...]
-print(flux_labels)
+# # 2. Converting CDFs to DataFrames
+# cdf = sc_cdfs[0]
+# flux_labels = cdf["LABEL_FLUX"][...]
+# print(flux_labels)
 
-dfs = {}
-for idx, flux_label in enumerate(flux_labels):
-    dfs[flux_label] = pd.concat((
-        pd.DataFrame({
-            "time": cdf["TIME_UTC"][...],
-            "value": cdf["FLUX"][...][:, idx]
-        })
-        for cdf in sc_cdfs
-    ))
+# dfs = {}
+# for idx, flux_label in enumerate(flux_labels):
+#     dfs[flux_label] = pd.concat((
+#         pd.DataFrame({
+#             "time": cdf["TIME_UTC"][...],
+#             "value": cdf["FLUX"][...][:, idx]
+#         })
+#         for cdf in sc_cdfs
+#     ))
 
-# close opened files
-del sc_cdfs
+# # close opened files
+# del sc_cdfs
 
-# 3. Fixing DataFrames
-for df in dfs.values():
-    fix_df(df)
+# # 3. Fixing DataFrames
+# for df in dfs.values():
+#     fix_df(df)
 
-# 4. Validating DataFrames (to be 100% sure)
-for df in dfs.values():
-    verify_df_sorted(df)
-    verify_df_time_diffs(df)
+# # 4. Validating DataFrames (to be 100% sure)
+# for df in dfs.values():
+#     verify_df_sorted(df)
+#     verify_df_time_diffs(df)
 
-# 5. Saving DataFrames to CSV
-save_csv(dfs["PIDH"], "protons_flux")
-save_csv(dfs["EDH "], "electrons_flux")  # NOTE: "EDH " is correct, not "EDH"
-save_csv(dfs["DDH "], "dd_flux")  # NOTE: "DDH " is correct, not "DDH"
+# # 5. Saving DataFrames to CSV
+# save_csv(dfs["PIDH"], "protons_flux")
+# save_csv(dfs["EDH "], "electrons_flux")  # NOTE: "EDH " is correct, not "EDH"
+# save_csv(dfs["DDH "], "dd_flux")  # NOTE: "DDH " is correct, not "DDH"

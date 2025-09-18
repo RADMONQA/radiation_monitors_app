@@ -1,38 +1,55 @@
-# docker-compose.legacy.yml (previously named private)
+# docker-compose.irem.yml
 #
-# This file is the Docker Compose configuration for private networks (those with access to RADEM data, which as of now (24.07.2025) is unavailable).
+# This file is the Docker Compose configuration that serves IREM data.
 # It defines the volumes and networks that are shared across all services.
 
 volumes:
   app_data:
+    name: app_data
     driver: local
   grafana_data:
+    name: grafana_data
     driver: local
   influxdb_data:
+    name: influxdb_data
     driver: local
   influxdb_config_data:
+    name: influxdb_config_data
+    driver: local
+  prometheus_data:
+    name: prometheus_data
+    driver: local
+  elastic_data:
+    name: elastic_data
     driver: local
 
 networks:
   app_network:
+    name: app_network
     driver: bridge
+    enable_ipv6: false
 
 services:
   app:
     extends:
       file: ./docker-compose/docker-compose.app.yml
       service: app
-    container_name: app-legacy
+    container_name: app-default
+    image: app-default:latest
+    environment:
+      - IS_USING_IREM=1
+      - IS_USING_RADEM=0
 
   grafana:
     extends:
       file: ./docker-compose/docker-compose.grafana.yml
       service: grafana
-    container_name: grafana-legacy
+    container_name: grafana-default
     ports:
-      - "81:3000"
+      - "80:3000"
     volumes:
-      - ./grafana/grafana.legacy.ini:/etc/grafana/grafana.ini
+      - ./grafana/grafana.default.ini:/etc/grafana/grafana.ini
+      - ./grafana/dashboards/specific/IREM:/etc/grafana/dashboards/specific
 
   grafana-init-users:
     extends:
@@ -58,3 +75,18 @@ services:
     extends:
       file: ./docker-compose/docker-compose.influxdb.yml
       service: influxdb
+
+  elasticsearch:
+    extends:
+      file: ./docker-compose/docker-compose.elasticsearch.yml
+      service: elasticsearch
+
+  logstash:
+    extends:
+      file: ./docker-compose/docker-compose.logstash.yml
+      service: logstash
+
+  kibana:
+    extends:
+      file: ./docker-compose/docker-compose.kibana.yml
+      service: kibana

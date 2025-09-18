@@ -1,54 +1,49 @@
-# docker-compose.yml
+# docker-compose.radem.yml
 #
-# This file is the Docker Compose configuration that used to be for only public networks - serves IREM data.
+# This file is the Docker Compose configuration for the RADEM environment.
 # It defines the volumes and networks that are shared across all services.
 
 volumes:
   app_data:
-    name: app_data
     driver: local
   grafana_data:
-    name: grafana_data
     driver: local
   influxdb_data:
-    name: influxdb_data
     driver: local
   influxdb_config_data:
-    name: influxdb_config_data
     driver: local
   prometheus_data:
-    name: prometheus_data
     driver: local
   elastic_data:
-    name: elastic_data
     driver: local
 
 networks:
   app_network:
     name: app_network
     driver: bridge
+    enable_ipv6: false
 
 services:
   app:
     extends:
       file: ./docker-compose/docker-compose.app.yml
       service: app
-    container_name: app-default
+    container_name: app-radem
     image: app-default:latest
     environment:
-      - IS_USING_IREM=1
-      - IS_USING_RADEM=0
+      - IS_USING_IREM=0
+      - IS_USING_RADEM=1
 
   grafana:
     extends:
       file: ./docker-compose/docker-compose.grafana.yml
       service: grafana
-    container_name: grafana-default
+    container_name: grafana-radem
     ports:
-      - "51820:3000"
+      - "80:3000"
     volumes:
-      - ./grafana/grafana.default.ini:/etc/grafana/grafana.ini
-      - ./grafana/dashboards/specific/IREM:/etc/grafana/dashboards/specific
+      - ./grafana/grafana.radem.ini:/etc/grafana/grafana.ini
+      - ./grafana/dashboards/specific/RADEM:/etc/grafana/dashboards/specific
 
   grafana-init-users:
     extends:

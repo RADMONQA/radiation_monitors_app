@@ -22,7 +22,7 @@ services:
       - grafana_data:/var/lib/grafana
       - ../grafana/provisioning:/etc/grafana/provisioning
       - ../grafana/dashboards/common:/etc/grafana/dashboards/common
-      - ../grafana/grafana.legacy.ini:/etc/grafana/grafana.ini
+      - ../grafana/grafana.radem.ini:/etc/grafana/grafana.ini
     networks:
       - app_network
     ports:
