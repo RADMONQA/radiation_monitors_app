@@ -1,6 +1,6 @@
-# docker-compose.legacy.yml (previously named private)
+# docker-compose.radem.yml
 #
-# This file is the Docker Compose configuration for private networks (those with access to RADEM data, which as of now (24.07.2025) is unavailable).
+# This file is the Docker Compose configuration for the RADEM environment.
 # It defines the volumes and networks that are shared across all services.
 
 volumes:
@@ -28,7 +28,7 @@ services:
     extends:
       file: ./docker-compose/docker-compose.app.yml
       service: app
-    container_name: app-legacy
+    container_name: app-radem
     image: app-default:latest
     environment:
       - IS_USING_IREM=0
@@ -38,11 +38,11 @@ services:
     extends:
       file: ./docker-compose/docker-compose.grafana.yml
       service: grafana
-    container_name: grafana-legacy
+    container_name: grafana-radem
     ports:
       - "80:3000"
     volumes:
-      - ./grafana/grafana.legacy.ini:/etc/grafana/grafana.ini
+      - ./grafana/grafana.radem.ini:/etc/grafana/grafana.ini
       - ./grafana/dashboards/specific/RADEM:/etc/grafana/dashboards/specific
 
   grafana-init-users:

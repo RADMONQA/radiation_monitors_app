@@ -64,7 +64,7 @@ This environment is made for deployment on the `http://ltp-radem-01.psi.ch/` vir
 - **Configuration File**: `docker-compose.radem.yml`
 - **Data**: RADEM science and housekeeping data
 
-To deploy the legacy environment, use the following command:
+To deploy the RADEM environment, use the following command:
 
 ```bash
 docker compose -f docker-compose.radem.yml up -d

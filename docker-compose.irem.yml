@@ -1,6 +1,6 @@
-# docker-compose.yml
+# docker-compose.irem.yml
 #
-# This file is the Docker Compose configuration that used to be for only public networks - serves IREM data.
+# This file is the Docker Compose configuration that serves IREM data.
 # It defines the volumes and networks that are shared across all services.
 
 volumes:
