@@ -21,6 +21,7 @@ networks:
   app_network:
     name: app_network
     driver: bridge
+    enable_ipv6: false
 
 services:
   app:
@@ -39,7 +40,7 @@ services:
       service: grafana
     container_name: grafana-legacy
     ports:
-      - "81:3000"
+      - "80:3000"
     volumes:
       - ./grafana/grafana.legacy.ini:/etc/grafana/grafana.ini
       - ./grafana/dashboards/specific/RADEM:/etc/grafana/dashboards/specific

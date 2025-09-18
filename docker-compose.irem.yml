@@ -27,6 +27,7 @@ networks:
   app_network:
     name: app_network
     driver: bridge
+    enable_ipv6: false
 
 services:
   app:
@@ -45,7 +46,7 @@ services:
       service: grafana
     container_name: grafana-default
     ports:
-      - "51820:3000"
+      - "80:3000"
     volumes:
       - ./grafana/grafana.default.ini:/etc/grafana/grafana.ini
       - ./grafana/dashboards/specific/IREM:/etc/grafana/dashboards/specific
