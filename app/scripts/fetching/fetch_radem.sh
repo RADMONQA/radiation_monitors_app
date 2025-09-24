@@ -46,11 +46,11 @@ echo "Copying files to processing directory"
 # Get all downloaded files and copy them to the processing directory
 
 # For HK files
-grep "radem_raw_hk" ${DATA_DIR}/radem/logs/wget_cleaned.log | xargs -I filepath \
+grep "radem_raw_hk" ${DATA_DIR}/radem/logs/wget_cleaned.log | xargs -I {} \
   cp {} ${DATA_DIR}/radem/extracted/hk/
 
 # For SC files
-grep "radem_raw_sc" ${DATA_DIR}/radem/logs/wget_cleaned.log | xargs -I filepath \
+grep "radem_raw_sc" ${DATA_DIR}/radem/logs/wget_cleaned.log | xargs -I {} \
   cp {} ${DATA_DIR}/radem/extracted/sc/
 
 echo "Files copied to processing directory"
