@@ -307,7 +307,7 @@ def verify_df_sorted(df: pd.DataFrame) -> None:
 
 def verify_df_time_diffs(df: pd.DataFrame,
                          max_diff_tolerance: np.timedelta64 = np.timedelta64(
-                             90, 'S'),
+                             90, 's'),
                          min_diff_tolerance: np.timedelta64 = np.timedelta64(500, 'ms')) -> None:
     """
     Verify that the time differences between events are within tolerance.
