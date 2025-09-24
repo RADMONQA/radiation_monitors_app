@@ -7,5 +7,6 @@ SCRIPTS_DIR="$(cd "$(dirname "$0")" && pwd)"
 python3 ${SCRIPTS_DIR}/1_processing_raw.py
 python3 ${SCRIPTS_DIR}/2_processing_csv.py
 python3 ${SCRIPTS_DIR}/3_processing_line_protocol.py
+sh ${SCRIPTS_DIR}/4_log_and_cleanup.sh
 
 echo ok
