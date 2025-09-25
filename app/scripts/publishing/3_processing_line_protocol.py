@@ -272,6 +272,9 @@ def upload_line_protocol(
 
 buckets_api = get_buckets_api()
 
+# Optionally delete existing bucket
+#delete_bucket(buckets_api, BUCKET)
+
 bucket = find_bucket_by_name(buckets_api, BUCKET)
 if not bucket:
     create_bucket(buckets_api, BUCKET, ORG)

@@ -6,12 +6,12 @@ echo "Starting the fetch and publish script"
 SCRIPTS_DIR="$(cd "$(dirname "$0")" && pwd)"
 
 # Fetching
-#${SCRIPTS_DIR}/fetching/fetch_all.sh
+${SCRIPTS_DIR}/fetching/fetch_all.sh
 
 # Processing
 if [ "$IS_USING_RADEM" -ne 0 ]; then
-    #${SCRIPTS_DIR}/processing/trajectory.py
-    #${SCRIPTS_DIR}/publishing/load_to_influxdb.sh
+    ${SCRIPTS_DIR}/processing/trajectory.py
+    ${SCRIPTS_DIR}/publishing/load_to_influxdb.sh
 fi
 
 if [ "$IS_USING_IREM" -ne 0 ]; then
