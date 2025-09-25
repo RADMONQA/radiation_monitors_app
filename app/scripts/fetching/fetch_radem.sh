@@ -47,11 +47,13 @@ echo "Copying files to processing directory"
 
 # For HK files
 grep "radem_raw_hk" "${DATA_DIR}/radem/logs/wget_cleaned.log" | \
-  xargs cp -t "${DATA_DIR}/radem/extracted/hk/"
+  awk '{print $NF}' | \
+  xargs -I {} cp {} "${DATA_DIR}/radem/extracted/hk/"
 
 # For SC files
 grep "radem_raw_sc" "${DATA_DIR}/radem/logs/wget_cleaned.log" | \
-  xargs cp -t "${DATA_DIR}/radem/extracted/sc/"
+  awk '{print $NF}' | \
+  xargs -I {} cp {} "${DATA_DIR}/radem/extracted/sc/"
 
 echo "Files copied to processing directory"
 
