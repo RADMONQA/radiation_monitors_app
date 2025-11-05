@@ -24,7 +24,7 @@ wget \
     --no-host-directories \
     --cut-dirs=5 \
     -A cdf \
-    https://archives.esac.esa.int/psa/repo/ftp-public/Juice/juice_radem/data_raw/ \
+    https://archives.esac.esa.int/psa/ftp/Juice/juice_radem/data_raw/ \
     -P ${DATA_DIR}/radem/archive \
     -o logfile \
     --output-file=wget.log \
