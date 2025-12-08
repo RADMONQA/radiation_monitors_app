@@ -63,6 +63,9 @@ class IremDataProcessor:
     @staticmethod
     def _extract_file(input_filename: Path, output_filename: Path) -> None:
         with open(input_filename, 'rb') as f_in:
+            # ensure the output directory exists
+            output_filename.parent.mkdir(parents=True, exist_ok=True)
+            # extract the gzip file
             with gzip.open(f_in) as f_decompressed, open(output_filename, 'wb') as f_out:
                 f_out.write(f_decompressed.read())
 
