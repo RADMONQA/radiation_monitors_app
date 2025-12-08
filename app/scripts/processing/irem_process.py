@@ -238,10 +238,11 @@ class IremDataProcessor:
         FILE_BATCH_SIZE = 500
         for i in range(0, len(filtered_filenames), FILE_BATCH_SIZE):
             batch_filenames = filtered_filenames[i:i+FILE_BATCH_SIZE]
-            print(f"Processing batch {i}...", flush=True)
+            print(f"Processing batch {i}... from {batch_filenames[0]} to {batch_filenames[-1]}", flush=True)
             processed = self.process_cdfs(batch_filenames)
 
             for df, measurement_name in zip(processed, ["irem_d1", "irem_d2", "irem_coin", "irem_d3"]):
+                print(f"Uploading {measurement_name} data...", flush=True)
                 preprocessed = influxdb_utils.preprocess_particles(df)
                 line_protocol = influxdb_utils.convert_particles_to_line_protocol(
                     preprocessed, measurement_name)
@@ -251,4 +252,4 @@ class IremDataProcessor:
 if __name__ == "__main__":
     processor = IremDataProcessor()
     processor.extract_data_raw()
-    processor.process_all_data(datetime(1900, 1, 1))
+    processor.process_all_data(after_datetime=datetime(1900, 1, 1))
