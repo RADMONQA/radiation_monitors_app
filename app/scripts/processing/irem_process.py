@@ -20,7 +20,6 @@ load_dotenv("../.env")
 # Data directories
 #
 # <---------------
-# Path("/home/szymon/repos/radem_ops/app/scripts/fetching")
 DATA_DIR = Path(os.getenv("DATA_DIR"))
 DATA_IREM_DIR = DATA_DIR / "irem"
 DATA_IREM_RAW_DIR = DATA_IREM_DIR / "raw"
