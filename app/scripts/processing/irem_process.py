@@ -226,8 +226,8 @@ class IremDataProcessor:
 
     def process_all_data(self, after_datetime: datetime) -> None:
         filenames = self.get_cdf_filenames()
-        filtered_filenames = self.filter_filenames_after_datetime(
-            filenames, after_datetime)
+        filtered_filenames = sorted(self.filter_filenames_after_datetime(
+            filenames, after_datetime))
 
         influxdb = influxdb_utils.InfluxDbUtils(
             token=TOKEN, org=ORG, bucket=BUCKET, url=URL,
