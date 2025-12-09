@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 """irem_process.py: Process IREM data from CDF files to CSV files."""
 
+from datetime import datetime, UTC
+import shutil
+from dateutil.relativedelta import relativedelta
 import os
 from pathlib import Path
 import gzip
@@ -53,12 +56,27 @@ class IremDataProcessor:
                      if filename.endswith(".cdf.gz")]
         return sorted(filenames)
 
+    def get_data_raw_filenames_unpacked(self) -> List[Path]:
+        filenames = [self.data_raw / dirname / filename
+                     for dirname in os.listdir(self.data_raw)
+                     for filename in os.listdir(self.data_raw / dirname)
+                     if filename.endswith(".cdf")]
+        return sorted(filenames)
+
     def extract_data_raw(self) -> None:
         for filename in self.get_data_raw_filenames():
             output_filename = self.data_extracted / filename.stem
             # older files will be overwritten
             print(f"Extracting {filename} to {output_filename}")
             self._extract_file(filename, output_filename)
+        for filename in self.get_data_raw_filenames_unpacked():
+            output_filename = self.data_extracted / filename.name
+            print(f"Copying {filename} to {output_filename}")
+            # ensure the output directory exists
+            output_filename.parent.mkdir(parents=True, exist_ok=True)
+            # copy the file, even if destination exists
+            shutil.copy2(filename, output_filename)
+        
 
     @staticmethod
     def _extract_file(input_filename: Path, output_filename: Path) -> None:
@@ -252,4 +270,7 @@ class IremDataProcessor:
 if __name__ == "__main__":
     processor = IremDataProcessor()
     processor.extract_data_raw()
-    processor.process_all_data(after_datetime=datetime(1900, 1, 1))
+    now_utc = datetime.now(UTC)
+    two_years_ago = now_utc - relativedelta(years=1)
+    processor.process_all_data(after_datetime=two_years_ago)    
+    # processor.process_all_data(after_datetime=datetime(1900, 1, 1))
