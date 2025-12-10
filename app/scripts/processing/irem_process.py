@@ -271,6 +271,6 @@ if __name__ == "__main__":
     processor = IremDataProcessor()
     processor.extract_data_raw()
     now_utc = datetime.now(UTC)
-    two_years_ago = now_utc - relativedelta(years=1)
-    processor.process_all_data(after_datetime=two_years_ago)    
+    two_years_ago = (now_utc - relativedelta(years=2)).replace(tzinfo=None)
+    processor.process_all_data(after_datetime=two_years_ago)
     # processor.process_all_data(after_datetime=datetime(1900, 1, 1))
