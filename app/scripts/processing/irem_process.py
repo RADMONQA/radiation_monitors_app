@@ -10,7 +10,6 @@ import gzip
 import numpy as np
 import pandas as pd
 from typing import List, Optional, Tuple
-from datetime import datetime
 from dotenv import load_dotenv
 from spacepy import pycdf
 
