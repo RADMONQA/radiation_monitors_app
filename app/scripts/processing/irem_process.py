@@ -76,8 +76,6 @@ class IremDataProcessor:
             output_filename.parent.mkdir(parents=True, exist_ok=True)
             # copy the file, even if destination exists
             shutil.copy2(filename, output_filename)
-        
-
     @staticmethod
     def _extract_file(input_filename: Path, output_filename: Path) -> None:
         with open(input_filename, 'rb') as f_in:
