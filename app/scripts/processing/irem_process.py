@@ -1,13 +1,15 @@
 #!/usr/bin/env python
 """irem_process.py: Process IREM data from CDF files to CSV files."""
 
+from datetime import datetime, UTC
+import shutil
+from dateutil.relativedelta import relativedelta
 import os
 from pathlib import Path
 import gzip
 import numpy as np
 import pandas as pd
 from typing import List, Optional, Tuple
-from datetime import datetime
 from dotenv import load_dotenv
 from spacepy import pycdf
 
@@ -20,7 +22,6 @@ load_dotenv("../.env")
 # Data directories
 #
 # <---------------
-# Path("/home/szymon/repos/radem_ops/app/scripts/fetching")
 DATA_DIR = Path(os.getenv("DATA_DIR"))
 DATA_IREM_DIR = DATA_DIR / "irem"
 DATA_IREM_RAW_DIR = DATA_IREM_DIR / "raw"
@@ -54,16 +55,32 @@ class IremDataProcessor:
                      if filename.endswith(".cdf.gz")]
         return sorted(filenames)
 
+    def get_data_raw_filenames_unpacked(self) -> List[Path]:
+        filenames = [self.data_raw / dirname / filename
+                     for dirname in os.listdir(self.data_raw)
+                     for filename in os.listdir(self.data_raw / dirname)
+                     if filename.endswith(".cdf")]
+        return sorted(filenames)
+
     def extract_data_raw(self) -> None:
         for filename in self.get_data_raw_filenames():
             output_filename = self.data_extracted / filename.stem
             # older files will be overwritten
             print(f"Extracting {filename} to {output_filename}")
             self._extract_file(filename, output_filename)
-
+        for filename in self.get_data_raw_filenames_unpacked():
+            output_filename = self.data_extracted / filename.name
+            print(f"Copying {filename} to {output_filename}")
+            # ensure the output directory exists
+            output_filename.parent.mkdir(parents=True, exist_ok=True)
+            # copy the file, even if destination exists
+            shutil.copy2(filename, output_filename)
     @staticmethod
     def _extract_file(input_filename: Path, output_filename: Path) -> None:
         with open(input_filename, 'rb') as f_in:
+            # ensure the output directory exists
+            output_filename.parent.mkdir(parents=True, exist_ok=True)
+            # extract the gzip file
             with gzip.open(f_in) as f_decompressed, open(output_filename, 'wb') as f_out:
                 f_out.write(f_decompressed.read())
 
@@ -224,8 +241,8 @@ class IremDataProcessor:
 
     def process_all_data(self, after_datetime: datetime) -> None:
         filenames = self.get_cdf_filenames()
-        filtered_filenames = self.filter_filenames_after_datetime(
-            filenames, after_datetime)
+        filtered_filenames = sorted(self.filter_filenames_after_datetime(
+            filenames, after_datetime))
 
         influxdb = influxdb_utils.InfluxDbUtils(
             token=TOKEN, org=ORG, bucket=BUCKET, url=URL,
@@ -236,10 +253,11 @@ class IremDataProcessor:
         FILE_BATCH_SIZE = 500
         for i in range(0, len(filtered_filenames), FILE_BATCH_SIZE):
             batch_filenames = filtered_filenames[i:i+FILE_BATCH_SIZE]
-            print(f"Processing batch {i}...", flush=True)
+            print(f"Processing batch {i}... from {batch_filenames[0]} to {batch_filenames[-1]}", flush=True)
             processed = self.process_cdfs(batch_filenames)
 
             for df, measurement_name in zip(processed, ["irem_d1", "irem_d2", "irem_coin", "irem_d3"]):
+                print(f"Uploading {measurement_name} data...", flush=True)
                 preprocessed = influxdb_utils.preprocess_particles(df)
                 line_protocol = influxdb_utils.convert_particles_to_line_protocol(
                     preprocessed, measurement_name)
@@ -249,4 +267,7 @@ class IremDataProcessor:
 if __name__ == "__main__":
     processor = IremDataProcessor()
     processor.extract_data_raw()
-    processor.process_all_data(datetime(1900, 1, 1))
+    now_utc = datetime.now(UTC)
+    two_years_ago = (now_utc - relativedelta(years=2)).replace(tzinfo=None)
+    processor.process_all_data(after_datetime=two_years_ago)
+    # processor.process_all_data(after_datetime=datetime(1900, 1, 1))

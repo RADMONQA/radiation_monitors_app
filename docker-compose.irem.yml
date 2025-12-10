@@ -39,7 +39,8 @@ services:
     environment:
       - IS_USING_IREM=1
       - IS_USING_RADEM=0
-
+    volumes:
+      - ${DATA_IREM_RAW_DIR}:/app_data/irem/raw:ro
   grafana:
     extends:
       file: ./docker-compose/docker-compose.grafana.yml
