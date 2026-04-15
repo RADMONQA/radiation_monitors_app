@@ -1,6 +1,6 @@
 services:
   logstash:
-    image: docker.elastic.co/logstash/logstash:8.17.1
+    image: docker.elastic.co/logstash/logstash:8.19.0
     container_name: logstash
     volumes:
       - ../logstash/:/logstash_dir
