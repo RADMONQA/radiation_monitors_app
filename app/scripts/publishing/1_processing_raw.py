@@ -241,7 +241,7 @@ def fix_df_time(df: pd.DataFrame) -> pd.DataFrame:
     """
     Convert the time column to datetime and floor it to seconds, in place.
     """
-    df["time"] = pd.to_datetime(df['time']).dt.floor('S')
+    df["time"] = pd.to_datetime(df['time']).dt.floor('s')
 
     return df
 
@@ -451,20 +451,57 @@ save_csv(df, "temperature")
 def process_particles(cdf: pycdf.CDF,
                       cdf_particle_key: str,
                       cdf_particle_bin: str) -> pd.DataFrame:
+
+    def _resolve_interval_seconds(cdf_obj: pycdf.CDF, expected_len: int) -> np.ndarray:
+        if "INTEGRATION_TIME" in cdf_obj:
+            raw = np.asarray(cdf_obj["INTEGRATION_TIME"][...], dtype="float64")
+            if raw.ndim == 0:
+                raw = np.full(expected_len, raw.item(), dtype="float64")
+
+            if len(raw) != expected_len:
+                raise ValueError(
+                    f"INTEGRATION_TIME length mismatch for {cdf_particle_key}: "
+                    f"{len(raw)} != {expected_len}"
+                )
+
+            unit = cdf_obj["INTEGRATION_TIME"].meta.get("UNITS", "seconds")
+            return raw #no multiplier, as it should be already in seconds according to the spec
+
+        # Fallback for unexpected products where TIME is missing.
+        # Infer cadence from TIME_UTC to keep processing robust.
+        inferred = pd.to_datetime(cdf_obj["TIME_UTC"][...])
+        diffs = pd.Series(inferred).diff().dt.total_seconds().to_numpy()
+        valid_diffs = diffs[np.isfinite(diffs) & (diffs > 0)]
+        cadence_seconds = int(np.median(valid_diffs)) if len(valid_diffs) else 60
+        print(
+            f"Warning: missing INTEGRATION_TIME field for {cdf_particle_key}; inferred cadence={cadence_seconds}s",
+            flush=True,
+        )
+        return np.full(expected_len, cadence_seconds, dtype="float64")
+
     times = cdf["TIME_UTC"][...]
     particles = cdf[cdf_particle_key][...]
     particle_bins = cdf[cdf_particle_bin][...]
+    interval_seconds = _resolve_interval_seconds(cdf, len(particles))
 
     time_col = np.repeat(times, len(particle_bins))
     # event_type_col = np.full(len(particles) * len(particle_bins), event_type, dtype="U1")
     bin_col = np.tile(particle_bins, len(particles))
     value_col = particles.flatten()
+    interval_seconds_col = np.repeat(interval_seconds, len(particle_bins))
+    counts_per_min_col = np.where(
+        interval_seconds_col > 0,
+        value_col * (60 / interval_seconds_col),
+        np.nan,
+    )
 
     df = pd.DataFrame({
         "time": time_col,
         # "event_type": event_type_col,
         "bin": bin_col,
-        "value": value_col
+        "value": value_col,
+        "COUNT": value_col,
+        "COUNTS_PER_MIN": counts_per_min_col,
     })
 
     return df
@@ -520,11 +557,14 @@ df_p = pd.concat((
     for cdf in sc_cdfs
 ))
 
+print(df_p.head(200))
+
 df_e = pd.concat((
     process_particles(cdf, "ELECTRONS", "ELECTRON_BINS")
     for cdf in sc_cdfs
 ))
 
+print(df_e.head(200))
 df_d = pd.concat((
     process_particles(cdf, "DD", "DD_BINS")
     for cdf in sc_cdfs
