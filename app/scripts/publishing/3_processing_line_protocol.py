@@ -13,6 +13,7 @@
 
 
 import pandas as pd
+import numpy as np
 import os
 import influxdb_client
 from influxdb_client.client.write_api import SYNCHRONOUS
@@ -134,11 +135,22 @@ def read_particles(filename: Path) -> pd.DataFrame:
     df['time'] = pd.to_datetime(df['time'])
 
     # Convert time to ns for InfluxDB
-    df['time_ns'] = pd.to_datetime(df['time']).astype('int64')
+    df['time_ns'] = pd.to_datetime(df['time']).astype('int64') * 1000
 
     # Converts
     df["bin"] = df["bin"].astype("int8")
-    df["value"] = df["value"].astype("int64")
+    df["value"] = pd.to_numeric(df["value"], errors="coerce").astype("float64")
+    df["COUNT"] = pd.to_numeric(df.get("COUNT", df["value"]), errors="coerce").astype("float64")
+    df["COUNTS_PER_MIN"] = pd.to_numeric(
+        df.get("COUNTS_PER_MIN", df["value"]), errors="coerce"
+    ).astype("float64")
+
+    #print head of df
+    print(df.head())
+
+    # Influx line protocol cannot contain NaN/Inf values.
+    finite_mask = np.isfinite(df["COUNT"]) & np.isfinite(df["COUNTS_PER_MIN"])
+    df = df[finite_mask].copy()
 
     return df
 
@@ -196,7 +208,8 @@ def convert_particles_to_line_protocol(df: pd.DataFrame, measurement_name: str) 
     df = pd.DataFrame(
         measurement_name +
         ",bin=" + df["bin"].astype(str) + " "
-        "value=" + df["value"].astype(str) + "i " +
+        "COUNT=" + df["COUNT"].astype(str) + ","
+        "COUNTS_PER_MIN=" + df["COUNTS_PER_MIN"].astype(str) + " " +
         df['time_ns'].astype(str),
         columns=["line"]
     )
@@ -286,30 +299,30 @@ if not bucket:
 # In[ ]:
 
 
-# 1. get the newest CSV filename
-csv_filename = sorted(DATA_PREROCESSED_DIR.glob("temperature_*.csv"))[-1]
+# # 1. get the newest CSV filename
+# csv_filename = sorted(DATA_PREROCESSED_DIR.glob("temperature_*.csv"))[-1]
 
-# 2. read the CSV file
-df = read_temperature(csv_filename)
+# # 2. read the CSV file
+# df = read_temperature(csv_filename)
 
-# 3. convert the CSV file to line protocol
-df_lines = convert_temp_to_line_protocol(df)
+# # 3. convert the CSV file to line protocol
+# df_lines = convert_temp_to_line_protocol(df)
 
-# 4. (optional) save the line protocol to a file
-line_protocol_filename = DATA_LINE_PROTOCOL_DIR / f"{csv_filename.stem}.line"
-save_line_protocol(df_lines, line_protocol_filename)
+# # 4. (optional) save the line protocol to a file
+# line_protocol_filename = DATA_LINE_PROTOCOL_DIR / f"{csv_filename.stem}.line"
+# save_line_protocol(df_lines, line_protocol_filename)
 
-# 5. upload the line protocol to InfluxDB
-write_api = get_write_api(
-    url=URL,
-    token=TOKEN,
-    org=ORG)
+# # 5. upload the line protocol to InfluxDB
+# write_api = get_write_api(
+#     url=URL,
+#     token=TOKEN,
+#     org=ORG)
 
-upload_line_protocol(
-    write_api=write_api,
-    df_lines=df_lines,
-    bucket=BUCKET,
-    org=ORG)
+# upload_line_protocol(
+#     write_api=write_api,
+#     df_lines=df_lines,
+#     bucket=BUCKET,
+#     org=ORG)
 
 
 # ### Particles

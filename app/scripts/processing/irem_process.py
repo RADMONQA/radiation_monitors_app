@@ -33,6 +33,7 @@ TOKEN = os.environ.get("INFLUXDB_TOKEN")
 URL = os.environ.get("INFLUXDB_URL")
 ORG = os.environ.get("INFLUXDB_ORG")
 BUCKET = os.environ.get("INFLUXDB_IREM_BUCKET")
+IREM_CADENCE_SECONDS = float(os.environ.get("IREM_CADENCE_SECONDS", "1.0"))
 
 
 if not os.environ.get('CDF_LIB'):
@@ -47,6 +48,7 @@ class IremDataProcessor:
         self.data_csv = DATA_IREM_CSV_DIR
 
         self.datetime_filter = datetime(1900, 9, 1)
+        self.cadence_seconds = IREM_CADENCE_SECONDS
 
     def get_data_raw_filenames(self) -> List[Path]:
         filenames = [self.data_raw / dirname / filename
@@ -140,12 +142,17 @@ class IremDataProcessor:
         time_col = np.repeat(times, len(d_scalers))
         scaler_col = np.tile(d_scalers, n)
         value_col = d.flatten()
+        # Keep raw values in COUNT (1/sec for IREM) and provide an explicit normalized metric
+        # in COUNTS_PER_MIN so cadence assumptions are visible and adjustable.
+        counts_per_min_col = value_col * (60.0 / self.cadence_seconds)
         bin_col = np.tile(np.arange(1, 1 + len(d_scalers)), n)
 
         df = pd.DataFrame({
             "time": time_col,
             "scaler": scaler_col,
             "value": value_col,
+            "COUNT": value_col,
+            "COUNTS_PER_MIN": counts_per_min_col,
             "bin": bin_col
         })
 

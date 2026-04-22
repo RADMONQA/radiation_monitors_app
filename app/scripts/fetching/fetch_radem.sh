@@ -11,6 +11,7 @@ mkdir -p ${DATA_DIR}/radem/archive
 mkdir -p ${DATA_DIR}/radem/extracted/hk
 mkdir -p ${DATA_DIR}/radem/extracted/sc
 mkdir -p ${DATA_DIR}/radem/csv
+mkdir -p ${DATA_DIR}/radem/logs
 
 # Download the raw data
 

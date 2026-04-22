@@ -3,6 +3,7 @@ import os
 import influxdb_client
 from influxdb_client.client.write_api import SYNCHRONOUS
 from pathlib import Path
+import numpy as np
 
 
 def preprocess_particles(df: pd.DataFrame) -> pd.DataFrame:
@@ -14,7 +15,20 @@ def preprocess_particles(df: pd.DataFrame) -> pd.DataFrame:
 
     # Converts
     df["bin"] = df["bin"].astype("int8")
-    df["value"] = df["value"].astype("float64")
+    df["value"] = pd.to_numeric(df["value"], errors="coerce").astype("float64")
+
+    # Keep explicit raw/normalized separation.
+    # - COUNT: raw counts from the source product.
+    # - COUNTS_PER_MIN: normalized counts/min, computed upstream when cadence is known.
+    # Backward-compat fallback keeps old datasets usable.
+    df["COUNT"] = pd.to_numeric(df.get("COUNT", df["value"]), errors="coerce").astype("float64")
+    df["COUNTS_PER_MIN"] = pd.to_numeric(
+        df.get("COUNTS_PER_MIN", df["value"]), errors="coerce"
+    ).astype("float64")
+
+    # Influx line protocol cannot represent NaN/Inf field values.
+    finite_mask = np.isfinite(df["COUNT"]) & np.isfinite(df["COUNTS_PER_MIN"])
+    df = df[finite_mask].copy()
 
     return df
 
@@ -52,7 +66,8 @@ def convert_particles_to_line_protocol(
     df = pd.DataFrame(
         measurement_name +
         ",bin=" + df["bin"].astype(str) + " "
-        "value=" + df["value"].astype(str) + " " +
+        "COUNT=" + df["COUNT"].astype(str) + ","
+        "COUNTS_PER_MIN=" + df["COUNTS_PER_MIN"].astype(str) + " " +
         df['time_ns'].astype(str),
         columns=["line"]
     )
