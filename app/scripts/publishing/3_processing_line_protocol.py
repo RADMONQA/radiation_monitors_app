@@ -33,6 +33,7 @@ URL = os.environ.get("INFLUXDB_URL")  # "http://localhost:8086"
 ORG = os.environ.get("INFLUXDB_ORG")
 
 BUCKET = os.environ.get("INFLUXDB_BUCKET")
+REPROCESS_ALL_DATA = os.environ.get("REPROCESS_ALL_DATA", "0") == "1"
 
 
 print(f"URL: {URL}", flush=True)
@@ -144,9 +145,6 @@ def read_particles(filename: Path) -> pd.DataFrame:
     df["COUNTS_PER_MIN"] = pd.to_numeric(
         df.get("COUNTS_PER_MIN", df["value"]), errors="coerce"
     ).astype("float64")
-
-    #print head of df
-    print(df.head())
 
     # Influx line protocol cannot contain NaN/Inf values.
     finite_mask = np.isfinite(df["COUNT"]) & np.isfinite(df["COUNTS_PER_MIN"])
@@ -294,7 +292,7 @@ if not bucket:
 
 
 
-# ### Temperature
+# ### Temperature - hk data currently broken for RADEM, because of not working trajectory.py
 
 # In[ ]:
 
@@ -334,33 +332,39 @@ for particle in ["protons", "electrons", "dd", "heavy_ions"]:
     print(f"Uploading {particle} data...", flush=True)
 
     # 1. get the newest CSV filename
-    csv_filename = sorted(DATA_PREROCESSED_DIR.glob(f"{particle}_2*.csv"))[-1]
+    csv_candidates = sorted(DATA_PREROCESSED_DIR.glob(f"{particle}_2*.csv"))
+    if not csv_candidates:
+        raise FileNotFoundError(
+            f"No CSVs found for {particle} in {DATA_PREROCESSED_DIR}")
 
-    # 2. read the CSV file
-    df = read_particles(csv_filename)
-    print(f"Read {len(df)} records from {csv_filename}", flush=True)
+    csv_to_upload = csv_candidates if REPROCESS_ALL_DATA else [csv_candidates[-1]]
 
-    # 3. convert the CSV file to line protocol
-    df_lines = convert_particles_to_line_protocol(df, particle)
+    for csv_filename in csv_to_upload:
+        # 2. read the CSV file
+        df = read_particles(csv_filename)
+        print(f"Read {len(df)} records from {csv_filename}", flush=True)
 
-    # 4. (optional) save the line protocol to a file
-    line_protocol_filename = DATA_LINE_PROTOCOL_DIR / \
-        f"{csv_filename.stem}.line"
-    save_line_protocol(df_lines, line_protocol_filename)
+        # 3. convert the CSV file to line protocol
+        df_lines = convert_particles_to_line_protocol(df, particle)
 
-    # 5. upload the line protocol to InfluxDB
-    write_api = get_write_api(
-        url=URL,
-        token=TOKEN,
-        org=ORG)
+        # 4. (optional) save the line protocol to a file
+        line_protocol_filename = DATA_LINE_PROTOCOL_DIR / \
+            f"{csv_filename.stem}.line"
+        save_line_protocol(df_lines, line_protocol_filename)
 
-    upload_line_protocol(
-        write_api=write_api,
-        df_lines=df_lines,
-        bucket=BUCKET,
-        org=ORG)
+        # 5. upload the line protocol to InfluxDB
+        write_api = get_write_api(
+            url=URL,
+            token=TOKEN,
+            org=ORG)
 
-    write_api.close()
+        upload_line_protocol(
+            write_api=write_api,
+            df_lines=df_lines,
+            bucket=BUCKET,
+            org=ORG)
+
+        write_api.close()
 
 
 # # ### Flux - as of 12.09.2025 data is not available

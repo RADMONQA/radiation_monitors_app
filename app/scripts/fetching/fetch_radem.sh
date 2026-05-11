@@ -45,16 +45,36 @@ echo "Number of files downloaded: $LINECOUNT"
 echo "Copying files to processing directory"
 
 # Get all downloaded files and copy them to the processing directory
+if [ "${REPROCESS_ALL_DATA}" = "1" ]; then
+    echo "REPROCESS_ALL_DATA=1 -> copying all archived CDFs to extracted folders"
 
-# For HK files
-grep "radem_raw_hk" "${DATA_DIR}/radem/logs/wget_cleaned.log" | \
-  awk '{print $NF}' | \
-  xargs -I {} cp {} "${DATA_DIR}/radem/extracted/hk/"
+    HK_ARCHIVE_COUNT=$(find "${DATA_DIR}/radem/archive" -type f -name "radem_raw_hk_*.cdf" | wc -l)
+    SC_ARCHIVE_COUNT=$(find "${DATA_DIR}/radem/archive" -type f -name "radem_raw_sc_*.cdf" | wc -l)
 
-# For SC files
-grep "radem_raw_sc" "${DATA_DIR}/radem/logs/wget_cleaned.log" | \
-  awk '{print $NF}' | \
-  xargs -I {} cp {} "${DATA_DIR}/radem/extracted/sc/"
+    echo "Archive HK files: ${HK_ARCHIVE_COUNT}"
+    echo "Archive SC files: ${SC_ARCHIVE_COUNT}"
+
+    if [ "${HK_ARCHIVE_COUNT}" -gt 0 ]; then
+        find "${DATA_DIR}/radem/archive" -type f -name "radem_raw_hk_*.cdf" -print0 | \
+          xargs -0 -I {} cp {} "${DATA_DIR}/radem/extracted/hk/"
+    fi
+
+    if [ "${SC_ARCHIVE_COUNT}" -gt 0 ]; then
+        find "${DATA_DIR}/radem/archive" -type f -name "radem_raw_sc_*.cdf" -print0 | \
+          xargs -0 -I {} cp {} "${DATA_DIR}/radem/extracted/sc/"
+    fi
+else
+    echo "Using latest downloaded files from wget log"
+    # For HK files
+    grep "radem_raw_hk" "${DATA_DIR}/radem/logs/wget_cleaned.log" | \
+      awk '{print $NF}' | \
+      xargs -I {} cp {} "${DATA_DIR}/radem/extracted/hk/"
+
+    # For SC files
+    grep "radem_raw_sc" "${DATA_DIR}/radem/logs/wget_cleaned.log" | \
+      awk '{print $NF}' | \
+      xargs -I {} cp {} "${DATA_DIR}/radem/extracted/sc/"
+fi
 
 echo "Files copied to processing directory"
 

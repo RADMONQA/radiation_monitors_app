@@ -1,3 +1,9 @@
+# NOTE - This script for RADEM trajectory fetching is currently broken
+# due to broken data sources. Leave it as comment for now, 
+# but it can be fixed in the future with alternative data sources.
+
+
+
 # #!/usr/bin/env python
 # from planetary_coverage import TourConfig
 # import pandas as pd

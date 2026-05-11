@@ -33,6 +33,7 @@ TOKEN = os.environ.get("INFLUXDB_TOKEN")
 URL = os.environ.get("INFLUXDB_URL")
 ORG = os.environ.get("INFLUXDB_ORG")
 BUCKET = os.environ.get("INFLUXDB_IREM_BUCKET")
+REPROCESS_ALL_DATA = os.environ.get("REPROCESS_ALL_DATA", "0") == "1"
 IREM_CADENCE_SECONDS = float(os.environ.get("IREM_CADENCE_SECONDS", "1.0"))
 
 
@@ -144,7 +145,12 @@ class IremDataProcessor:
         value_col = d.flatten()
         # Keep raw values in COUNT (1/sec for IREM) and provide an explicit normalized metric
         # in COUNTS_PER_MIN so cadence assumptions are visible and adjustable.
-        counts_per_min_col = value_col * (60.0 / self.cadence_seconds)
+        # Validate cadence to avoid division by zero / negative cadence producing inf/NaN.
+        if not isinstance(self.cadence_seconds, (int, float)) or self.cadence_seconds <= 0:
+            raise ValueError(
+            f"Invalid IREM_CADENCE_SECONDS={self.cadence_seconds!r}: must be a positive number of seconds."
+            )
+        counts_per_min_col = value_col * (60.0 / float(self.cadence_seconds))
         bin_col = np.tile(np.arange(1, 1 + len(d_scalers)), n)
 
         df = pd.DataFrame({
@@ -276,5 +282,7 @@ if __name__ == "__main__":
     processor.extract_data_raw()
     now_utc = datetime.now(UTC)
     two_years_ago = (now_utc - relativedelta(years=2)).replace(tzinfo=None)
-    processor.process_all_data(after_datetime=two_years_ago)
-    # processor.process_all_data(after_datetime=datetime(1900, 1, 1))
+    if REPROCESS_ALL_DATA:
+        processor.process_all_data(after_datetime=datetime(1900, 1, 1))
+    else:
+        processor.process_all_data(after_datetime=two_years_ago)

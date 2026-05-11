@@ -463,9 +463,14 @@ def process_particles(cdf: pycdf.CDF,
                     f"INTEGRATION_TIME length mismatch for {cdf_particle_key}: "
                     f"{len(raw)} != {expected_len}"
                 )
-
-            unit = cdf_obj["INTEGRATION_TIME"].meta.get("UNITS", "seconds")
-            return raw #no multiplier, as it should be already in seconds according to the spec
+            unit = str(cdf_obj["INTEGRATION_TIME"].meta.get("UNITS", "seconds")).strip().lower()
+            if unit in {"s", "sec", "second", "seconds"}:
+                return raw #assume already in seconds
+            if unit in {"ms", "msec", "millisecond", "milliseconds"}:
+                return raw / 1000.0
+            raise ValueError(
+                f"Unsupported INTEGRATION_TIME units for {cdf_particle_key}: {unit!r}"
+            )
 
         # Fallback for unexpected products where TIME is missing.
         # Infer cadence from TIME_UTC to keep processing robust.
@@ -557,14 +562,11 @@ df_p = pd.concat((
     for cdf in sc_cdfs
 ))
 
-print(df_p.head(200))
-
 df_e = pd.concat((
     process_particles(cdf, "ELECTRONS", "ELECTRON_BINS")
     for cdf in sc_cdfs
 ))
 
-print(df_e.head(200))
 df_d = pd.concat((
     process_particles(cdf, "DD", "DD_BINS")
     for cdf in sc_cdfs

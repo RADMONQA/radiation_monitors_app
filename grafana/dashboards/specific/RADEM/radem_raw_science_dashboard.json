@@ -102,7 +102,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 1"
+              "options": "COUNTS_PER_MIN 1"
             },
             "properties": [
               {
@@ -114,7 +114,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 2"
+              "options": "COUNTS_PER_MIN 2"
             },
             "properties": [
               {
@@ -126,7 +126,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 3"
+              "options": "COUNTS_PER_MIN 3"
             },
             "properties": [
               {
@@ -138,7 +138,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 4"
+              "options": "COUNTS_PER_MIN 4"
             },
             "properties": [
               {
@@ -150,7 +150,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 5"
+              "options": "COUNTS_PER_MIN 5"
             },
             "properties": [
               {
@@ -162,7 +162,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 6"
+              "options": "COUNTS_PER_MIN 6"
             },
             "properties": [
               {
@@ -174,7 +174,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 7"
+              "options": "COUNTS_PER_MIN 7"
             },
             "properties": [
               {
@@ -186,7 +186,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 8"
+              "options": "COUNTS_PER_MIN 8"
             },
             "properties": [
               {
@@ -198,7 +198,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 9"
+              "options": "COUNTS_PER_MIN 9"
             },
             "properties": [
               {
@@ -347,7 +347,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 1"
+              "options": "COUNTS_PER_MIN 1"
             },
             "properties": [
               {
@@ -359,7 +359,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 2"
+              "options": "COUNTS_PER_MIN 2"
             },
             "properties": [
               {
@@ -371,7 +371,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 3"
+              "options": "COUNTS_PER_MIN 3"
             },
             "properties": [
               {
@@ -383,7 +383,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 4"
+              "options": "COUNTS_PER_MIN 4"
             },
             "properties": [
               {
@@ -395,7 +395,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 5"
+              "options": "COUNTS_PER_MIN 5"
             },
             "properties": [
               {
@@ -407,7 +407,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 6"
+              "options": "COUNTS_PER_MIN 6"
             },
             "properties": [
               {
@@ -419,7 +419,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 7"
+              "options": "COUNTS_PER_MIN 7"
             },
             "properties": [
               {
@@ -431,7 +431,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 8"
+              "options": "COUNTS_PER_MIN 8"
             },
             "properties": [
               {
@@ -443,7 +443,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 9"
+              "options": "COUNTS_PER_MIN 9"
             },
             "properties": [
               {
@@ -607,7 +607,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 1"
+              "options": "COUNTS_PER_MIN 1"
             },
             "properties": [
               {
@@ -619,7 +619,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 2"
+              "options": "COUNTS_PER_MIN 2"
             },
             "properties": [
               {
@@ -631,7 +631,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 3"
+              "options": "COUNTS_PER_MIN 3"
             },
             "properties": [
               {
@@ -643,7 +643,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 4"
+              "options": "COUNTS_PER_MIN 4"
             },
             "properties": [
               {
@@ -655,7 +655,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 5"
+              "options": "COUNTS_PER_MIN 5"
             },
             "properties": [
               {
@@ -667,7 +667,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 6"
+              "options": "COUNTS_PER_MIN 6"
             },
             "properties": [
               {
@@ -679,7 +679,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 7"
+              "options": "COUNTS_PER_MIN 7"
             },
             "properties": [
               {
@@ -691,7 +691,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 8"
+              "options": "COUNTS_PER_MIN 8"
             },
             "properties": [
               {
@@ -703,7 +703,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 9"
+              "options": "COUNTS_PER_MIN 9"
             },
             "properties": [
               {
@@ -884,7 +884,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 1"
+              "options": "COUNTS_PER_MIN 1"
             },
             "properties": [
               {
@@ -896,7 +896,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 2"
+              "options": "COUNTS_PER_MIN 2"
             },
             "properties": [
               {
@@ -908,7 +908,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 3"
+              "options": "COUNTS_PER_MIN 3"
             },
             "properties": [
               {
@@ -920,7 +920,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 4"
+              "options": "COUNTS_PER_MIN 4"
             },
             "properties": [
               {
@@ -932,7 +932,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 5"
+              "options": "COUNTS_PER_MIN 5"
             },
             "properties": [
               {
@@ -944,7 +944,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 6"
+              "options": "COUNTS_PER_MIN 6"
             },
             "properties": [
               {
@@ -956,7 +956,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 7"
+              "options": "COUNTS_PER_MIN 7"
             },
             "properties": [
               {
@@ -968,7 +968,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 8"
+              "options": "COUNTS_PER_MIN 8"
             },
             "properties": [
               {
@@ -980,7 +980,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 9"
+              "options": "COUNTS_PER_MIN 9"
             },
             "properties": [
               {
@@ -1161,7 +1161,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 1"
+              "options": "COUNTS_PER_MIN 1"
             },
             "properties": [
               {
@@ -1173,7 +1173,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 2"
+              "options": "COUNTS_PER_MIN 2"
             },
             "properties": [
               {
@@ -1185,7 +1185,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 3"
+              "options": "COUNTS_PER_MIN 3"
             },
             "properties": [
               {
@@ -1197,7 +1197,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 4"
+              "options": "COUNTS_PER_MIN 4"
             },
             "properties": [
               {
@@ -1209,7 +1209,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 5"
+              "options": "COUNTS_PER_MIN 5"
             },
             "properties": [
               {
@@ -1221,7 +1221,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 6"
+              "options": "COUNTS_PER_MIN 6"
             },
             "properties": [
               {
@@ -1233,7 +1233,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 7"
+              "options": "COUNTS_PER_MIN 7"
             },
             "properties": [
               {
@@ -1245,7 +1245,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 8"
+              "options": "COUNTS_PER_MIN 8"
             },
             "properties": [
               {
@@ -1257,7 +1257,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 9"
+              "options": "COUNTS_PER_MIN 9"
             },
             "properties": [
               {
@@ -1443,7 +1443,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 1"
+              "options": "COUNTS_PER_MIN 1"
             },
             "properties": [
               {
@@ -1455,7 +1455,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 2"
+              "options": "COUNTS_PER_MIN 2"
             },
             "properties": [
               {
@@ -1467,7 +1467,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 3"
+              "options": "COUNTS_PER_MIN 3"
             },
             "properties": [
               {
@@ -1479,7 +1479,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 4"
+              "options": "COUNTS_PER_MIN 4"
             },
             "properties": [
               {
@@ -1491,7 +1491,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 5"
+              "options": "COUNTS_PER_MIN 5"
             },
             "properties": [
               {
@@ -1503,7 +1503,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 6"
+              "options": "COUNTS_PER_MIN 6"
             },
             "properties": [
               {
@@ -1515,7 +1515,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 7"
+              "options": "COUNTS_PER_MIN 7"
             },
             "properties": [
               {
@@ -1527,7 +1527,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 8"
+              "options": "COUNTS_PER_MIN 8"
             },
             "properties": [
               {
@@ -1539,7 +1539,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 9"
+              "options": "COUNTS_PER_MIN 9"
             },
             "properties": [
               {
@@ -2373,16 +2373,16 @@
           "options": {
             "alias": "Mean 0°",
             "binary": {
-              "left": "value {bin=\"1\", name=\"dd\"}",
-              "right": "value {bin=\"2\", name=\"dd\"}"
+              "left": "COUNTS_PER_MIN {bin=\"1\", name=\"dd\"}",
+              "right": "COUNTS_PER_MIN {bin=\"2\", name=\"dd\"}"
             },
             "cumulative": {
-              "field": "value {bin=\"1\", name=\"dd\"}",
+              "field": "COUNTS_PER_MIN {bin=\"1\", name=\"dd\"}",
               "reducer": "sum"
             },
             "mode": "reduceRow",
             "reduce": {
-              "include": ["value {bin=\"1\", name=\"dd\"}"],
+              "include": ["COUNTS_PER_MIN {bin=\"1\", name=\"dd\"}"],
               "reducer": "mean"
             },
             "replaceFields": false
@@ -2395,14 +2395,14 @@
             "mode": "reduceRow",
             "reduce": {
               "include": [
-                "value {bin=\"2\", name=\"dd\"}",
-                "value {bin=\"3\", name=\"dd\"}",
-                "value {bin=\"4\", name=\"dd\"}",
-                "value {bin=\"5\", name=\"dd\"}",
-                "value {bin=\"6\", name=\"dd\"}",
-                "value {bin=\"7\", name=\"dd\"}",
-                "value {bin=\"8\", name=\"dd\"}",
-                "value {bin=\"9\", name=\"dd\"}",
+                "COUNTS_PER_MIN {bin=\"2\", name=\"dd\"}",
+                "COUNTS_PER_MIN {bin=\"3\", name=\"dd\"}",
+                "COUNTS_PER_MIN {bin=\"4\", name=\"dd\"}",
+                "COUNTS_PER_MIN {bin=\"5\", name=\"dd\"}",
+                "COUNTS_PER_MIN {bin=\"6\", name=\"dd\"}",
+                "COUNTS_PER_MIN {bin=\"7\", name=\"dd\"}",
+                "COUNTS_PER_MIN {bin=\"8\", name=\"dd\"}",
+                "COUNTS_PER_MIN {bin=\"9\", name=\"dd\"}",
                 "Total 0°"
               ],
               "reducer": "mean"
@@ -2416,15 +2416,15 @@
             "mode": "reduceRow",
             "reduce": {
               "include": [
-                "value {bin=\"11\", name=\"dd\"}",
-                "value {bin=\"12\", name=\"dd\"}",
-                "value {bin=\"13\", name=\"dd\"}",
-                "value {bin=\"14\", name=\"dd\"}",
-                "value {bin=\"15\", name=\"dd\"}",
-                "value {bin=\"16\", name=\"dd\"}",
-                "value {bin=\"17\", name=\"dd\"}",
-                "value {bin=\"18\", name=\"dd\"}",
-                "value {bin=\"19\", name=\"dd\"}"
+                "COUNTS_PER_MIN {bin=\"11\", name=\"dd\"}",
+                "COUNTS_PER_MIN {bin=\"12\", name=\"dd\"}",
+                "COUNTS_PER_MIN {bin=\"13\", name=\"dd\"}",
+                "COUNTS_PER_MIN {bin=\"14\", name=\"dd\"}",
+                "COUNTS_PER_MIN {bin=\"15\", name=\"dd\"}",
+                "COUNTS_PER_MIN {bin=\"16\", name=\"dd\"}",
+                "COUNTS_PER_MIN {bin=\"17\", name=\"dd\"}",
+                "COUNTS_PER_MIN {bin=\"18\", name=\"dd\"}",
+                "COUNTS_PER_MIN {bin=\"19\", name=\"dd\"}"
               ],
               "reducer": "mean"
             },
@@ -2438,15 +2438,15 @@
             "mode": "reduceRow",
             "reduce": {
               "include": [
-                "value {bin=\"20\", name=\"dd\"}",
-                "value {bin=\"21\", name=\"dd\"}",
-                "value {bin=\"22\", name=\"dd\"}",
-                "value {bin=\"23\", name=\"dd\"}",
-                "value {bin=\"24\", name=\"dd\"}",
-                "value {bin=\"25\", name=\"dd\"}",
-                "value {bin=\"26\", name=\"dd\"}",
-                "value {bin=\"27\", name=\"dd\"}",
-                "value {bin=\"28\", name=\"dd\"}"
+                "COUNTS_PER_MIN {bin=\"20\", name=\"dd\"}",
+                "COUNTS_PER_MIN {bin=\"21\", name=\"dd\"}",
+                "COUNTS_PER_MIN {bin=\"22\", name=\"dd\"}",
+                "COUNTS_PER_MIN {bin=\"23\", name=\"dd\"}",
+                "COUNTS_PER_MIN {bin=\"24\", name=\"dd\"}",
+                "COUNTS_PER_MIN {bin=\"25\", name=\"dd\"}",
+                "COUNTS_PER_MIN {bin=\"26\", name=\"dd\"}",
+                "COUNTS_PER_MIN {bin=\"27\", name=\"dd\"}",
+                "COUNTS_PER_MIN {bin=\"28\", name=\"dd\"}"
               ],
               "reducer": "mean"
             },
@@ -2460,9 +2460,9 @@
             "mode": "reduceRow",
             "reduce": {
               "include": [
-                "value {bin=\"30\", name=\"dd\"}",
-                "value {bin=\"31\", name=\"dd\"}",
-                "value {bin=\"29\", name=\"dd\"}"
+                "COUNTS_PER_MIN {bin=\"30\", name=\"dd\"}",
+                "COUNTS_PER_MIN {bin=\"31\", name=\"dd\"}",
+                "COUNTS_PER_MIN {bin=\"29\", name=\"dd\"}"
               ],
               "reducer": "mean"
             }
@@ -2636,16 +2636,16 @@
           "options": {
             "alias": "Mean 0°",
             "binary": {
-              "left": "value {bin=\"1\", name=\"dd\"}",
-              "right": "value {bin=\"2\", name=\"dd\"}"
+              "left": "COUNTS_PER_MIN {bin=\"1\", name=\"dd\"}",
+              "right": "COUNTS_PER_MIN {bin=\"2\", name=\"dd\"}"
             },
             "cumulative": {
-              "field": "value {bin=\"1\", name=\"dd\"}",
+              "field": "COUNTS_PER_MIN {bin=\"1\", name=\"dd\"}",
               "reducer": "sum"
             },
             "mode": "reduceRow",
             "reduce": {
-              "include": ["value {bin=\"1\", name=\"dd\"}"],
+              "include": ["COUNTS_PER_MIN {bin=\"1\", name=\"dd\"}"],
               "reducer": "mean"
             },
             "replaceFields": false
@@ -2658,14 +2658,14 @@
             "mode": "reduceRow",
             "reduce": {
               "include": [
-                "value {bin=\"2\", name=\"dd\"}",
-                "value {bin=\"3\", name=\"dd\"}",
-                "value {bin=\"4\", name=\"dd\"}",
-                "value {bin=\"5\", name=\"dd\"}",
-                "value {bin=\"6\", name=\"dd\"}",
-                "value {bin=\"7\", name=\"dd\"}",
-                "value {bin=\"8\", name=\"dd\"}",
-                "value {bin=\"9\", name=\"dd\"}",
+                "COUNTS_PER_MIN {bin=\"2\", name=\"dd\"}",
+                "COUNTS_PER_MIN {bin=\"3\", name=\"dd\"}",
+                "COUNTS_PER_MIN {bin=\"4\", name=\"dd\"}",
+                "COUNTS_PER_MIN {bin=\"5\", name=\"dd\"}",
+                "COUNTS_PER_MIN {bin=\"6\", name=\"dd\"}",
+                "COUNTS_PER_MIN {bin=\"7\", name=\"dd\"}",
+                "COUNTS_PER_MIN {bin=\"8\", name=\"dd\"}",
+                "COUNTS_PER_MIN {bin=\"9\", name=\"dd\"}",
                 "Total 0°"
               ],
               "reducer": "mean"
@@ -2679,15 +2679,15 @@
             "mode": "reduceRow",
             "reduce": {
               "include": [
-                "value {bin=\"11\", name=\"dd\"}",
-                "value {bin=\"12\", name=\"dd\"}",
-                "value {bin=\"13\", name=\"dd\"}",
-                "value {bin=\"14\", name=\"dd\"}",
-                "value {bin=\"15\", name=\"dd\"}",
-                "value {bin=\"16\", name=\"dd\"}",
-                "value {bin=\"17\", name=\"dd\"}",
-                "value {bin=\"18\", name=\"dd\"}",
-                "value {bin=\"19\", name=\"dd\"}"
+                "COUNTS_PER_MIN {bin=\"11\", name=\"dd\"}",
+                "COUNTS_PER_MIN {bin=\"12\", name=\"dd\"}",
+                "COUNTS_PER_MIN {bin=\"13\", name=\"dd\"}",
+                "COUNTS_PER_MIN {bin=\"14\", name=\"dd\"}",
+                "COUNTS_PER_MIN {bin=\"15\", name=\"dd\"}",
+                "COUNTS_PER_MIN {bin=\"16\", name=\"dd\"}",
+                "COUNTS_PER_MIN {bin=\"17\", name=\"dd\"}",
+                "COUNTS_PER_MIN {bin=\"18\", name=\"dd\"}",
+                "COUNTS_PER_MIN {bin=\"19\", name=\"dd\"}"
               ],
               "reducer": "mean"
             },
@@ -2701,15 +2701,15 @@
             "mode": "reduceRow",
             "reduce": {
               "include": [
-                "value {bin=\"20\", name=\"dd\"}",
-                "value {bin=\"21\", name=\"dd\"}",
-                "value {bin=\"22\", name=\"dd\"}",
-                "value {bin=\"23\", name=\"dd\"}",
-                "value {bin=\"24\", name=\"dd\"}",
-                "value {bin=\"25\", name=\"dd\"}",
-                "value {bin=\"26\", name=\"dd\"}",
-                "value {bin=\"27\", name=\"dd\"}",
-                "value {bin=\"28\", name=\"dd\"}"
+                "COUNTS_PER_MIN {bin=\"20\", name=\"dd\"}",
+                "COUNTS_PER_MIN {bin=\"21\", name=\"dd\"}",
+                "COUNTS_PER_MIN {bin=\"22\", name=\"dd\"}",
+                "COUNTS_PER_MIN {bin=\"23\", name=\"dd\"}",
+                "COUNTS_PER_MIN {bin=\"24\", name=\"dd\"}",
+                "COUNTS_PER_MIN {bin=\"25\", name=\"dd\"}",
+                "COUNTS_PER_MIN {bin=\"26\", name=\"dd\"}",
+                "COUNTS_PER_MIN {bin=\"27\", name=\"dd\"}",
+                "COUNTS_PER_MIN {bin=\"28\", name=\"dd\"}"
               ],
               "reducer": "mean"
             },
@@ -2723,9 +2723,9 @@
             "mode": "reduceRow",
             "reduce": {
               "include": [
-                "value {bin=\"30\", name=\"dd\"}",
-                "value {bin=\"31\", name=\"dd\"}",
-                "value {bin=\"29\", name=\"dd\"}"
+                "COUNTS_PER_MIN {bin=\"30\", name=\"dd\"}",
+                "COUNTS_PER_MIN {bin=\"31\", name=\"dd\"}",
+                "COUNTS_PER_MIN {bin=\"29\", name=\"dd\"}"
               ],
               "reducer": "mean"
             }
@@ -3032,16 +3032,16 @@
           "options": {
             "alias": "Mean 0°",
             "binary": {
-              "left": "value {bin=\"1\", name=\"dd\"}",
-              "right": "value {bin=\"2\", name=\"dd\"}"
+              "left": "COUNTS_PER_MIN {bin=\"1\", name=\"dd\"}",
+              "right": "COUNTS_PER_MIN {bin=\"2\", name=\"dd\"}"
             },
             "cumulative": {
-              "field": "value {bin=\"1\", name=\"dd\"}",
+              "field": "COUNTS_PER_MIN {bin=\"1\", name=\"dd\"}",
               "reducer": "sum"
             },
             "mode": "reduceRow",
             "reduce": {
-              "include": ["value {bin=\"1\", name=\"dd\"}"],
+              "include": ["COUNTS_PER_MIN {bin=\"1\", name=\"dd\"}"],
               "reducer": "mean"
             },
             "replaceFields": false
@@ -3054,14 +3054,14 @@
             "mode": "reduceRow",
             "reduce": {
               "include": [
-                "value {bin=\"2\", name=\"dd\"}",
-                "value {bin=\"3\", name=\"dd\"}",
-                "value {bin=\"4\", name=\"dd\"}",
-                "value {bin=\"5\", name=\"dd\"}",
-                "value {bin=\"6\", name=\"dd\"}",
-                "value {bin=\"7\", name=\"dd\"}",
-                "value {bin=\"8\", name=\"dd\"}",
-                "value {bin=\"9\", name=\"dd\"}",
+                "COUNTS_PER_MIN {bin=\"2\", name=\"dd\"}",
+                "COUNTS_PER_MIN {bin=\"3\", name=\"dd\"}",
+                "COUNTS_PER_MIN {bin=\"4\", name=\"dd\"}",
+                "COUNTS_PER_MIN {bin=\"5\", name=\"dd\"}",
+                "COUNTS_PER_MIN {bin=\"6\", name=\"dd\"}",
+                "COUNTS_PER_MIN {bin=\"7\", name=\"dd\"}",
+                "COUNTS_PER_MIN {bin=\"8\", name=\"dd\"}",
+                "COUNTS_PER_MIN {bin=\"9\", name=\"dd\"}",
                 "Total 0°"
               ],
               "reducer": "mean"
@@ -3075,15 +3075,15 @@
             "mode": "reduceRow",
             "reduce": {
               "include": [
-                "value {bin=\"11\", name=\"dd\"}",
-                "value {bin=\"12\", name=\"dd\"}",
-                "value {bin=\"13\", name=\"dd\"}",
-                "value {bin=\"14\", name=\"dd\"}",
-                "value {bin=\"15\", name=\"dd\"}",
-                "value {bin=\"16\", name=\"dd\"}",
-                "value {bin=\"17\", name=\"dd\"}",
-                "value {bin=\"18\", name=\"dd\"}",
-                "value {bin=\"19\", name=\"dd\"}"
+                "COUNTS_PER_MIN {bin=\"11\", name=\"dd\"}",
+                "COUNTS_PER_MIN {bin=\"12\", name=\"dd\"}",
+                "COUNTS_PER_MIN {bin=\"13\", name=\"dd\"}",
+                "COUNTS_PER_MIN {bin=\"14\", name=\"dd\"}",
+                "COUNTS_PER_MIN {bin=\"15\", name=\"dd\"}",
+                "COUNTS_PER_MIN {bin=\"16\", name=\"dd\"}",
+                "COUNTS_PER_MIN {bin=\"17\", name=\"dd\"}",
+                "COUNTS_PER_MIN {bin=\"18\", name=\"dd\"}",
+                "COUNTS_PER_MIN {bin=\"19\", name=\"dd\"}"
               ],
               "reducer": "mean"
             },
@@ -3097,15 +3097,15 @@
             "mode": "reduceRow",
             "reduce": {
               "include": [
-                "value {bin=\"20\", name=\"dd\"}",
-                "value {bin=\"21\", name=\"dd\"}",
-                "value {bin=\"22\", name=\"dd\"}",
-                "value {bin=\"23\", name=\"dd\"}",
-                "value {bin=\"24\", name=\"dd\"}",
-                "value {bin=\"25\", name=\"dd\"}",
-                "value {bin=\"26\", name=\"dd\"}",
-                "value {bin=\"27\", name=\"dd\"}",
-                "value {bin=\"28\", name=\"dd\"}"
+                "COUNTS_PER_MIN {bin=\"20\", name=\"dd\"}",
+                "COUNTS_PER_MIN {bin=\"21\", name=\"dd\"}",
+                "COUNTS_PER_MIN {bin=\"22\", name=\"dd\"}",
+                "COUNTS_PER_MIN {bin=\"23\", name=\"dd\"}",
+                "COUNTS_PER_MIN {bin=\"24\", name=\"dd\"}",
+                "COUNTS_PER_MIN {bin=\"25\", name=\"dd\"}",
+                "COUNTS_PER_MIN {bin=\"26\", name=\"dd\"}",
+                "COUNTS_PER_MIN {bin=\"27\", name=\"dd\"}",
+                "COUNTS_PER_MIN {bin=\"28\", name=\"dd\"}"
               ],
               "reducer": "mean"
             },
@@ -3119,9 +3119,9 @@
             "mode": "reduceRow",
             "reduce": {
               "include": [
-                "value {bin=\"30\", name=\"dd\"}",
-                "value {bin=\"31\", name=\"dd\"}",
-                "value {bin=\"29\", name=\"dd\"}"
+                "COUNTS_PER_MIN {bin=\"30\", name=\"dd\"}",
+                "COUNTS_PER_MIN {bin=\"31\", name=\"dd\"}",
+                "COUNTS_PER_MIN {bin=\"29\", name=\"dd\"}"
               ],
               "reducer": "mean"
             }
@@ -3237,7 +3237,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 1"
+              "options": "COUNTS_PER_MIN 1"
             },
             "properties": [
               {
@@ -3249,7 +3249,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 2"
+              "options": "COUNTS_PER_MIN 2"
             },
             "properties": [
               {
@@ -3261,7 +3261,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 3"
+              "options": "COUNTS_PER_MIN 3"
             },
             "properties": [
               {
@@ -3273,7 +3273,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 4"
+              "options": "COUNTS_PER_MIN 4"
             },
             "properties": [
               {
@@ -3285,7 +3285,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 5"
+              "options": "COUNTS_PER_MIN 5"
             },
             "properties": [
               {
@@ -3297,7 +3297,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 6"
+              "options": "COUNTS_PER_MIN 6"
             },
             "properties": [
               {
@@ -3309,7 +3309,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 7"
+              "options": "COUNTS_PER_MIN 7"
             },
             "properties": [
               {
@@ -3321,7 +3321,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 8"
+              "options": "COUNTS_PER_MIN 8"
             },
             "properties": [
               {
@@ -3486,7 +3486,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 1"
+              "options": "COUNTS_PER_MIN 1"
             },
             "properties": [
               {
@@ -3498,7 +3498,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 2"
+              "options": "COUNTS_PER_MIN 2"
             },
             "properties": [
               {
@@ -3510,7 +3510,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 3"
+              "options": "COUNTS_PER_MIN 3"
             },
             "properties": [
               {
@@ -3522,7 +3522,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 4"
+              "options": "COUNTS_PER_MIN 4"
             },
             "properties": [
               {
@@ -3534,7 +3534,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 5"
+              "options": "COUNTS_PER_MIN 5"
             },
             "properties": [
               {
@@ -3546,7 +3546,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 6"
+              "options": "COUNTS_PER_MIN 6"
             },
             "properties": [
               {
@@ -3558,7 +3558,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 7"
+              "options": "COUNTS_PER_MIN 7"
             },
             "properties": [
               {
@@ -3570,7 +3570,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 8"
+              "options": "COUNTS_PER_MIN 8"
             },
             "properties": [
               {
@@ -3736,7 +3736,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 1"
+              "options": "COUNTS_PER_MIN 1"
             },
             "properties": [
               {
@@ -3748,7 +3748,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 2"
+              "options": "COUNTS_PER_MIN 2"
             },
             "properties": [
               {
@@ -3760,7 +3760,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 3"
+              "options": "COUNTS_PER_MIN 3"
             },
             "properties": [
               {
@@ -3772,7 +3772,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 4"
+              "options": "COUNTS_PER_MIN 4"
             },
             "properties": [
               {
@@ -3784,7 +3784,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 5"
+              "options": "COUNTS_PER_MIN 5"
             },
             "properties": [
               {
@@ -3796,7 +3796,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 6"
+              "options": "COUNTS_PER_MIN 6"
             },
             "properties": [
               {
@@ -3808,7 +3808,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 7"
+              "options": "COUNTS_PER_MIN 7"
             },
             "properties": [
               {
@@ -3820,7 +3820,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 8"
+              "options": "COUNTS_PER_MIN 8"
             },
             "properties": [
               {
