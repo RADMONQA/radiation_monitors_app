@@ -34,6 +34,7 @@ URL = os.environ.get("INFLUXDB_URL")
 ORG = os.environ.get("INFLUXDB_ORG")
 BUCKET = os.environ.get("INFLUXDB_IREM_BUCKET")
 REPROCESS_ALL_DATA = os.environ.get("REPROCESS_ALL_DATA", "0") == "1"
+IREM_CHUNK_ROWS = int(os.environ.get("IREM_CHUNK_ROWS", "500000"))
 IREM_CADENCE_SECONDS = float(os.environ.get("IREM_CADENCE_SECONDS", "1.0"))
 
 
@@ -272,9 +273,12 @@ class IremDataProcessor:
             for df, measurement_name in zip(processed, ["irem_d1", "irem_d2", "irem_coin", "irem_d3"]):
                 print(f"Uploading {measurement_name} data...", flush=True)
                 preprocessed = influxdb_utils.preprocess_particles(df)
-                line_protocol = influxdb_utils.convert_particles_to_line_protocol(
-                    preprocessed, measurement_name)
-                influxdb.upload_line_protocol(line_protocol)
+
+                for start in range(0, len(preprocessed), IREM_CHUNK_ROWS):
+                    chunk = preprocessed.iloc[start:start + IREM_CHUNK_ROWS]
+                    line_protocol = influxdb_utils.convert_particles_to_line_protocol(
+                        chunk, measurement_name)
+                    influxdb.upload_line_protocol(line_protocol)
 
 
 if __name__ == "__main__":

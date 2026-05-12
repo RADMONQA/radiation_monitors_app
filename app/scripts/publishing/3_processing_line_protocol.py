@@ -34,6 +34,7 @@ ORG = os.environ.get("INFLUXDB_ORG")
 
 BUCKET = os.environ.get("INFLUXDB_BUCKET")
 REPROCESS_ALL_DATA = os.environ.get("REPROCESS_ALL_DATA", "0") == "1"
+PARTICLE_CHUNK_ROWS = int(os.environ.get("RADEM_CHUNK_ROWS", "250000"))
 
 
 print(f"URL: {URL}", flush=True)
@@ -129,9 +130,7 @@ def read_temperature(filename: Path) -> pd.DataFrame:
     return df
 
 
-def read_particles(filename: Path) -> pd.DataFrame:
-    df = pd.read_csv(str(filename))
-
+def preprocess_particles_df(df: pd.DataFrame) -> pd.DataFrame:
     # Convert time
     df['time'] = pd.to_datetime(df['time'])
 
@@ -151,6 +150,11 @@ def read_particles(filename: Path) -> pd.DataFrame:
     df = df[finite_mask].copy()
 
     return df
+
+
+def read_particles(filename: Path) -> pd.DataFrame:
+    df = pd.read_csv(str(filename))
+    return preprocess_particles_df(df)
 
 
 def read_flux(filename: Path) -> pd.DataFrame:
@@ -206,6 +210,7 @@ def convert_particles_to_line_protocol(df: pd.DataFrame, measurement_name: str) 
     df = pd.DataFrame(
         measurement_name +
         ",bin=" + df["bin"].astype(str) + " "
+        "value=" + df["value"].astype(str) + " " +
         "COUNT=" + df["COUNT"].astype(str) + ","
         "COUNTS_PER_MIN=" + df["COUNTS_PER_MIN"].astype(str) + " " +
         df['time_ns'].astype(str),
@@ -233,8 +238,8 @@ def convert_flux_to_line_protocol(df: pd.DataFrame, measurement_name: str) -> pd
 # In[ ]:
 
 
-def save_line_protocol(df: pd.DataFrame, filename: Path):
-    df.to_csv(filename, index=False, header=False)
+def save_line_protocol(df: pd.DataFrame, filename: Path, mode: str = "w"):
+    df.to_csv(filename, index=False, header=False, mode=mode)
 
 
 # ### Reading Line Protocol file
@@ -272,6 +277,43 @@ def upload_line_protocol(
         write_api.write(bucket, org, df_lines.loc[batch_indices, 'line'])
 
     write_api.flush()
+
+
+def upload_particles_csv(
+        csv_filename: Path,
+        particle: str,
+        chunk_rows: int = PARTICLE_CHUNK_ROWS) -> None:
+    print(
+        f"Streaming {particle} data from {csv_filename} in chunks of {chunk_rows}",
+        flush=True,
+    )
+    write_api = get_write_api(
+        url=URL,
+        token=TOKEN,
+        org=ORG)
+
+    line_protocol_filename = DATA_LINE_PROTOCOL_DIR / f"{csv_filename.stem}.line"
+    first_chunk = True
+
+    for chunk in pd.read_csv(str(csv_filename), chunksize=chunk_rows):
+        df = preprocess_particles_df(chunk)
+        df_lines = convert_particles_to_line_protocol(df, particle)
+
+        save_line_protocol(
+            df_lines,
+            line_protocol_filename,
+            mode="w" if first_chunk else "a",
+        )
+
+        upload_line_protocol(
+            write_api=write_api,
+            df_lines=df_lines,
+            bucket=BUCKET,
+            org=ORG)
+
+        first_chunk = False
+
+    write_api.close()
 
 
 # ## Pipelines
@@ -340,31 +382,7 @@ for particle in ["protons", "electrons", "dd", "heavy_ions"]:
     csv_to_upload = csv_candidates if REPROCESS_ALL_DATA else [csv_candidates[-1]]
 
     for csv_filename in csv_to_upload:
-        # 2. read the CSV file
-        df = read_particles(csv_filename)
-        print(f"Read {len(df)} records from {csv_filename}", flush=True)
-
-        # 3. convert the CSV file to line protocol
-        df_lines = convert_particles_to_line_protocol(df, particle)
-
-        # 4. (optional) save the line protocol to a file
-        line_protocol_filename = DATA_LINE_PROTOCOL_DIR / \
-            f"{csv_filename.stem}.line"
-        save_line_protocol(df_lines, line_protocol_filename)
-
-        # 5. upload the line protocol to InfluxDB
-        write_api = get_write_api(
-            url=URL,
-            token=TOKEN,
-            org=ORG)
-
-        upload_line_protocol(
-            write_api=write_api,
-            df_lines=df_lines,
-            bucket=BUCKET,
-            org=ORG)
-
-        write_api.close()
+        upload_particles_csv(csv_filename, particle)
 
 
 # # ### Flux - as of 12.09.2025 data is not available
