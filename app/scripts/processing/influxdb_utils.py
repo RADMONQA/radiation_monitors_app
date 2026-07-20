@@ -146,12 +146,16 @@ class InfluxDbUtils:
             df_lines: pd.DataFrame,
             batch_size: int = 1000000) -> None:
         for batch in range(0, len(df_lines), batch_size):
-            batch_end = min(batch + batch_size - 1, len(df_lines) - 1)
-            batch_indices = slice(batch, batch_end)
+            batch_end = min(batch + batch_size, len(df_lines))
+            # Positional (.iloc) slicing: callers pass chunks sliced with
+            # .iloc[start:...], which keep their original (offset) index labels,
+            # so label-based .loc slicing would silently select nothing for every
+            # chunk after the first and drop the rows.
+            batch_lines = df_lines.iloc[batch:batch_end]['line']
 
             print(
-                f"Uploading batch of {batch_indices.stop - batch_indices.start + 1} records, from {batch_indices.start} to {batch_indices.stop}.", flush=True)
+                f"Uploading batch of {len(batch_lines)} records, from {batch} to {batch_end - 1}.", flush=True)
             self.write_api.write(
-                self.bucket, self.org, df_lines.loc[batch_indices, 'line'], verbose=True)
+                self.bucket, self.org, batch_lines, verbose=True)
 
         self.write_api.flush()

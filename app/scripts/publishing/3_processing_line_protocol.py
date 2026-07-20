@@ -277,13 +277,17 @@ def upload_line_protocol(
         org: str,
         batch_size: int = 1000000) -> None:
     for batch in range(0, len(df_lines), batch_size):
-        batch_end = min(batch + batch_size - 1, len(df_lines) - 1)
-        batch_indices = slice(batch, batch_end)
+        batch_end = min(batch + batch_size, len(df_lines))
+        # Positional (.iloc) slicing: callers pass chunks (e.g. from
+        # pd.read_csv(chunksize=...)) that keep their original (offset) index
+        # labels, so label-based .loc slicing would silently select nothing for
+        # every chunk after the first and drop the rows.
+        batch_lines = df_lines.iloc[batch:batch_end]['line']
 
         print(
-            f"Uploading batch of {batch_indices.stop - batch_indices.start + 1} records, from {batch_indices.start} to {batch_indices.stop}.", flush=True)
+            f"Uploading batch of {len(batch_lines)} records, from {batch} to {batch_end - 1}.", flush=True)
 
-        write_api.write(bucket, org, df_lines.loc[batch_indices, 'line'])
+        write_api.write(bucket, org, batch_lines)
 
     write_api.flush()
 
