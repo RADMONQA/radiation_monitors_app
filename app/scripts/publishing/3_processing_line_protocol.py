@@ -117,8 +117,11 @@ def read_temperature(filename: Path) -> pd.DataFrame:
     # Convert time
     df['time'] = pd.to_datetime(df['time'])
 
-    # Convert time to ns for InfluxDB
-    df['time_ns'] = pd.to_datetime(df['time']).astype('int64')
+    # Convert time to ns for InfluxDB.
+    # pandas >=2.0 can store datetime64 at us/ms/s resolution instead of ns,
+    # so force ns resolution before extracting the int64 count - otherwise
+    # astype('int64') silently returns non-ns units.
+    df['time_ns'] = pd.to_datetime(df['time']).astype('datetime64[ns]').astype('int64')
 
     # Convert temperatures to int
     df["CEU Temperature (1)"] = df["CEU Temperature (1)"].astype("int64")
@@ -134,8 +137,11 @@ def preprocess_particles_df(df: pd.DataFrame) -> pd.DataFrame:
     # Convert time
     df['time'] = pd.to_datetime(df['time'])
 
-    # Convert time to ns for InfluxDB
-    df['time_ns'] = pd.to_datetime(df['time']).astype('int64') * 1000
+    # Convert time to ns for InfluxDB.
+    # pandas >=2.0 can store datetime64 at us/ms/s resolution instead of ns,
+    # so force ns resolution before extracting the int64 count - otherwise
+    # astype('int64') silently returns non-ns units.
+    df['time_ns'] = pd.to_datetime(df['time']).astype('datetime64[ns]').astype('int64')
 
     # Converts
     df["bin"] = df["bin"].astype("int8")
@@ -163,8 +169,11 @@ def read_flux(filename: Path) -> pd.DataFrame:
     # Convert time
     df['time'] = pd.to_datetime(df['time'])
 
-    # Convert time to ns for InfluxDB
-    df['time_ns'] = pd.to_datetime(df['time']).astype('int64')
+    # Convert time to ns for InfluxDB.
+    # pandas >=2.0 can store datetime64 at us/ms/s resolution instead of ns,
+    # so force ns resolution before extracting the int64 count - otherwise
+    # astype('int64') silently returns non-ns units.
+    df['time_ns'] = pd.to_datetime(df['time']).astype('datetime64[ns]').astype('int64')
 
     # Converts
     df["value"] = df["value"].astype("int64")
