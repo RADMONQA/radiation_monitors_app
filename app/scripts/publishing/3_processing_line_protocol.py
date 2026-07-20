@@ -219,7 +219,7 @@ def convert_particles_to_line_protocol(df: pd.DataFrame, measurement_name: str) 
     df = pd.DataFrame(
         measurement_name +
         ",bin=" + df["bin"].astype(str) + " "
-        "value=" + df["value"].astype(str) + " " +
+        "value=" + df["value"].astype(str) + ","
         "COUNT=" + df["COUNT"].astype(str) + ","
         "COUNTS_PER_MIN=" + df["COUNTS_PER_MIN"].astype(str) + " " +
         df['time_ns'].astype(str),
