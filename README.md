@@ -42,6 +42,73 @@ RADMONQA App is a web application that allows users to visualize and analyze the
    docker compose down
    ```
 
+## Local Development Setup
+
+The deployed VM environments (`ltp-irem-01.psi.ch`, `ltp-radem-01.psi.ch`) point a few `.env`
+variables at directories on the VM's shared disk. To run the same stack locally, copy
+`.env.template` to `.env` and point those variables at directories on your own machine instead —
+everything else (InfluxDB, Grafana, Prometheus, Elasticsearch data) lives in Docker-managed named
+volumes that `docker compose` creates fresh and local automatically, so it needs no changes.
+
+Only these host-path variables differ between the VM and a local checkout:
+
+- `DATA_IREM_RAW_DIR` — local folder with raw IREM CDF data (or a subset copied from the VM).
+- `IREM_MAGFIELD_SEED_PATH` — local path to the bundled `magfield_data_full.h5` (defaults to the
+  repo root, so usually no change needed if that file is present there).
+- `IREM_PITCH_ANGLE_SEED_PATH` — local path to the bundled `irem_magnetic_pitch_angle_full.h5`
+  (defaults to the repo root; this is the actual output of a working `03_pitch_angle.ipynb` run,
+  so no SPICE/geopack computation is needed for the default seed mode).
+- `IREM_KERNELS_SEED_PATH` — only needed if you switch pitch angle to `network` mode (compute
+  from scratch instead of using the bundled seed): local path to an extracted directory of
+  INTEGRAL SPICE kernels (defaults to `./irem_kernels`).
+
+Steps:
+
+1. Create local data directories, e.g.:
+
+   ```bash
+   mkdir -p ~/radmonqa-local-data/irem_raw
+   ```
+
+1. In `.env`, point the host-path variables at them:
+
+   ```
+   DATA_IREM_RAW_DIR=/home/<you>/radmonqa-local-data/irem_raw
+   IREM_MAGFIELD_SEED_PATH=./magfield_data_full.h5
+   IREM_MAGFIELD_FETCH_MODE=seed
+   IREM_PITCH_ANGLE_SEED_PATH=./irem_magnetic_pitch_angle_full.h5
+   IREM_PITCH_ANGLE_FETCH_MODE=seed
+   ```
+
+   Leave both fetch modes as `seed` for local development — `network` mode hits real upstream
+   ESA/Tsyganenko URLs (magfield) or requires a full local SPICE kernel set (pitch angle), and is
+   slow/unreliable for day-to-day work.
+
+1. First-time only — populate those directories with a local copy of the data (this is a manual,
+   one-time step; it is not fetched automatically over the network):
+
+   - `magfield_data_full.h5`: copy from a colleague's checkout or from wherever it was
+     originally produced (see `02_tsyganenko_geopack.ipynb`).
+   - `irem_magnetic_pitch_angle_full.h5`: copy from a colleague's checkout or from wherever it
+     was originally produced (see `03_pitch_angle.ipynb`).
+   - `DATA_IREM_RAW_DIR`: copy raw IREM data from the VM over the SSH jump-host path documented
+     below, e.g.:
+     ```bash
+     rsync -av -e "ssh -J <username>@hopx.psi.ch" \
+       ext-gr@ltp-irem-01.psi.ch:/path/to/irem/raw/ \
+       ~/radmonqa-local-data/irem_raw/
+     ```
+
+1. Build and run as usual:
+
+   ```bash
+   docker compose -f docker-compose.irem.yml up -d --build
+   docker compose logs -f app
+   ```
+
+1. To force a clean re-publish after replacing local seed data, set `REPROCESS_ALL_DATA=1` in
+   `.env`, restart the `app` container, then set it back to `0`.
+
 ## Target Environments
 
 ### IREM Environment

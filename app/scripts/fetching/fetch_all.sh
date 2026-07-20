@@ -9,3 +9,9 @@ if [ "$IS_USING_RADEM" -ne 0 ]; then
     ${SCRIPTS_DIR}/fetch_radem.sh
     echo -e "\e[32mRADEM DATA FETCHED SUCCESSFULLY\e[0m"
 fi
+
+if [ "$IS_USING_IREM" -ne 0 ]; then
+    echo "============= STAGING IREM MAGFIELD INPUT DATA ============="
+    ${SCRIPTS_DIR}/fetch_irem_orbit_magfield.sh
+    ${SCRIPTS_DIR}/fetch_irem_pitch_angle.sh
+fi

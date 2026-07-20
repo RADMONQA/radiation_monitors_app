@@ -39,8 +39,14 @@ services:
     environment:
       - IS_USING_IREM=1
       - IS_USING_RADEM=0
+      - IREM_MAGFIELD_FETCH_MODE=${IREM_MAGFIELD_FETCH_MODE:-seed}
+      - IREM_MAGFIELD_SEED_PATH=/app/seeds/irem/magfield_data.h5
+      - IREM_PITCH_ANGLE_FETCH_MODE=${IREM_PITCH_ANGLE_FETCH_MODE:-seed}
     volumes:
       - ${DATA_IREM_RAW_DIR}:/app_data/irem/raw:ro
+      - ${IREM_MAGFIELD_SEED_PATH:-./magfield_data_full.h5}:/app/seeds/irem/magfield_data.h5:ro
+      - ${IREM_PITCH_ANGLE_SEED_PATH:-./irem_magnetic_pitch_angle_full.h5}:/app/seeds/irem/pitch_angle_full.h5:ro
+      - ${IREM_KERNELS_SEED_PATH:-./irem_kernels}:/app/seeds/irem/kernels:ro
   grafana:
     extends:
       file: ./docker-compose/docker-compose.grafana.yml

@@ -223,3 +223,9 @@ pip-selfcheck.json
 
 #added manually
 roles/radem/defaults/main.yml
+
+# local seed data for the IREM magfield / pitch-angle pipelines (never committed,
+# same treatment as DATA_IREM_RAW_DIR - see README's "Local Development Setup")
+/magfield_data_full.h5
+/irem_magnetic_pitch_angle_full.h5
+/irem_kernels/

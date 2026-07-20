@@ -33,6 +33,84 @@ def preprocess_particles(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
+def preprocess_magfield(df: pd.DataFrame) -> pd.DataFrame:
+    df = df.copy()
+    df["time"] = pd.to_datetime(df["time"])
+    df["time_ns"] = pd.to_datetime(df["time"]).astype("int64")
+
+    numeric_columns = [
+        "bx_gsm",
+        "by_gsm",
+        "bz_gsm",
+        "b_magnitude",
+        "r_distance",
+    ]
+    for column in numeric_columns:
+        df[column] = pd.to_numeric(df[column], errors="coerce").astype("float64")
+
+    finite_mask = np.ones(len(df), dtype=bool)
+    for column in numeric_columns:
+        finite_mask &= np.isfinite(df[column])
+    return df[finite_mask].copy()
+
+
+def convert_magfield_to_line_protocol(df: pd.DataFrame) -> pd.DataFrame:
+    measurement = "irem_magfield"
+    df = pd.DataFrame(
+        measurement
+        + " bx_gsm="
+        + df["bx_gsm"].astype(str)
+        + ",by_gsm="
+        + df["by_gsm"].astype(str)
+        + ",bz_gsm="
+        + df["bz_gsm"].astype(str)
+        + ",b_magnitude="
+        + df["b_magnitude"].astype(str)
+        + ",r_distance="
+        + df["r_distance"].astype(str)
+        + " "
+        + df["time_ns"].astype(str),
+        columns=["line"],
+    )
+    return df
+
+
+def preprocess_pitch_angle(df: pd.DataFrame) -> pd.DataFrame:
+    df = df.copy()
+    df["time"] = pd.to_datetime(df["time"])
+    df["time_ns"] = pd.to_datetime(df["time"]).astype("int64")
+
+    numeric_columns = [
+        "pitch_angle_cos",
+        "pitch_angle_rad",
+        "pitch_angle_deg",
+    ]
+    for column in numeric_columns:
+        df[column] = pd.to_numeric(df[column], errors="coerce").astype("float64")
+
+    finite_mask = np.ones(len(df), dtype=bool)
+    for column in numeric_columns:
+        finite_mask &= np.isfinite(df[column])
+    return df[finite_mask].copy()
+
+
+def convert_pitch_angle_to_line_protocol(df: pd.DataFrame) -> pd.DataFrame:
+    measurement = "irem_pitch_angle"
+    df = pd.DataFrame(
+        measurement
+        + " pitch_angle_cos="
+        + df["pitch_angle_cos"].astype(str)
+        + ",pitch_angle_rad="
+        + df["pitch_angle_rad"].astype(str)
+        + ",pitch_angle_deg="
+        + df["pitch_angle_deg"].astype(str)
+        + " "
+        + df["time_ns"].astype(str),
+        columns=["line"],
+    )
+    return df
+
+
 def preprocess_trajectories(df: pd.DataFrame) -> pd.DataFrame:
     df['time'] = pd.to_datetime(df['time'])
     df['time_ns'] = (df['time'] - pd.Timestamp("1970-01-01")
