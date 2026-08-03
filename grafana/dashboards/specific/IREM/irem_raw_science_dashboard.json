@@ -96,7 +96,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 1"
+              "options": "COUNTS_PER_MIN 1"
             },
             "properties": [
               {
@@ -108,7 +108,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 2"
+              "options": "COUNTS_PER_MIN 2"
             },
             "properties": [
               {
@@ -120,7 +120,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 3"
+              "options": "COUNTS_PER_MIN 3"
             },
             "properties": [
               {
@@ -132,7 +132,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 4"
+              "options": "COUNTS_PER_MIN 4"
             },
             "properties": [
               {
@@ -144,7 +144,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 5"
+              "options": "COUNTS_PER_MIN 5"
             },
             "properties": [
               {
@@ -289,7 +289,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 1"
+              "options": "COUNTS_PER_MIN 1"
             },
             "properties": [
               {
@@ -301,7 +301,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 2"
+              "options": "COUNTS_PER_MIN 2"
             },
             "properties": [
               {
@@ -313,7 +313,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 3"
+              "options": "COUNTS_PER_MIN 3"
             },
             "properties": [
               {
@@ -325,7 +325,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 4"
+              "options": "COUNTS_PER_MIN 4"
             },
             "properties": [
               {
@@ -337,7 +337,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 5"
+              "options": "COUNTS_PER_MIN 5"
             },
             "properties": [
               {
@@ -482,7 +482,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 1"
+              "options": "COUNTS_PER_MIN 1"
             },
             "properties": [
               {
@@ -494,7 +494,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 2"
+              "options": "COUNTS_PER_MIN 2"
             },
             "properties": [
               {
@@ -506,7 +506,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 3"
+              "options": "COUNTS_PER_MIN 3"
             },
             "properties": [
               {
@@ -518,7 +518,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 4"
+              "options": "COUNTS_PER_MIN 4"
             },
             "properties": [
               {
@@ -530,7 +530,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 5"
+              "options": "COUNTS_PER_MIN 5"
             },
             "properties": [
               {
@@ -675,7 +675,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 1"
+              "options": "COUNTS_PER_MIN 1"
             },
             "properties": [
               {
@@ -687,7 +687,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 2"
+              "options": "COUNTS_PER_MIN 2"
             },
             "properties": [
               {
@@ -699,7 +699,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 3"
+              "options": "COUNTS_PER_MIN 3"
             },
             "properties": [
               {
@@ -711,7 +711,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 4"
+              "options": "COUNTS_PER_MIN 4"
             },
             "properties": [
               {
@@ -723,7 +723,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 5"
+              "options": "COUNTS_PER_MIN 5"
             },
             "properties": [
               {
@@ -881,7 +881,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 1"
+              "options": "COUNTS_PER_MIN 1"
             },
             "properties": [
               {
@@ -893,7 +893,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 2"
+              "options": "COUNTS_PER_MIN 2"
             },
             "properties": [
               {
@@ -905,7 +905,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 3"
+              "options": "COUNTS_PER_MIN 3"
             },
             "properties": [
               {
@@ -917,7 +917,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 4"
+              "options": "COUNTS_PER_MIN 4"
             },
             "properties": [
               {
@@ -929,7 +929,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 5"
+              "options": "COUNTS_PER_MIN 5"
             },
             "properties": [
               {
@@ -1075,7 +1075,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 1"
+              "options": "COUNTS_PER_MIN 1"
             },
             "properties": [
               {
@@ -1087,7 +1087,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 2"
+              "options": "COUNTS_PER_MIN 2"
             },
             "properties": [
               {
@@ -1099,7 +1099,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 3"
+              "options": "COUNTS_PER_MIN 3"
             },
             "properties": [
               {
@@ -1111,7 +1111,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 4"
+              "options": "COUNTS_PER_MIN 4"
             },
             "properties": [
               {
@@ -1123,7 +1123,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 5"
+              "options": "COUNTS_PER_MIN 5"
             },
             "properties": [
               {
@@ -1269,7 +1269,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 1"
+              "options": "COUNTS_PER_MIN 1"
             },
             "properties": [
               {
@@ -1281,7 +1281,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 2"
+              "options": "COUNTS_PER_MIN 2"
             },
             "properties": [
               {
@@ -1293,7 +1293,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 3"
+              "options": "COUNTS_PER_MIN 3"
             },
             "properties": [
               {
@@ -1305,7 +1305,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 4"
+              "options": "COUNTS_PER_MIN 4"
             },
             "properties": [
               {
@@ -1317,7 +1317,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 5"
+              "options": "COUNTS_PER_MIN 5"
             },
             "properties": [
               {
@@ -1463,7 +1463,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 1"
+              "options": "COUNTS_PER_MIN 1"
             },
             "properties": [
               {
@@ -1475,7 +1475,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 2"
+              "options": "COUNTS_PER_MIN 2"
             },
             "properties": [
               {
@@ -1487,7 +1487,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 3"
+              "options": "COUNTS_PER_MIN 3"
             },
             "properties": [
               {
@@ -1499,7 +1499,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 4"
+              "options": "COUNTS_PER_MIN 4"
             },
             "properties": [
               {
@@ -1511,7 +1511,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "value 5"
+              "options": "COUNTS_PER_MIN 5"
             },
             "properties": [
               {
@@ -1796,20 +1796,50 @@
             "excludeByName": {
               "Time": false,
               "value {bin=\"1\", name=\"irem_coin\"}": true,
+              "COUNT {bin=\"1\", name=\"irem_coin\"}": true,
+              "COUNTS_PER_MIN {bin=\"1\", name=\"irem_coin\"}": true,
               "value {bin=\"1\", name=\"irem_d1\"}": true,
+              "COUNT {bin=\"1\", name=\"irem_d1\"}": true,
+              "COUNTS_PER_MIN {bin=\"1\", name=\"irem_d1\"}": true,
               "value {bin=\"1\", name=\"irem_d2\"}": true,
+              "COUNT {bin=\"1\", name=\"irem_d2\"}": true,
+              "COUNTS_PER_MIN {bin=\"1\", name=\"irem_d2\"}": true,
               "value {bin=\"1\", name=\"irem_d3\"}": true,
+              "COUNT {bin=\"1\", name=\"irem_d3\"}": true,
+              "COUNTS_PER_MIN {bin=\"1\", name=\"irem_d3\"}": true,
               "value {bin=\"2\", name=\"irem_coin\"}": true,
+              "COUNT {bin=\"2\", name=\"irem_coin\"}": true,
+              "COUNTS_PER_MIN {bin=\"2\", name=\"irem_coin\"}": true,
               "value {bin=\"2\", name=\"irem_d1\"}": true,
+              "COUNT {bin=\"2\", name=\"irem_d1\"}": true,
+              "COUNTS_PER_MIN {bin=\"2\", name=\"irem_d1\"}": true,
               "value {bin=\"2\", name=\"irem_d2\"}": true,
+              "COUNT {bin=\"2\", name=\"irem_d2\"}": true,
+              "COUNTS_PER_MIN {bin=\"2\", name=\"irem_d2\"}": true,
               "value {bin=\"2\", name=\"irem_d3\"}": true,
+              "COUNT {bin=\"2\", name=\"irem_d3\"}": true,
+              "COUNTS_PER_MIN {bin=\"2\", name=\"irem_d3\"}": true,
               "value {bin=\"3\", name=\"irem_coin\"}": true,
+              "COUNT {bin=\"3\", name=\"irem_coin\"}": true,
+              "COUNTS_PER_MIN {bin=\"3\", name=\"irem_coin\"}": true,
               "value {bin=\"3\", name=\"irem_d1\"}": true,
+              "COUNT {bin=\"3\", name=\"irem_d1\"}": true,
+              "COUNTS_PER_MIN {bin=\"3\", name=\"irem_d1\"}": true,
               "value {bin=\"3\", name=\"irem_d3\"}": true,
+              "COUNT {bin=\"3\", name=\"irem_d3\"}": true,
+              "COUNTS_PER_MIN {bin=\"3\", name=\"irem_d3\"}": true,
               "value {bin=\"4\", name=\"irem_coin\"}": true,
+              "COUNT {bin=\"4\", name=\"irem_coin\"}": true,
+              "COUNTS_PER_MIN {bin=\"4\", name=\"irem_coin\"}": true,
               "value {bin=\"4\", name=\"irem_d1\"}": true,
+              "COUNT {bin=\"4\", name=\"irem_d1\"}": true,
+              "COUNTS_PER_MIN {bin=\"4\", name=\"irem_d1\"}": true,
               "value {bin=\"4\", name=\"irem_d3\"}": true,
-              "value {bin=\"5\", name=\"irem_d1\"}": true
+              "COUNT {bin=\"4\", name=\"irem_d3\"}": true,
+              "COUNTS_PER_MIN {bin=\"4\", name=\"irem_d3\"}": true,
+              "value {bin=\"5\", name=\"irem_d1\"}": true,
+              "COUNT {bin=\"5\", name=\"irem_d1\"}": true,
+              "COUNTS_PER_MIN {bin=\"5\", name=\"irem_d1\"}": true
             },
             "includeByName": {},
             "indexByName": {
@@ -2053,20 +2083,50 @@
             "excludeByName": {
               "Time": false,
               "value {bin=\"1\", name=\"irem_coin\"}": true,
+              "COUNT {bin=\"1\", name=\"irem_coin\"}": true,
+              "COUNTS_PER_MIN {bin=\"1\", name=\"irem_coin\"}": true,
               "value {bin=\"1\", name=\"irem_d1\"}": true,
+              "COUNT {bin=\"1\", name=\"irem_d1\"}": true,
+              "COUNTS_PER_MIN {bin=\"1\", name=\"irem_d1\"}": true,
               "value {bin=\"1\", name=\"irem_d2\"}": true,
+              "COUNT {bin=\"1\", name=\"irem_d2\"}": true,
+              "COUNTS_PER_MIN {bin=\"1\", name=\"irem_d2\"}": true,
               "value {bin=\"1\", name=\"irem_d3\"}": true,
+              "COUNT {bin=\"1\", name=\"irem_d3\"}": true,
+              "COUNTS_PER_MIN {bin=\"1\", name=\"irem_d3\"}": true,
               "value {bin=\"2\", name=\"irem_coin\"}": true,
+              "COUNT {bin=\"2\", name=\"irem_coin\"}": true,
+              "COUNTS_PER_MIN {bin=\"2\", name=\"irem_coin\"}": true,
               "value {bin=\"2\", name=\"irem_d1\"}": true,
+              "COUNT {bin=\"2\", name=\"irem_d1\"}": true,
+              "COUNTS_PER_MIN {bin=\"2\", name=\"irem_d1\"}": true,
               "value {bin=\"2\", name=\"irem_d2\"}": true,
+              "COUNT {bin=\"2\", name=\"irem_d2\"}": true,
+              "COUNTS_PER_MIN {bin=\"2\", name=\"irem_d2\"}": true,
               "value {bin=\"2\", name=\"irem_d3\"}": true,
+              "COUNT {bin=\"2\", name=\"irem_d3\"}": true,
+              "COUNTS_PER_MIN {bin=\"2\", name=\"irem_d3\"}": true,
               "value {bin=\"3\", name=\"irem_coin\"}": true,
+              "COUNT {bin=\"3\", name=\"irem_coin\"}": true,
+              "COUNTS_PER_MIN {bin=\"3\", name=\"irem_coin\"}": true,
               "value {bin=\"3\", name=\"irem_d1\"}": true,
+              "COUNT {bin=\"3\", name=\"irem_d1\"}": true,
+              "COUNTS_PER_MIN {bin=\"3\", name=\"irem_d1\"}": true,
               "value {bin=\"3\", name=\"irem_d3\"}": true,
+              "COUNT {bin=\"3\", name=\"irem_d3\"}": true,
+              "COUNTS_PER_MIN {bin=\"3\", name=\"irem_d3\"}": true,
               "value {bin=\"4\", name=\"irem_coin\"}": true,
+              "COUNT {bin=\"4\", name=\"irem_coin\"}": true,
+              "COUNTS_PER_MIN {bin=\"4\", name=\"irem_coin\"}": true,
               "value {bin=\"4\", name=\"irem_d1\"}": true,
+              "COUNT {bin=\"4\", name=\"irem_d1\"}": true,
+              "COUNTS_PER_MIN {bin=\"4\", name=\"irem_d1\"}": true,
               "value {bin=\"4\", name=\"irem_d3\"}": true,
-              "value {bin=\"5\", name=\"irem_d1\"}": true
+              "COUNT {bin=\"4\", name=\"irem_d3\"}": true,
+              "COUNTS_PER_MIN {bin=\"4\", name=\"irem_d3\"}": true,
+              "value {bin=\"5\", name=\"irem_d1\"}": true,
+              "COUNT {bin=\"5\", name=\"irem_d1\"}": true,
+              "COUNTS_PER_MIN {bin=\"5\", name=\"irem_d1\"}": true
             },
             "includeByName": {},
             "indexByName": {
@@ -2286,20 +2346,50 @@
             "excludeByName": {
               "Time": false,
               "value {bin=\"1\", name=\"irem_coin\"}": true,
+              "COUNT {bin=\"1\", name=\"irem_coin\"}": true,
+              "COUNTS_PER_MIN {bin=\"1\", name=\"irem_coin\"}": true,
               "value {bin=\"1\", name=\"irem_d1\"}": true,
+              "COUNT {bin=\"1\", name=\"irem_d1\"}": true,
+              "COUNTS_PER_MIN {bin=\"1\", name=\"irem_d1\"}": true,
               "value {bin=\"1\", name=\"irem_d2\"}": true,
+              "COUNT {bin=\"1\", name=\"irem_d2\"}": true,
+              "COUNTS_PER_MIN {bin=\"1\", name=\"irem_d2\"}": true,
               "value {bin=\"1\", name=\"irem_d3\"}": true,
+              "COUNT {bin=\"1\", name=\"irem_d3\"}": true,
+              "COUNTS_PER_MIN {bin=\"1\", name=\"irem_d3\"}": true,
               "value {bin=\"2\", name=\"irem_coin\"}": true,
+              "COUNT {bin=\"2\", name=\"irem_coin\"}": true,
+              "COUNTS_PER_MIN {bin=\"2\", name=\"irem_coin\"}": true,
               "value {bin=\"2\", name=\"irem_d1\"}": true,
+              "COUNT {bin=\"2\", name=\"irem_d1\"}": true,
+              "COUNTS_PER_MIN {bin=\"2\", name=\"irem_d1\"}": true,
               "value {bin=\"2\", name=\"irem_d2\"}": true,
+              "COUNT {bin=\"2\", name=\"irem_d2\"}": true,
+              "COUNTS_PER_MIN {bin=\"2\", name=\"irem_d2\"}": true,
               "value {bin=\"2\", name=\"irem_d3\"}": true,
+              "COUNT {bin=\"2\", name=\"irem_d3\"}": true,
+              "COUNTS_PER_MIN {bin=\"2\", name=\"irem_d3\"}": true,
               "value {bin=\"3\", name=\"irem_coin\"}": true,
+              "COUNT {bin=\"3\", name=\"irem_coin\"}": true,
+              "COUNTS_PER_MIN {bin=\"3\", name=\"irem_coin\"}": true,
               "value {bin=\"3\", name=\"irem_d1\"}": true,
+              "COUNT {bin=\"3\", name=\"irem_d1\"}": true,
+              "COUNTS_PER_MIN {bin=\"3\", name=\"irem_d1\"}": true,
               "value {bin=\"3\", name=\"irem_d3\"}": true,
+              "COUNT {bin=\"3\", name=\"irem_d3\"}": true,
+              "COUNTS_PER_MIN {bin=\"3\", name=\"irem_d3\"}": true,
               "value {bin=\"4\", name=\"irem_coin\"}": true,
+              "COUNT {bin=\"4\", name=\"irem_coin\"}": true,
+              "COUNTS_PER_MIN {bin=\"4\", name=\"irem_coin\"}": true,
               "value {bin=\"4\", name=\"irem_d1\"}": true,
+              "COUNT {bin=\"4\", name=\"irem_d1\"}": true,
+              "COUNTS_PER_MIN {bin=\"4\", name=\"irem_d1\"}": true,
               "value {bin=\"4\", name=\"irem_d3\"}": true,
-              "value {bin=\"5\", name=\"irem_d1\"}": true
+              "COUNT {bin=\"4\", name=\"irem_d3\"}": true,
+              "COUNTS_PER_MIN {bin=\"4\", name=\"irem_d3\"}": true,
+              "value {bin=\"5\", name=\"irem_d1\"}": true,
+              "COUNT {bin=\"5\", name=\"irem_d1\"}": true,
+              "COUNTS_PER_MIN {bin=\"5\", name=\"irem_d1\"}": true
             },
             "includeByName": {},
             "indexByName": {
@@ -2544,20 +2634,50 @@
             "excludeByName": {
               "Time": false,
               "value {bin=\"1\", name=\"irem_coin\"}": true,
+              "COUNT {bin=\"1\", name=\"irem_coin\"}": true,
+              "COUNTS_PER_MIN {bin=\"1\", name=\"irem_coin\"}": true,
               "value {bin=\"1\", name=\"irem_d1\"}": true,
+              "COUNT {bin=\"1\", name=\"irem_d1\"}": true,
+              "COUNTS_PER_MIN {bin=\"1\", name=\"irem_d1\"}": true,
               "value {bin=\"1\", name=\"irem_d2\"}": true,
+              "COUNT {bin=\"1\", name=\"irem_d2\"}": true,
+              "COUNTS_PER_MIN {bin=\"1\", name=\"irem_d2\"}": true,
               "value {bin=\"1\", name=\"irem_d3\"}": true,
+              "COUNT {bin=\"1\", name=\"irem_d3\"}": true,
+              "COUNTS_PER_MIN {bin=\"1\", name=\"irem_d3\"}": true,
               "value {bin=\"2\", name=\"irem_coin\"}": true,
+              "COUNT {bin=\"2\", name=\"irem_coin\"}": true,
+              "COUNTS_PER_MIN {bin=\"2\", name=\"irem_coin\"}": true,
               "value {bin=\"2\", name=\"irem_d1\"}": true,
+              "COUNT {bin=\"2\", name=\"irem_d1\"}": true,
+              "COUNTS_PER_MIN {bin=\"2\", name=\"irem_d1\"}": true,
               "value {bin=\"2\", name=\"irem_d2\"}": true,
+              "COUNT {bin=\"2\", name=\"irem_d2\"}": true,
+              "COUNTS_PER_MIN {bin=\"2\", name=\"irem_d2\"}": true,
               "value {bin=\"2\", name=\"irem_d3\"}": true,
+              "COUNT {bin=\"2\", name=\"irem_d3\"}": true,
+              "COUNTS_PER_MIN {bin=\"2\", name=\"irem_d3\"}": true,
               "value {bin=\"3\", name=\"irem_coin\"}": true,
+              "COUNT {bin=\"3\", name=\"irem_coin\"}": true,
+              "COUNTS_PER_MIN {bin=\"3\", name=\"irem_coin\"}": true,
               "value {bin=\"3\", name=\"irem_d1\"}": true,
+              "COUNT {bin=\"3\", name=\"irem_d1\"}": true,
+              "COUNTS_PER_MIN {bin=\"3\", name=\"irem_d1\"}": true,
               "value {bin=\"3\", name=\"irem_d3\"}": true,
+              "COUNT {bin=\"3\", name=\"irem_d3\"}": true,
+              "COUNTS_PER_MIN {bin=\"3\", name=\"irem_d3\"}": true,
               "value {bin=\"4\", name=\"irem_coin\"}": true,
+              "COUNT {bin=\"4\", name=\"irem_coin\"}": true,
+              "COUNTS_PER_MIN {bin=\"4\", name=\"irem_coin\"}": true,
               "value {bin=\"4\", name=\"irem_d1\"}": true,
+              "COUNT {bin=\"4\", name=\"irem_d1\"}": true,
+              "COUNTS_PER_MIN {bin=\"4\", name=\"irem_d1\"}": true,
               "value {bin=\"4\", name=\"irem_d3\"}": true,
-              "value {bin=\"5\", name=\"irem_d1\"}": true
+              "COUNT {bin=\"4\", name=\"irem_d3\"}": true,
+              "COUNTS_PER_MIN {bin=\"4\", name=\"irem_d3\"}": true,
+              "value {bin=\"5\", name=\"irem_d1\"}": true,
+              "COUNT {bin=\"5\", name=\"irem_d1\"}": true,
+              "COUNTS_PER_MIN {bin=\"5\", name=\"irem_d1\"}": true
             },
             "includeByName": {},
             "indexByName": {
