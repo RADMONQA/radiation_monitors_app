@@ -117,8 +117,11 @@ def read_temperature(filename: Path) -> pd.DataFrame:
     # Convert time
     df['time'] = pd.to_datetime(df['time'])
 
-    # Convert time to ns for InfluxDB
-    df['time_ns'] = pd.to_datetime(df['time']).astype('int64')
+    # Convert time to ns for InfluxDB.
+    # pandas >=2.0 can store datetime64 at us/ms/s resolution instead of ns,
+    # so force ns resolution before extracting the int64 count - otherwise
+    # astype('int64') silently returns non-ns units.
+    df['time_ns'] = pd.to_datetime(df['time']).astype('datetime64[ns]').astype('int64')
 
     # Convert temperatures to int
     df["CEU Temperature (1)"] = df["CEU Temperature (1)"].astype("int64")
@@ -134,8 +137,11 @@ def preprocess_particles_df(df: pd.DataFrame) -> pd.DataFrame:
     # Convert time
     df['time'] = pd.to_datetime(df['time'])
 
-    # Convert time to ns for InfluxDB
-    df['time_ns'] = pd.to_datetime(df['time']).astype('int64') * 1000
+    # Convert time to ns for InfluxDB.
+    # pandas >=2.0 can store datetime64 at us/ms/s resolution instead of ns,
+    # so force ns resolution before extracting the int64 count - otherwise
+    # astype('int64') silently returns non-ns units.
+    df['time_ns'] = pd.to_datetime(df['time']).astype('datetime64[ns]').astype('int64')
 
     # Converts
     df["bin"] = df["bin"].astype("int8")
@@ -163,8 +169,11 @@ def read_flux(filename: Path) -> pd.DataFrame:
     # Convert time
     df['time'] = pd.to_datetime(df['time'])
 
-    # Convert time to ns for InfluxDB
-    df['time_ns'] = pd.to_datetime(df['time']).astype('int64')
+    # Convert time to ns for InfluxDB.
+    # pandas >=2.0 can store datetime64 at us/ms/s resolution instead of ns,
+    # so force ns resolution before extracting the int64 count - otherwise
+    # astype('int64') silently returns non-ns units.
+    df['time_ns'] = pd.to_datetime(df['time']).astype('datetime64[ns]').astype('int64')
 
     # Converts
     df["value"] = df["value"].astype("int64")
@@ -210,7 +219,7 @@ def convert_particles_to_line_protocol(df: pd.DataFrame, measurement_name: str) 
     df = pd.DataFrame(
         measurement_name +
         ",bin=" + df["bin"].astype(str) + " "
-        "value=" + df["value"].astype(str) + " " +
+        "value=" + df["value"].astype(str) + ","
         "COUNT=" + df["COUNT"].astype(str) + ","
         "COUNTS_PER_MIN=" + df["COUNTS_PER_MIN"].astype(str) + " " +
         df['time_ns'].astype(str),
@@ -268,13 +277,17 @@ def upload_line_protocol(
         org: str,
         batch_size: int = 1000000) -> None:
     for batch in range(0, len(df_lines), batch_size):
-        batch_end = min(batch + batch_size - 1, len(df_lines) - 1)
-        batch_indices = slice(batch, batch_end)
+        batch_end = min(batch + batch_size, len(df_lines))
+        # Positional (.iloc) slicing: callers pass chunks (e.g. from
+        # pd.read_csv(chunksize=...)) that keep their original (offset) index
+        # labels, so label-based .loc slicing would silently select nothing for
+        # every chunk after the first and drop the rows.
+        batch_lines = df_lines.iloc[batch:batch_end]['line']
 
         print(
-            f"Uploading batch of {batch_indices.stop - batch_indices.start + 1} records, from {batch_indices.start} to {batch_indices.stop}.", flush=True)
+            f"Uploading batch of {len(batch_lines)} records, from {batch} to {batch_end - 1}.", flush=True)
 
-        write_api.write(bucket, org, df_lines.loc[batch_indices, 'line'])
+        write_api.write(bucket, org, batch_lines)
 
     write_api.flush()
 
