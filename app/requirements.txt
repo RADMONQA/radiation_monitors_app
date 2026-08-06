@@ -10,7 +10,7 @@ matplotlib==3.10.8
 numpy==2.4.4
 packaging==26.0
 pandas==3.0.1
-pillow==12.1.1
+pillow==12.2.0
 planetary-coverage==1.2.1
 pyparsing==3.3.2
 python-dateutil==2.9.0.post0
@@ -21,4 +21,4 @@ six==1.17.0
 spacepy==0.7.0
 spiceypy==8.0.2
 typing-extensions==4.15.0
-urllib3==2.6.3
+urllib3==2.7.0
