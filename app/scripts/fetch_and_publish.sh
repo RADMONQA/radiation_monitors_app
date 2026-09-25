@@ -16,4 +16,5 @@ fi
 
 if [ "$IS_USING_IREM" -ne 0 ]; then
     ${SCRIPTS_DIR}/processing/process_irem.sh
+    ${SCRIPTS_DIR}/processing/process_irem_magnetosphere.sh
 fi

@@ -41,6 +41,8 @@ services:
       - IS_USING_RADEM=0
     volumes:
       - ${DATA_IREM_RAW_DIR}:/app_data/irem/raw:ro
+      # magnetosphere pipeline data
+      - ${DATA_IREM_RAW_DIR}/magnetosphere:/app_data/irem/magnetosphere
   grafana:
     extends:
       file: ./docker-compose/docker-compose.grafana.yml

@@ -223,3 +223,6 @@ pip-selfcheck.json
 
 #added manually
 roles/radem/defaults/main.yml
+
+# IREM magnetosphere data
+*.h5
