@@ -109,11 +109,10 @@ its data only from these files:
 - A stage without input is skipped. A stage that fails does not stop the other stages or the
   publishing. The distance needs only the orbit, so it is shown also when the model stages cannot
   run.
-- A stage only computes the rows after the last row with a value in its HDF5 file. Thus, a
-  precomputed HDF5 file in `hdf/` is not computed again. `REPROCESS_ALL_DATA=1` publishes the files
-  again but does not compute them again (a full computation takes hours).
-- Input that is added for a time in the middle of the file (for example, a missing TS05 year) is
-  not used. To use it, delete `magfield_data.h5` and `pitch_angle_data.h5` and compute again.
+- A stage only computes the rows that have no value in its HDF5 file yet (the field also needs
+  TS05 input for the row). Thus, a precomputed HDF5 file in `hdf/` is not computed again, and
+  input added later (for example, a missing TS05 year) fills the gaps on the next run.
+  `REPROCESS_ALL_DATA=1` publishes the files again but does not compute them again.
 - Some TS05 years are published as plain `.dat` files, not zips. These are listed in
   `TS05_PLAIN_YEARS` and `TS05_LEGACY_YEARS` in `fetch_irem_magnetosphere.sh`.
 - The SPICE kernels cannot be downloaded (ESA's archive needs credentials). Copy the kernel folder

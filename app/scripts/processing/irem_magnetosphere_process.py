@@ -104,13 +104,11 @@ def _append_hdf(path: Path, new_rows: pd.DataFrame) -> None:
     _write_hdf(path, new_rows)
 
 
-def _rows_to_compute(df: pd.DataFrame, output: Path, column: str) -> pd.DataFrame:
+def _rows_without_values(df: pd.DataFrame, output: Path, column: str) -> pd.DataFrame:
     old = _read_hdf_or_none(output)
-    if old is None or old[column].isna().all():
+    if old is None:
         return df
-    last = old.loc[old[column].notna(), "time"].max()
-    print(f"{output.name} has values up to {last}.")
-    return df[df.index > last]
+    return df[~df.index.isin(old.loc[old[column].notna(), "time"])]
 
 
 def _is_stale(output: Path, inputs: list[Path]) -> bool:
@@ -167,15 +165,19 @@ def build_magfield() -> None:
     if not ORBIT_HDF_PATH.exists():
         raise SkipStage(f"no {ORBIT_HDF_PATH.name}")
     orbit = _read_hdf(ORBIT_HDF_PATH)
-    positions = _rows_to_compute(_resample_orbit(orbit), MAGFIELD_HDF_PATH, "b_magnitude")
+    positions = _rows_without_values(_resample_orbit(orbit), MAGFIELD_HDF_PATH, "b_magnitude")
     if positions.empty:
         print("No new orbit rows.")
         return
 
     ts05 = _read_ts05_input(set(positions.index.year))
-    rows = _add_gsm_position(positions).join(ts05, how="left")
+    rows = positions.join(ts05, how="inner").dropna(subset=T04_PARAMETERS)
+    if rows.empty:
+        print("No TS05 input for the new orbit rows.")
+        return
+
     print(f"Modeling {len(rows)} rows, {rows.index.min()} .. {rows.index.max()}")
-    _append_hdf(MAGFIELD_HDF_PATH, _model_field(rows))
+    _append_hdf(MAGFIELD_HDF_PATH, _model_field(_add_gsm_position(rows)))
 
 
 def _resample_orbit(orbit: pd.DataFrame) -> pd.DataFrame:
@@ -222,14 +224,11 @@ def _model_field(rows: pd.DataFrame) -> pd.DataFrame:
     parameters = rows[T04_PARAMETERS].to_numpy()
     positions = rows[["x_gsm", "y_gsm", "z_gsm"]].to_numpy()
     field = np.full((len(rows), 3), np.nan)
-    no_input = errors = 0
+    errors = 0
 
     for i, unix_time in enumerate(_unix_seconds(rows.index)):
         if i % PROGRESS_EVERY == 0:
             print(f"Modeling field {i}/{len(rows)}", flush=True)
-        if not np.isfinite(parameters[i]).all():
-            no_input += 1
-            continue
         try:
             tilt = geopack.recalc(unix_time)
             field[i] = t04.t04(parameters[i], tilt, *positions[i])
@@ -238,8 +237,7 @@ def _model_field(rows: pd.DataFrame) -> pd.DataFrame:
             if errors == 1:
                 print(f"Model failed at {rows.index[i]}: {exc}")
 
-    print(f"Modeled {len(rows) - no_input - errors}/{len(rows)} rows "
-          f"({no_input} without TS05 input, {errors} errors)")
+    print(f"Modeled {len(rows) - errors}/{len(rows)} rows ({errors} errors)")
     return pd.DataFrame({
         "time": rows.index,
         **dict(zip(FIELD_COLUMNS, field.T, strict=True)),
@@ -252,7 +250,7 @@ def build_pitch_angle() -> None:
         raise SkipStage(f"no {MAGFIELD_HDF_PATH.name}")
 
     field = _read_hdf(MAGFIELD_HDF_PATH).dropna(subset=["b_magnitude"]).set_index("time").sort_index()
-    field = _rows_to_compute(field, PITCH_ANGLE_HDF_PATH, "pitch_angle_cos")
+    field = _rows_without_values(field, PITCH_ANGLE_HDF_PATH, "pitch_angle_cos")
     if field.empty:
         print("No new magnetic field rows.")
         return

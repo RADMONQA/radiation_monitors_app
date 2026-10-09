@@ -270,7 +270,7 @@ class IremDataProcessor:
             print(f"Processing batch {i}... from {batch_filenames[0]} to {batch_filenames[-1]}", flush=True)
             processed = self.process_cdfs(batch_filenames)
 
-            for df, measurement_name in zip(processed, ["irem_d1", "irem_d2", "irem_coin", "irem_d3"]):
+            for df, measurement_name in zip(processed, ["irem_d1", "irem_d2", "irem_d3", "irem_coin"]):
                 print(f"Uploading {measurement_name} data...", flush=True)
                 preprocessed = influxdb_utils.preprocess_particles(df)
 
