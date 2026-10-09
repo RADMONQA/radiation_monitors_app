@@ -9,3 +9,7 @@ if [ "$IS_USING_RADEM" -ne 0 ]; then
     ${SCRIPTS_DIR}/fetch_radem.sh
     echo -e "\e[32mRADEM DATA FETCHED SUCCESSFULLY\e[0m"
 fi
+
+if [ "$IS_USING_IREM" -ne 0 ]; then
+    ${SCRIPTS_DIR}/fetch_irem_magnetosphere.sh
+fi

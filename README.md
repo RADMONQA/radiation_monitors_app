@@ -42,6 +42,83 @@ RADMONQA App is a web application that allows users to visualize and analyze the
    docker compose down
    ```
 
+## Local Development Setup
+
+To run the stack on your own machine, copy `.env.template` to `.env`. Only one value is different
+from the VM: `DATA_IREM_RAW_DIR`, the folder with the raw IREM CDF files. All other data is in
+Docker named volumes.
+
+1. Make a local data folder and set `DATA_IREM_RAW_DIR` to it in `.env`:
+
+   ```bash
+   mkdir -p ~/radmonqa-local-data/irem_raw
+   ```
+
+1. Copy raw IREM data from the VM (first time only):
+
+   ```bash
+   rsync -av -e "ssh -J <username>@hopx.psi.ch" \
+     ext-gr@ltp-irem-01.psi.ch:/path/to/irem/raw/ \
+     ~/radmonqa-local-data/irem_raw/
+   ```
+
+1. Build and run:
+
+   ```bash
+   docker compose -f docker-compose.irem.yml up -d --build
+   docker compose logs -f app
+   ```
+
+1. To publish all data again, set `REPROCESS_ALL_DATA=1` in `.env`, restart the `app` container,
+   then set it back to `0`.
+
+## IREM Magnetosphere Pipeline
+
+The IREM environment also shows where INTEGRAL was in the magnetosphere and how IREM pointed
+relative to the magnetic field. All files of this pipeline are in the `magnetosphere` subfolder of
+`DATA_IREM_RAW_DIR`:
+
+```
+$DATA_IREM_RAW_DIR/
+  <year folders of IREM CDFs>
+  magnetosphere/
+    orbit/          orbit_historic_NNNN.fits(.gz)              from ISDC
+    tsygan_input/   YYYY_OMNI_5m_with_TS05_variables.dat(.zip) from Tsyganenko's site
+    kernels/        INTEGRAL SPICE kernels                     copied by hand
+    archive/        original input files, kept for reference   not used by the pipeline
+    logs/           download.log
+    hdf/            orbit_data.h5, magfield_data.h5, pitch_angle_data.h5
+```
+
+**The downloads are off.** On 2026-09-25 the ISDC orbit archive did not respond and the
+Tsyganenko site blocked access (HTTP 410). `fetch_irem_magnetosphere.sh` only prints this message.
+The download code is kept, commented out, for a future source. Until then, production uses HDF5
+files that were computed on a local machine and copied into `hdf/`.
+
+`app/scripts/processing/irem_magnetosphere_process.py` builds the files in `hdf/`. InfluxDB gets
+its data only from these files:
+
+| HDF5                  | Input                    | Measurement        | Fields                                           |
+| --------------------- | ------------------------ | ------------------ | ------------------------------------------------ |
+| `orbit_data.h5`       | orbit FITS               | `irem_orbit`       | `r_distance` (Earth radii)                       |
+| `magfield_data.h5`    | orbit + TS05 input       | `irem_magfield`    | `bx_gsm`, `by_gsm`, `bz_gsm`, `b_magnitude` (nT) |
+| `pitch_angle_data.h5` | magfield + SPICE kernels | `irem_pitch_angle` | `pitch_angle_cos`, `pitch_angle_rad`             |
+
+- `irem_magfield` is the external field of the Tsyganenko T04 model only, without IGRF.
+- Grafana converts `pitch_angle_rad` to degrees.
+- A stage without input is skipped. A stage that fails does not stop the other stages or the
+  publishing. The distance needs only the orbit, so it is shown also when the model stages cannot
+  run.
+- A stage only computes the rows that have no value in its HDF5 file yet (the field also needs
+  TS05 input for the row). Thus, a precomputed HDF5 file in `hdf/` is not computed again, and
+  input added later (for example, a missing TS05 year) fills the gaps on the next run.
+  `REPROCESS_ALL_DATA=1` publishes the files again but does not compute them again.
+- Some TS05 years are published as plain `.dat` files, not zips. These are listed in
+  `TS05_PLAIN_YEARS` and `TS05_LEGACY_YEARS` in `fetch_irem_magnetosphere.sh`.
+- The SPICE kernels cannot be downloaded (ESA's archive needs credentials). Copy the kernel folder
+  into `magnetosphere/kernels/`. The custom GSE frame is in
+  `app/scripts/processing/spice_kernels/gse.tf`.
+
 ## Target Environments
 
 ### IREM Environment
