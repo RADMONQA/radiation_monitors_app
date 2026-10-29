@@ -5,6 +5,9 @@ from influxdb_client.client.write_api import SYNCHRONOUS
 from pathlib import Path
 import numpy as np
 
+# A write of 500k lines takes longer than the 10 s default timeout.
+WRITE_TIMEOUT_MS = 300_000
+
 
 def preprocess_particles(df: pd.DataFrame) -> pd.DataFrame:
     # Convert time
@@ -35,6 +38,20 @@ def preprocess_particles(df: pd.DataFrame) -> pd.DataFrame:
     df = df[finite_mask].copy()
 
     return df
+
+
+def preprocess_measurement(df: pd.DataFrame, fields: list[str]) -> pd.DataFrame:
+    """Add `time_ns`, make `fields` float64 and drop rows with NaN/Inf values."""
+    df = df.assign(time_ns=pd.to_datetime(df["time"]).astype("datetime64[ns]").astype("int64"))
+    df[fields] = df[fields].apply(pd.to_numeric, errors="coerce").astype("float64")
+    return df[np.isfinite(df[fields]).all(axis=1)]
+
+
+def convert_to_line_protocol(df: pd.DataFrame, measurement_name: str, fields: list[str]) -> pd.DataFrame:
+    """Line protocol for a measurement without tags."""
+    pairs = [field + "=" + df[field].astype(str) for field in fields]
+    lines = measurement_name + " " + pairs[0].str.cat(pairs[1:], sep=",") + " " + df["time_ns"].astype(str)
+    return lines.to_frame("line")
 
 
 def preprocess_trajectories(df: pd.DataFrame) -> pd.DataFrame:
@@ -99,28 +116,14 @@ class InfluxDbUtils:
         self.url = url
         self.bucket = bucket
 
-        self.write_api = self._get_write_api()
-        self.buckets_api = self._get_buckets_api()
-
-    def _get_write_api(self) -> influxdb_client.client.write_api:
-        client = influxdb_client.InfluxDBClient(
+        self.client = influxdb_client.InfluxDBClient(
             url=self.url,
             token=self.token,
-            org=self.org
+            org=self.org,
+            timeout=WRITE_TIMEOUT_MS,
         )
-
-        write_api = client.write_api(write_options=SYNCHRONOUS)
-        return write_api
-
-    def _get_buckets_api(self) -> influxdb_client.BucketsApi:
-        client = influxdb_client.InfluxDBClient(
-            url=self.url,
-            token=self.token,
-            org=self.org
-        )
-
-        buckets_api = client.buckets_api()
-        return buckets_api
+        self.write_api = self.client.write_api(write_options=SYNCHRONOUS)
+        self.buckets_api = self.client.buckets_api()
 
     def create_bucket(self) -> influxdb_client.Bucket:
         bucket = self.buckets_api.create_bucket(

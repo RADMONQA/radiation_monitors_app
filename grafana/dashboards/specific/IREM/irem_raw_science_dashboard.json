@@ -586,7 +586,7 @@
           "measurement": "my_measurement",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "import \"date\"\r\n\r\nmax_value_threshhold = if \"${is_max_value_threshold_used}\" == \"On\" \r\n  then 10 ^ int(v: \"${max_value_threshold_exp}\")\r\n  else 10 ^ 100\r\n  \r\nfrom(bucket: \"irem\")\r\n  |> range(start: date.sub(d: 10m, from: v.timeRangeStart), stop:date.add(d: 10m, to: v.timeRangeStop))\r\n  |> filter(fn: (r) =>\r\n    r._measurement == \"irem_d3\" and r._field == \"COUNTS_PER_MIN\" and r._value < max_value_threshhold\r\n  )\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: true)",
+          "query": "import \"date\"\r\n\r\nmax_value_threshhold = if \"${is_max_value_threshold_used}\" == \"On\" \r\n  then 10 ^ int(v: \"${max_value_threshold_exp}\")\r\n  else 10 ^ 100\r\n  \r\nfrom(bucket: \"irem\")\r\n  |> range(start: date.sub(d: 10m, from: v.timeRangeStart), stop:date.add(d: 10m, to: v.timeRangeStop))\r\n  |> filter(fn: (r) =>\r\n    r._measurement == \"irem_coin\" and r._field == \"COUNTS_PER_MIN\" and r._value < max_value_threshhold\r\n  )\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: true)",
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -779,7 +779,7 @@
           "measurement": "my_measurement",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "import \"date\"\r\n\r\nmax_value_threshhold = if \"${is_max_value_threshold_used}\" == \"On\" \r\n  then 10 ^ int(v: \"${max_value_threshold_exp}\")\r\n  else 10 ^ 100\r\n\r\nfrom(bucket: \"irem\")\r\n  |> range(start: date.sub(d: 10m, from: v.timeRangeStart), stop:date.add(d: 10m, to: v.timeRangeStop))\r\n  |> filter(fn: (r) =>\r\n    r._measurement == \"irem_coin\" and r._field == \"COUNTS_PER_MIN\" and r._value < max_value_threshhold\r\n  )\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: true)",
+          "query": "import \"date\"\r\n\r\nmax_value_threshhold = if \"${is_max_value_threshold_used}\" == \"On\" \r\n  then 10 ^ int(v: \"${max_value_threshold_exp}\")\r\n  else 10 ^ 100\r\n\r\nfrom(bucket: \"irem\")\r\n  |> range(start: date.sub(d: 10m, from: v.timeRangeStart), stop:date.add(d: 10m, to: v.timeRangeStop))\r\n  |> filter(fn: (r) =>\r\n    r._measurement == \"irem_d3\" and r._field == \"COUNTS_PER_MIN\" and r._value < max_value_threshhold\r\n  )\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: true)",
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -1373,7 +1373,7 @@
           "measurement": "my_measurement",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "import \"date\"\r\n\r\nmax_value_threshhold = if \"${is_max_value_threshold_used}\" == \"On\" \r\n  then 10 ^ int(v: \"${max_value_threshold_exp}\")\r\n  else 10 ^ 100\r\n\r\nfrom(bucket: \"irem\")\r\n  |> range(start: date.sub(d: 10m, from: v.timeRangeStart), stop:date.add(d: 10m, to: v.timeRangeStop))\r\n  |> filter(fn: (r) =>\r\n    r._measurement == \"irem_d3\" and r._field == \"COUNTS_PER_MIN\" and r._value < max_value_threshhold\r\n  )\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: true)",
+          "query": "import \"date\"\r\n\r\nmax_value_threshhold = if \"${is_max_value_threshold_used}\" == \"On\" \r\n  then 10 ^ int(v: \"${max_value_threshold_exp}\")\r\n  else 10 ^ 100\r\n\r\nfrom(bucket: \"irem\")\r\n  |> range(start: date.sub(d: 10m, from: v.timeRangeStart), stop:date.add(d: 10m, to: v.timeRangeStop))\r\n  |> filter(fn: (r) =>\r\n    r._measurement == \"irem_coin\" and r._field == \"COUNTS_PER_MIN\" and r._value < max_value_threshhold\r\n  )\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: true)",
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -1567,7 +1567,7 @@
           "measurement": "my_measurement",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "import \"date\"\r\n\r\nmax_value_threshhold = if \"${is_max_value_threshold_used}\" == \"On\" \r\n  then 10 ^ int(v: \"${max_value_threshold_exp}\")\r\n  else 10 ^ 100\r\n\r\nfrom(bucket: \"irem\")\r\n  |> range(start: date.sub(d: 10m, from: v.timeRangeStart), stop:date.add(d: 10m, to: v.timeRangeStop))\r\n  |> filter(fn: (r) =>\r\n    r._measurement == \"irem_coin\" and r._field == \"COUNTS_PER_MIN\" and r._value < max_value_threshhold\r\n  )\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: true)",
+          "query": "import \"date\"\r\n\r\nmax_value_threshhold = if \"${is_max_value_threshold_used}\" == \"On\" \r\n  then 10 ^ int(v: \"${max_value_threshold_exp}\")\r\n  else 10 ^ 100\r\n\r\nfrom(bucket: \"irem\")\r\n  |> range(start: date.sub(d: 10m, from: v.timeRangeStart), stop:date.add(d: 10m, to: v.timeRangeStop))\r\n  |> filter(fn: (r) =>\r\n    r._measurement == \"irem_d3\" and r._field == \"COUNTS_PER_MIN\" and r._value < max_value_threshhold\r\n  )\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: true)",
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -1713,7 +1713,7 @@
           "measurement": "my_measurement",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "import \"date\"\r\n\r\nmax_value_threshhold = if \"${is_max_value_threshold_used}\" == \"On\" \r\n  then 10 ^ int(v: \"${max_value_threshold_exp}\")\r\n  else 10 ^ 100\r\n\r\nfrom(bucket: \"irem\")\r\n  |> range(start: date.sub(d: 10m, from: v.timeRangeStart), stop:date.add(d: 10m, to: v.timeRangeStop))\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: true)",
+          "query": "import \"date\"\r\n\r\nmax_value_threshhold = if \"${is_max_value_threshold_used}\" == \"On\" \r\n  then 10 ^ int(v: \"${max_value_threshold_exp}\")\r\n  else 10 ^ 100\r\n\r\nfrom(bucket: \"irem\")\r\n  |> range(start: date.sub(d: 10m, from: v.timeRangeStart), stop:date.add(d: 10m, to: v.timeRangeStop))\r\n  |> filter(fn: (r) => r._measurement == \"irem_d1\" or r._measurement == \"irem_d2\" or r._measurement == \"irem_d3\" or r._measurement == \"irem_coin\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: true)",
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -1975,7 +1975,7 @@
           "measurement": "my_measurement",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "import \"date\"\r\n\r\nmax_value_threshhold = if \"${is_max_value_threshold_used}\" == \"On\" \r\n  then 10 ^ int(v: \"${max_value_threshold_exp}\")\r\n  else 10 ^ 100\r\n\r\nfrom(bucket: \"irem\")\r\n  |> range(start: date.sub(d: 10m, from: v.timeRangeStart), stop:date.add(d: 10m, to: v.timeRangeStop))\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: true)",
+          "query": "import \"date\"\r\n\r\nmax_value_threshhold = if \"${is_max_value_threshold_used}\" == \"On\" \r\n  then 10 ^ int(v: \"${max_value_threshold_exp}\")\r\n  else 10 ^ 100\r\n\r\nfrom(bucket: \"irem\")\r\n  |> range(start: date.sub(d: 10m, from: v.timeRangeStart), stop:date.add(d: 10m, to: v.timeRangeStop))\r\n  |> filter(fn: (r) => r._measurement == \"irem_d1\" or r._measurement == \"irem_d2\" or r._measurement == \"irem_d3\" or r._measurement == \"irem_coin\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: true)",
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -2262,7 +2262,7 @@
           "measurement": "my_measurement",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "import \"date\"\r\n\r\nmax_value_threshhold = if \"${is_max_value_threshold_used}\" == \"On\" \r\n  then 10 ^ int(v: \"${max_value_threshold_exp}\")\r\n  else 10 ^ 100\r\n\r\nfrom(bucket: \"irem\")\r\n  |> range(start: date.sub(d: 10m, from: v.timeRangeStart), stop:date.add(d: 10m, to: v.timeRangeStop))\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: true)",
+          "query": "import \"date\"\r\n\r\nmax_value_threshhold = if \"${is_max_value_threshold_used}\" == \"On\" \r\n  then 10 ^ int(v: \"${max_value_threshold_exp}\")\r\n  else 10 ^ 100\r\n\r\nfrom(bucket: \"irem\")\r\n  |> range(start: date.sub(d: 10m, from: v.timeRangeStart), stop:date.add(d: 10m, to: v.timeRangeStop))\r\n  |> filter(fn: (r) => r._measurement == \"irem_d1\" or r._measurement == \"irem_d2\" or r._measurement == \"irem_d3\" or r._measurement == \"irem_coin\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: true)",
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -2525,7 +2525,7 @@
           "measurement": "my_measurement",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "import \"date\"\r\n\r\nmax_value_threshhold = if \"${is_max_value_threshold_used}\" == \"On\" \r\n  then 10 ^ int(v: \"${max_value_threshold_exp}\")\r\n  else 10 ^ 100\r\n\r\nfrom(bucket: \"irem\")\r\n  |> range(start: date.sub(d: 10m, from: v.timeRangeStart), stop:date.add(d: 10m, to: v.timeRangeStop))\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: true)",
+          "query": "import \"date\"\r\n\r\nmax_value_threshhold = if \"${is_max_value_threshold_used}\" == \"On\" \r\n  then 10 ^ int(v: \"${max_value_threshold_exp}\")\r\n  else 10 ^ 100\r\n\r\nfrom(bucket: \"irem\")\r\n  |> range(start: date.sub(d: 10m, from: v.timeRangeStart), stop:date.add(d: 10m, to: v.timeRangeStop))\r\n  |> filter(fn: (r) => r._measurement == \"irem_d1\" or r._measurement == \"irem_d2\" or r._measurement == \"irem_d3\" or r._measurement == \"irem_coin\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: true)",
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -2707,6 +2707,306 @@
         }
       ],
       "type": "timeseries"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 78
+      },
+      "id": 40,
+      "panels": [],
+      "title": "Magnetosphere - orbit, modeled magnetic field (TS05 / T04) and pitch angle",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "irem_influxdb_datasource"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "text",
+            "mode": "fixed"
+          },
+          "custom": {
+            "axisBorderShow": true,
+            "axisLabel": "Earth radii",
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "lineWidth": 1,
+            "pointSize": 5,
+            "showPoints": "auto",
+            "spanNulls": false
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 79
+      },
+      "id": 41,
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "irem_influxdb_datasource"
+          },
+          "query": "from(bucket: \"irem\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r._measurement == \"irem_orbit\" and r._field == \"r_distance\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: true)",
+          "refId": "A"
+        }
+      ],
+      "title": "Geocentric distance",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "irem_influxdb_datasource"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "red",
+            "mode": "fixed"
+          },
+          "custom": {
+            "axisBorderShow": true,
+            "axisLabel": "nT",
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "lineWidth": 1,
+            "pointSize": 5,
+            "showPoints": "auto",
+            "spanNulls": false,
+            "scaleDistribution": {
+              "log": 10,
+              "type": "log"
+            }
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 79
+      },
+      "id": 42,
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "irem_influxdb_datasource"
+          },
+          "query": "from(bucket: \"irem\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r._measurement == \"irem_magfield\" and r._field == \"b_magnitude\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: true)",
+          "refId": "A"
+        }
+      ],
+      "title": "Magnetic field magnitude |B|",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "irem_influxdb_datasource"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": true,
+            "axisLabel": "nT",
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "lineWidth": 1,
+            "pointSize": 5,
+            "showPoints": "auto",
+            "spanNulls": false
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 87
+      },
+      "id": 43,
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "irem_influxdb_datasource"
+          },
+          "query": "from(bucket: \"irem\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r._measurement == \"irem_magfield\" and (r._field == \"bx_gsm\" or r._field == \"by_gsm\" or r._field == \"bz_gsm\"))\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: true)",
+          "refId": "A"
+        }
+      ],
+      "title": "Modeled magnetic field, GSM components (Bx, By, Bz)",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "irem_influxdb_datasource"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "purple",
+            "mode": "fixed"
+          },
+          "custom": {
+            "axisBorderShow": true,
+            "axisLabel": "degrees",
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "lineWidth": 1,
+            "pointSize": 5,
+            "showPoints": "auto",
+            "spanNulls": false
+          },
+          "max": 180,
+          "min": 0,
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 16,
+        "x": 0,
+        "y": 95
+      },
+      "id": 44,
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "irem_influxdb_datasource"
+          },
+          "query": "import \"math\"\n\nfrom(bucket: \"irem\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r._measurement == \"irem_pitch_angle\" and r._field == \"pitch_angle_rad\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: true)\n  |> map(fn: (r) => ({r with _value: r._value * 180.0 / math.pi}))",
+          "refId": "A"
+        }
+      ],
+      "title": "Pitch angle (IREM boresight vs. modeled B field)",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "irem_influxdb_datasource"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "blue",
+            "mode": "fixed"
+          },
+          "custom": {
+            "axisBorderShow": true,
+            "axisLabel": "cos(angle)",
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "lineWidth": 1,
+            "pointSize": 5,
+            "showPoints": "auto",
+            "spanNulls": false
+          },
+          "max": 1,
+          "min": -1,
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 16,
+        "y": 95
+      },
+      "id": 45,
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "irem_influxdb_datasource"
+          },
+          "query": "from(bucket: \"irem\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r._measurement == \"irem_pitch_angle\" and r._field == \"pitch_angle_cos\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: true)",
+          "refId": "A"
+        }
+      ],
+      "title": "Pitch angle (cos)",
+      "type": "timeseries"
     }
   ],
   "preload": false,
@@ -2766,5 +3066,5 @@
   "timezone": "browser",
   "title": "IREM - Raw Science",
   "uid": "23f0629f-dab7-4275-9cdd-86d686e0a6fb",
-  "version": 1
+  "version": 3
 }
