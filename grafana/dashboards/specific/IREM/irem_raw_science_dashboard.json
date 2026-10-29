@@ -586,7 +586,7 @@
           "measurement": "my_measurement",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "import \"date\"\r\n\r\nmax_value_threshhold = if \"${is_max_value_threshold_used}\" == \"On\" \r\n  then 10 ^ int(v: \"${max_value_threshold_exp}\")\r\n  else 10 ^ 100\r\n  \r\nfrom(bucket: \"irem\")\r\n  |> range(start: date.sub(d: 10m, from: v.timeRangeStart), stop:date.add(d: 10m, to: v.timeRangeStop))\r\n  |> filter(fn: (r) =>\r\n    r._measurement == \"irem_d3\" and r._field == \"COUNTS_PER_MIN\" and r._value < max_value_threshhold\r\n  )\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: true)",
+          "query": "import \"date\"\r\n\r\nmax_value_threshhold = if \"${is_max_value_threshold_used}\" == \"On\" \r\n  then 10 ^ int(v: \"${max_value_threshold_exp}\")\r\n  else 10 ^ 100\r\n  \r\nfrom(bucket: \"irem\")\r\n  |> range(start: date.sub(d: 10m, from: v.timeRangeStart), stop:date.add(d: 10m, to: v.timeRangeStop))\r\n  |> filter(fn: (r) =>\r\n    r._measurement == \"irem_coin\" and r._field == \"COUNTS_PER_MIN\" and r._value < max_value_threshhold\r\n  )\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: true)",
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -779,7 +779,7 @@
           "measurement": "my_measurement",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "import \"date\"\r\n\r\nmax_value_threshhold = if \"${is_max_value_threshold_used}\" == \"On\" \r\n  then 10 ^ int(v: \"${max_value_threshold_exp}\")\r\n  else 10 ^ 100\r\n\r\nfrom(bucket: \"irem\")\r\n  |> range(start: date.sub(d: 10m, from: v.timeRangeStart), stop:date.add(d: 10m, to: v.timeRangeStop))\r\n  |> filter(fn: (r) =>\r\n    r._measurement == \"irem_coin\" and r._field == \"COUNTS_PER_MIN\" and r._value < max_value_threshhold\r\n  )\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: true)",
+          "query": "import \"date\"\r\n\r\nmax_value_threshhold = if \"${is_max_value_threshold_used}\" == \"On\" \r\n  then 10 ^ int(v: \"${max_value_threshold_exp}\")\r\n  else 10 ^ 100\r\n\r\nfrom(bucket: \"irem\")\r\n  |> range(start: date.sub(d: 10m, from: v.timeRangeStart), stop:date.add(d: 10m, to: v.timeRangeStop))\r\n  |> filter(fn: (r) =>\r\n    r._measurement == \"irem_d3\" and r._field == \"COUNTS_PER_MIN\" and r._value < max_value_threshhold\r\n  )\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: true)",
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -1373,7 +1373,7 @@
           "measurement": "my_measurement",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "import \"date\"\r\n\r\nmax_value_threshhold = if \"${is_max_value_threshold_used}\" == \"On\" \r\n  then 10 ^ int(v: \"${max_value_threshold_exp}\")\r\n  else 10 ^ 100\r\n\r\nfrom(bucket: \"irem\")\r\n  |> range(start: date.sub(d: 10m, from: v.timeRangeStart), stop:date.add(d: 10m, to: v.timeRangeStop))\r\n  |> filter(fn: (r) =>\r\n    r._measurement == \"irem_d3\" and r._field == \"COUNTS_PER_MIN\" and r._value < max_value_threshhold\r\n  )\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: true)",
+          "query": "import \"date\"\r\n\r\nmax_value_threshhold = if \"${is_max_value_threshold_used}\" == \"On\" \r\n  then 10 ^ int(v: \"${max_value_threshold_exp}\")\r\n  else 10 ^ 100\r\n\r\nfrom(bucket: \"irem\")\r\n  |> range(start: date.sub(d: 10m, from: v.timeRangeStart), stop:date.add(d: 10m, to: v.timeRangeStop))\r\n  |> filter(fn: (r) =>\r\n    r._measurement == \"irem_coin\" and r._field == \"COUNTS_PER_MIN\" and r._value < max_value_threshhold\r\n  )\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: true)",
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -1567,7 +1567,7 @@
           "measurement": "my_measurement",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "import \"date\"\r\n\r\nmax_value_threshhold = if \"${is_max_value_threshold_used}\" == \"On\" \r\n  then 10 ^ int(v: \"${max_value_threshold_exp}\")\r\n  else 10 ^ 100\r\n\r\nfrom(bucket: \"irem\")\r\n  |> range(start: date.sub(d: 10m, from: v.timeRangeStart), stop:date.add(d: 10m, to: v.timeRangeStop))\r\n  |> filter(fn: (r) =>\r\n    r._measurement == \"irem_coin\" and r._field == \"COUNTS_PER_MIN\" and r._value < max_value_threshhold\r\n  )\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: true)",
+          "query": "import \"date\"\r\n\r\nmax_value_threshhold = if \"${is_max_value_threshold_used}\" == \"On\" \r\n  then 10 ^ int(v: \"${max_value_threshold_exp}\")\r\n  else 10 ^ 100\r\n\r\nfrom(bucket: \"irem\")\r\n  |> range(start: date.sub(d: 10m, from: v.timeRangeStart), stop:date.add(d: 10m, to: v.timeRangeStop))\r\n  |> filter(fn: (r) =>\r\n    r._measurement == \"irem_d3\" and r._field == \"COUNTS_PER_MIN\" and r._value < max_value_threshhold\r\n  )\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: true)",
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
